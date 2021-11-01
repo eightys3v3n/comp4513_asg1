@@ -1,18 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import SearchPage from './components/SearchPage.js';
 import React from 'react';
-import BrowserRouter from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
+import SearchPage from './components/SearchPage.js';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
       </header>
-      <body>
-        <Route path="/" exact component={SearchPage} />
-        <Route path="/search" exact component={SearchPage} />
-      </body>
+      <BrowserRouter>
+        <Router path="/" component={SearchPage} />
+        <Router path="/search" exact component={SearchPage} />
+      </BrowserRouter>
     </div>
   );
 }
