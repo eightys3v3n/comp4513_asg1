@@ -5,12 +5,7 @@ function Favorites(props) {
     <div>
       <h2>Favorites</h2>
       <div>
-        { props.favorites.map(fav => {
-            return (
-              <p>fav</p>
-            );
-          })
-        }
+        hello
       </div>
     </div>
   );

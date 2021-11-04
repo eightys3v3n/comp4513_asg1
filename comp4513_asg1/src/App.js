@@ -8,6 +8,7 @@ import DetailsPage from './components/DetailsPage.js';
 
 const App = (props) => {
   const {favorites, setFavorites} = useState([]);
+  const {plays, setPlays} = useState([]);
   let url = "https://www.randyconnolly.com//funwebdev/3rd/api/shakespeare/list.php";
 
   
@@ -26,8 +27,9 @@ const App = (props) => {
         return res.json();
       })
       .then(data => {
-        setFavorites(data);
+        setPlays(data);
         console.log("Retrieved data");
+        console.log(data);
       })
   });
   
@@ -37,7 +39,6 @@ const App = (props) => {
       </header>
       <div>
         <HomePage />
-        <h1>Test</h1>
         <BrowsePage addFavorite={addFavorite}
                     removeFavorite={removeFavorite}
                     favorites={favorites}
