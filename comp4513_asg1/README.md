@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 ### `./start_docker.sh`
 
-Will create and start a docker container in development mode.
+Will create and start a docker container in development mode according to [here](https://mherman.org/blog/dockerizing-a-react-app/).
 Yet to create production release docker container.
 Can access via [http://localhost:3000](http://localhost:3000) to view.
 
