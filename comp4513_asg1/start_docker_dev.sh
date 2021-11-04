@@ -1,4 +1,3 @@
-
 # Build the docker container
 sudo docker build -t comp4513_asg1:dev .
 
