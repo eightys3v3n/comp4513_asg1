@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import FavoriteItem from './FavoriteItem.js';
+import FavoritesContext from './FavoritesContextProvider.js';
 
 function Favorites(props) {
+  const favoritesContext = FavoritesContext(FavoritesContext);
+  const {favorites, addFavorite, removeFavorite} = favoritesContext.props.value;
 
   // Replace these with the context provider versions once those are finished.
-  let favorites = ['antony_and_cleopatra', 'as_you_like_it'];
   let plays = [
     {
       "id": "alls_well_that_ends_well", 
@@ -14,7 +16,7 @@ function Favorites(props) {
 	  "genre" : "comedy",
       "wiki": "https://en.wikipedia.org/wiki/All%27s_Well_That_Ends_Well",
       "gutenberg": "https://gutenberg.org/ebooks/1529",
-	  "shakespeareOrg" : "https://www.shakespeare.org.uk/explore-shakespeare/shakespedia/shakespeares-plays/alls-well-ends-well/",
+	  "shakespeareOrg" : "https://www.shakespeare.org.uk/explore-shakespeare/shakespedia/shakespeares-plays/alls-well-ends-well/k",
 	  "synopsis": "Helen saves the King's life, he gives her his son to marry, who runs away from her, and she tricks him into impregnating her. Everything ends happily.",
       "desc" : "Bertram is compelled to marry Helena. Bertram refuses to consummate their marriage. He goes to Italy. In Italy he courts Diana. Helena meets Diana. They perform the bed trick. The play is considered one of Shakespeare's problem plays, a play that poses complex ethical dilemmas that require more than typically simple solutions."
     },
@@ -53,10 +55,6 @@ function Favorites(props) {
 
     return null;
   }
-
-  function removeFavorite(e) {
-    console.log("Would call the context provider removeFavorite(id)");
-  }
   
   return (
     <section id="favorites">
@@ -64,11 +62,17 @@ function Favorites(props) {
       <div className="list">{
           favorites.map(f => {
             let play = playByID(f);
-            
-            return (
-              <FavoriteItem key={play.id}
-                            play={play} />
-            );
+
+            if (play !== null) {
+              return (
+                <FavoriteItem key={play.id}
+                              play={play}
+                              removeFavorite={removeFavorite}
+                />
+              );
+            } else {
+              console.warn(`Couldn't find the info for favorite id ${f}`);
+            }
           })
       }</div>
     </section>
