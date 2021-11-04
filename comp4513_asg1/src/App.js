@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';
-//import {FavoritesContextProvider} from './components/FavoritesContextProvider.js';
+import FavoritesProvider from './components/FavoritesContextProvider.js';
 
 
 const App = (props) => {  
@@ -14,8 +14,10 @@ const App = (props) => {
       </header>
       <div>
       <HomePage />
-      <BrowsePage />
-      <DetailsPage />
+      <FavoritesProvider>
+        <BrowsePage />
+        <DetailsPage />
+      </FavoritesProvider>
       </div>
     </div>
   );
