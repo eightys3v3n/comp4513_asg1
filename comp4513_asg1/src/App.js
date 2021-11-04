@@ -4,45 +4,18 @@ import { useState, useEffect } from 'react';
 import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';
+//import {FavoritesContextProvider} from './components/FavoritesContextProvider.js';
 
 
-const App = (props) => {
-  const {favorites, setFavorites} = useState([]);
-  let url = "https://www.randyconnolly.com//funwebdev/3rd/api/shakespeare/list.php";
-
-  
-  function addFavorite(id) {
-    console.log(`Adding favorite ${id}`);
-  }
-
-  function removeFavorite(id) {
-    console.log(`Removing favorite ${id}`);
-  }
-
-
-  useEffect(() => {
-    fetch(url)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setFavorites(data);
-        console.log("Retrieved data");
-      })
-  });
-  
+const App = (props) => {  
   return (
     <div className="App">
       <header className="App-header">
       </header>
       <div>
-        <HomePage />
-        <h1>Test</h1>
-        <BrowsePage addFavorite={addFavorite}
-                    removeFavorite={removeFavorite}
-                    favorites={favorites}
-        />
-        <DetailsPage />
+      <HomePage />
+      <BrowsePage />
+      <DetailsPage />
       </div>
     </div>
   );
