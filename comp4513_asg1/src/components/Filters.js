@@ -6,7 +6,7 @@ function Filters(props) {
 
   return (
     <section id='Filter-Section'>
-      <form class="pure-form pure-form-stacked">
+      <form className="pure-form pure-form-stacked">
           <h2>Play Filters</h2>
         <div style={{margin: "0px"}}>
           <label>Title:  </label>
@@ -40,8 +40,8 @@ function Filters(props) {
           </select>
         </div>
         <div style={{width: "50%", margin: "0 auto"}}>
-          <button type="submit" classname="pure-button pure-button-primary" style={{margin: "15px"}}>Filter</button>
-          <button type="reset" classname="pure-button">Reset</button>   
+          <button type="submit" className="pure-button pure-button-primary" style={{margin: "15px"}}>Filter</button>
+          <button type="reset" className="pure-button">Reset</button>   
         </div>       
       </form>
     </section>);
