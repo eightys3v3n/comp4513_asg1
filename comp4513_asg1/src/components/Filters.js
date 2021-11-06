@@ -7,7 +7,6 @@ function Filters(props) {
           <h3>Play Filters</h3>
         <div>
           <label>Title</label>
-          <input id="title"/>
           <input id="title" type="text" name="title"/>
 
           <legend>Year</legend>
