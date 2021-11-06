@@ -1,8 +1,16 @@
 import React from 'react';
+import PlaysContext from './PlaysContextProvider.js';
 
 function Matches(props) {
+  const plays = PlaysContext(PlaysContext);
+  console.log(plays);
+  
   return (
-    <h1></h1>
+    <section>
+      {
+        
+      }
+    </section>
   );
 }
 
