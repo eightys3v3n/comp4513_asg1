@@ -3,7 +3,6 @@ import React, {createContext, useState} from 'react';
 
 export const FavoritesContext = createContext([]);
 
-
 function FavoritesProvider({children}) {
   const [favorites, setFavorites] = useState(['alls_well_that_ends_well','antony_and_cleopatra']);
 
@@ -31,15 +30,5 @@ function FavoritesProvider({children}) {
     </FavoritesContext.Provider>
   );
 }
+
 export default FavoritesProvider;
-
-//  const [favorites, setFavorites] = useState([]);
-  
-//  function addFavorite(id) {
-//    console.log(`Adding favorite ${id}`);
-//  }
-
-//  function removeFavorite(id) {
-//    console.log(`Removing favorite ${id}`);
-//  }
-
