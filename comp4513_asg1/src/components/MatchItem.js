@@ -2,7 +2,11 @@ import React from 'react';
 import FavoritesContext from './FavoritesContextProvider.js';
 
 function MatchItem(props) {
-  const {favorites, addFavorite} = FavoritesContext(FavoritesContext);
+  const {favorites, addFavorite, isFavorite} = FavoritesContext(FavoritesContext);
+  
+  
+  if (isFavorite(props.play.id) {
+    
   
   return (
     <tr>
