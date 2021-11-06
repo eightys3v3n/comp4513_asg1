@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function HomePage(props) {
   return (
     <section id='Home-Page'>
-      <form>
+      <form class="pure-form">
           <h1>Search Plays</h1>
         <div>
           <label>Title</label>
