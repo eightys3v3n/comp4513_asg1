@@ -27,8 +27,18 @@ function PlaysProvider({children}) {
     }
   }
 
+  function getGenres() {
+    let genres = new Set();
+
+    for (let p of plays) {
+      genres.add(p.genre);
+    }
+    
+    return genres;
+  }
+
   return (
-    <PlaysContext.Provider value={plays, getPlayByID}>
+    <PlaysContext.Provider value={{plays, getPlayByID, getGenres}}>
       {children}
     </PlaysContext.Provider>
   );
