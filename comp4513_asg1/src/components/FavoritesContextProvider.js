@@ -23,9 +23,18 @@ function FavoritesProvider({children}) {
       setFavorites(newFavorites);
     }
   }
+
+  function isFavorite(id) {
+    for (let f of favorites) {
+      if (f === id) {
+        return true;
+      }
+    }
+    return false;
+  }
   
   return (
-    <FavoritesContext.Provider value={{favorites, addFavorite, removeFavorite}}>
+    <FavoritesContext.Provider value={{favorites, addFavorite, removeFavorite, isFavorite}}>
       {children}
     </FavoritesContext.Provider>
   );
