@@ -8,12 +8,25 @@ function Matches(props) {
   return (
     <section>
       <h1>Matches</h1>
-      {
-        plays.map(p => (
-          <MatchItem key={p.id}
-                     play={p} />
-        ))
-      }
+      <table className="pure-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Likely Year</th>
+            <th>Favorites</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            plays.map(p => (
+              <MatchItem key={p.id}
+                         play={p} />
+            ))
+          }
+        </tbody>
+      </table>
     </section>
   );
 }
