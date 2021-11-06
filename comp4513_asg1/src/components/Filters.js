@@ -7,9 +7,7 @@ function Filters(props) {
           <h3>Play Filters</h3>
         <div>
           <label>Title</label>
-          <input id="title" />
-        </div>
-          <legend>Title</legend>
+          <input id="title"/>
           <input id="title" type="text" name="title"/>
 
           <legend>Year</legend>
@@ -26,7 +24,8 @@ function Filters(props) {
              - id
              - innerHTML */}
 
-          </select>
+          </select><br/><br/>
+        </div>
 
           <button type="submit" class="pure-button pure-button-primary">Filter</button>
           <button type="reset" class="pure-button">Reset</button>          
