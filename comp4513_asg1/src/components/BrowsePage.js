@@ -8,12 +8,22 @@ function BrowsePage(props) {
   return (
     <div>
       <Header/>
-      <Favorites addFavorite={props.addFavorite}
-                 removeFavorite={props.removeFavorite}
-                 favorites={props.favorites}
-      />
-      <Filters />
-      <Matches />
+      <header>
+        <h1>Browse</h1>
+      </header>
+      <div class="pure-g">
+        <div class="pure-u-1-5">
+          <Favorites addFavorite={props.addFavorite}
+                removeFavorite={props.removeFavorite}
+                favorites={props.favorites}/>
+        </div>
+        <div class="pure-u-2-5">
+          <Filters />
+        </div>
+        <div class="pure-u-2-5">
+          <Matches />
+        </div>
+      </div>
     </div>
   );
 }
