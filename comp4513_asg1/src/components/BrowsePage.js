@@ -12,7 +12,7 @@ function BrowsePage(props) {
         <h1>Browse</h1>
       </header>
       <div className="pure-g">
-        <div classNAme="pure-u-1-5">
+        <div className="pure-u-1-5">
           <Favorites addFavorite={props.addFavorite}
                 removeFavorite={props.removeFavorite}
                 favorites={props.favorites}/>
