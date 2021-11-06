@@ -13,7 +13,6 @@ const App = (props) => {
       <header className="App-header">
       </header>
       <div>
-      <HomePage />
       <PlaysProvider>
         <Route path="/" exact component={HomePage} />
         <FavoritesProvider>
