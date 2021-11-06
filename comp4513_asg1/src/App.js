@@ -5,6 +5,7 @@ import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';
 import FavoritesProvider from './components/FavoritesContextProvider.js';
+import PlaysProvider from './components/PlaysContextProvider.js';
 
 
 const App = (props) => {  
@@ -14,10 +15,12 @@ const App = (props) => {
       </header>
       <div>
       <HomePage />
+      <PlaysProvider>
       <FavoritesProvider>
         <BrowsePage />
         <DetailsPage />
       </FavoritesProvider>
+      </PlaysProvider>
       </div>
     </div>
   );
