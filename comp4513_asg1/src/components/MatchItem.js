@@ -1,11 +1,16 @@
 import React from 'react';
+import FavoritesContext from './FavoritesContextProvider.js';
 
 function MatchItem(props) {
+  const {favorites, addFavorite} = FavoritesContext(FavoritesContext);
+  
   return (
     <tr>
       <td>{props.play.title}</td>
       <td>{props.play.genre}</td>
       <td>{props.play.likelyDate}</td>
+      <td></td>
+      <td></td>
     </tr>
   );
 }
