@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 function HomePage(props) {
   return (
@@ -11,8 +11,8 @@ function HomePage(props) {
           <input id="title" />
         </div>
         <div>
-          <button type="submit" className="pure-button pure-button-primary">Show Matching Plays</button>
-          <button type="submit" className="pure-button pure-button-primary">Show All Plays</button>
+          <Link to="/BrowsePage"><button>Show Matching Plays</button></Link>
+          <Link to="/BrowsePage"><button>Show All Plays</button></Link>
         </div>
       </form>
     </section>
