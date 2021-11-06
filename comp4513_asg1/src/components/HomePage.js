@@ -11,8 +11,8 @@ function HomePage(props) {
           <input id="title" />
         </div>
         <div>
-          <input type="button" value="Show Matching Plays" />
-          <input type="button" value="Show All Plays" />
+          <Link to="/BrowsePage"><button>Show Matching Plays</button></Link>
+          <Link to="/BrowsePage"><button>Show All Plays</button></Link>
         </div>
       </form>
     </section>

@@ -14,8 +14,8 @@ const App = (props) => {
       <div>
       <Route path="/" exact component={HomePage} />
       <FavoritesProvider>
-        <BrowsePage />
-        <DetailsPage />
+        <Route path="/BrowsePage" exact component={BrowsePage} />
+        <Route path="/DetailsPage" exact component={DetailsPage} />
       </FavoritesProvider>
       </div>
     </div>
