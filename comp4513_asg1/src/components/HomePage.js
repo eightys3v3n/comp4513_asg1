@@ -11,8 +11,8 @@ function HomePage(props) {
           <input id="title" />
         </div>
         <div>
-          <button type="submit" class="pure-button pure-button-primary" value="Show Matching Plays" />
-          <button type="submit" class="pure-button pure-button-primary" value="Show All Plays" />
+          <button type="submit" className="pure-button pure-button-primary">Show Matching Plays</button>
+          <button type="submit" className="pure-button pure-button-primary">Show All Plays</button>
         </div>
       </form>
     </section>
