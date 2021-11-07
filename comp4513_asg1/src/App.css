@@ -41,6 +41,7 @@
 	color:#6666FF;
 	text-decoration: underline;
 	cursor: pointer;
+}
 
 .ReactModal__Overlay {
     opacity: 0;
