@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
+
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
   return (
