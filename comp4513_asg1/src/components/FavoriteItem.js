@@ -8,7 +8,8 @@ function FavoriteItem(props) {
   
   return (<div className="list-item">
             <div className="title">{props.play.title}</div>
-            <button onClick={removeFavorite}>Remove</button>
+            <button className='pure-button'
+                    onClick={removeFavorite}>Remove</button>
           </div> );
 
 }
