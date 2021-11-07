@@ -16,7 +16,8 @@ function BrowsePage(props) {
           <Favorites />
         </div>
         <div className="pure-u-9-24 grey">
-          <Filters title={props.title}/>
+          <Filters title={props.title}
+                   setTitle={props.setTitle}/>
         </div>
         <div className="pure-u-9-24 grey">
 
