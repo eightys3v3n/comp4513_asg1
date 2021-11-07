@@ -8,7 +8,7 @@ function BrowsePage(props) {
   return (
     <div>
       <div className="pure-g margin" >
-        <div className="pure-u-23-24 grey">
+        <div className="pure-u-24-24 grey">
           <Header/>
         </div>
         <div className="pure-u-4-24 grey">
@@ -20,7 +20,7 @@ function BrowsePage(props) {
         <div className="pure-u-9-24 grey">
           <Filters />
         </div>
-        <div className="pure-u-9-24 grey">
+        <div className="pure-u-10-24 grey">
 
           <Matches />
         </div>
