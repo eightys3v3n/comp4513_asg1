@@ -18,7 +18,7 @@ function PlaysProvider({children}) {
         console.log("Retrieved data");
         console.log(data);
       })
-  }, []);
+  }, [url]);
 
   function getByID(id) {
     for (const play of plays) {
