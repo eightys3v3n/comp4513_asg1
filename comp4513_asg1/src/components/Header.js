@@ -9,12 +9,10 @@ function Header(props) {
   let [modal, setModal] = useState(false);
 
   function openAbout(e) {
-    console.log("About button clicked");
     setModal(true);
   }
 
   function closeAbout(e) {
-    console.log("Close about");
     setModal(false);
   }
 
@@ -29,7 +27,7 @@ function Header(props) {
           <ul>
             <li><Link to="/DetailsPage">Details Page</Link></li>
             <button onClick={openAbout} className="AboutOpenButton pure-button">About</button>
-            <ReactModal className="ModalSize" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
+            <ReactModal ariaHideApp={false} className="ModalSize" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
               <button className="AboutModalCloseButton pure-button" onClick={closeAbout}>Close</button>
               <AboutModalContent/>
             </ReactModal>
