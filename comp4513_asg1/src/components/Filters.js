@@ -3,17 +3,19 @@ import {PlaysContext} from './PlaysContextProvider.js';
 
 function Filters(props) {
   const plays = useContext(PlaysContext);
-  let [titleQuery, setTitleQuery] = useState([props.title]);
+  if (props.title === undefined) {
+    console.log("NOOOO");
+  }
+  let [titleQuery, setTitleQuery] = useState(props.title);
+  let [yearRange, setYearRange] = useState({min: null,
+                                            max: null});
+  let [genre, setGenre] = useState([null]);
   let [reset, setReset] = useState([false]);
-  let yearRange = {min: null,
-                   max: null};
-  let genre = null;
   
   useEffect(() => {
     titleQuery = props.title;
     applyFilters();
-    console.log("Filtering");
-  }, []);
+  }, [titleQuery]);
 
   useEffect(() => {
     applyFilters();
@@ -36,11 +38,11 @@ function Filters(props) {
           return false;
         }
         if (yearRange.min !== null &&
-            play.likelyDate < yearRange.start) {
+            parseInt(play.likelyDate) < yearRange.min) {
           return false;
         }
         if (yearRange.max !== null &&
-            play.likelyDate > yearRange.end) {
+            parseInt(play.likelyDate) > yearRange.max) {
           return false;
         }
         if (genre !== null &&
@@ -56,28 +58,28 @@ function Filters(props) {
   }
 
   function resetFilters(e) {
-    console.log("resetting filters");
     setTitleQuery("");
-    yearRange.min = null;
-    yearRange.max = null;
-    genre = null;
+    setYearRange({min: null,
+                  max: null});
+    setGenre(null);
     setReset(true);
   }
 
   function inputHandler(e) {
-    console.log(e);
     switch (e.target.id) {
     case "title":
       setTitleQuery(e.target.value);
       break;
     case "minYear":
-      yearRange.min = parseInt(e.target.value);
+      setYearRange({min: parseInt(e.target.value),
+                    max: yearRange.max});
       break;
     case "maxYear":
-      yearRange.max = parseInt(e.target.value);
+      setYearRange({min: yearRange.min,
+                    max: parseInt(e.target.value)});
       break;
     case "genre":
-      genre = e.target.value;
+      setGenre(e.target.value);
       break;
     }
   }

@@ -8,7 +8,7 @@ import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 
 const App = (props) => {
-  let [a, sA] = useState([]);
+  let [a, sA] = useState("");
   
   return (
       <div className="App">
