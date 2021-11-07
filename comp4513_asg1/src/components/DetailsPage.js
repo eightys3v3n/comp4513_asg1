@@ -8,7 +8,7 @@ function DetailsPage(props) {
   return (
     <section id="Details-Page">
       <div className="pure-g margin">
-        <div className="pure-u-22-34 grey">
+        <div className="pure-u-24-24 grey">
           <Header/>
         </div>
         <div className="pure-u-4-24 grey">

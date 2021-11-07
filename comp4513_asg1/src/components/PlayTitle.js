@@ -6,7 +6,7 @@ function PlayTitle(props) {
 
   return (
     <section id='Filter-Section' className="padding">
-      <h3>Play Title</h3>
+      <h2>Play Title</h2>
     </section>);
 }
 
