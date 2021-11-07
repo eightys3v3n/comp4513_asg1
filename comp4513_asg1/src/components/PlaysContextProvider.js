@@ -33,6 +33,8 @@ function PlaysProvider({children}) {
     for (let p of plays) {
       genres.add(p.genre);
     }
+
+    genres = Array.from(genres);
     
     return genres;
   }
