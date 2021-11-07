@@ -4,7 +4,7 @@ import MatchItem from './MatchItem.js';
 
 function Matches(props) {
   const {plays, getPlayByID, getGenres} = PlaysContext(PlaysContext).props.value;
-  
+
   return (
     <section>
       <h1>Matches</h1>
