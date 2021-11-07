@@ -1,21 +1,21 @@
-import React from 'react';
-import FavoritesContext from './FavoritesContextProvider.js';
+import React, {useContext} from 'react';
+import {FavoritesContext} from './FavoritesContextProvider.js';
 
 function FavoriteIcon(props) {
-  const {isFavorite, addFavorite, removeFavorite} = FavoritesContext(FavoritesContext).props.value;
+  const favorites = useContext(FavoritesContext);
   let src;
   
-  if (isFavorite(props.id)) {
+  if (favorites.isFavorite(props.id)) {
     src = `${process.env.PUBLIC_URL}/favorite-selected.svg`;
   } else {
     src = `${process.env.PUBLIC_URL}/favorite-unselected.svg`;
   }
 
   function clickHandler(e) {
-    if (isFavorite(props.id)) {
-      removeFavorite(props.id);
+    if (favorites.isFavorite(props.id)) {
+      favorites.removeFavorite(props.id);
     } else {
-      addFavorite(props.id);
+      favorites.addFavorite(props.id);
     }
   }
   

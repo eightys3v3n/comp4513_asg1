@@ -1,9 +1,9 @@
-import React from 'react';
-import PlaysContext from './PlaysContextProvider.js';
+import React, {useContext} from 'react';
+import {PlaysContext} from './PlaysContextProvider.js';
 import MatchItem from './MatchItem.js';
 
 function Matches(props) {
-  const {plays, getPlayByID, getGenres} = PlaysContext(PlaysContext).props.value;
+  const plays = useContext(PlaysContext);
 
   return (
     <section>
@@ -20,7 +20,7 @@ function Matches(props) {
         </thead>
         <tbody>
           {
-            plays.map(p => (
+            plays.plays.map(p => (
               <MatchItem key={p.id}
                          play={p} />
             ))
