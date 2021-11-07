@@ -14,6 +14,10 @@
 	margin: 7px;
 }
 
+.margin{
+	margin: 15px;
+}
+
 .padding{
 	padding:15px;
 }
@@ -33,6 +37,10 @@
 	width: 100%;
 }
 
+.btn{
+	color:#6666FF;
+	text-decoration: underline;
+	cursor: pointer;
 
 .ReactModal__Overlay {
     opacity: 0;
@@ -46,6 +54,7 @@
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+
 .ModalSize { 
 	background-color: white;
 	height: 50%;
