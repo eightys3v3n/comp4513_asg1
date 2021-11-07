@@ -3,9 +3,6 @@ import {PlaysContext} from './PlaysContextProvider.js';
 
 function Filters(props) {
   const plays = useContext(PlaysContext);
-  if (props.title === undefined) {
-    console.log("NOOOO");
-  }
   let [titleQuery, setTitleQuery] = useState(props.title);
   let [yearRange, setYearRange] = useState({min: null,
                                             max: null});
