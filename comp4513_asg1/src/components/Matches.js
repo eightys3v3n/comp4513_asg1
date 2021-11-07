@@ -4,6 +4,7 @@ import MatchItem from './MatchItem.js';
 
 function Matches(props) {
   const plays = useContext(PlaysContext);
+  let filteredPlays = plays.plays.filter(plays.filter);
 
   return (
     <section>
@@ -20,7 +21,7 @@ function Matches(props) {
         </thead>
         <tbody>
           {
-            plays.plays.map(p => (
+            filteredPlays.map(p => (
               <MatchItem key={p.id}
                          play={p} />
             ))
