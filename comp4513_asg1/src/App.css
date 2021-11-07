@@ -22,3 +22,19 @@
 	width:116px;
 	height: 100px;
 }
+
+.overflow{
+	height:500px;
+	overflow:scroll;
+
+}
+
+.table-header th{
+	width: 100%;
+}
+
+.btn{
+	color:#6666FF;
+	text-decoration: underline;
+	cursor: pointer;
+}
