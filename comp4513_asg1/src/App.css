@@ -32,3 +32,39 @@
 .table-header th{
 	width: 100%;
 }
+
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+.ModalSize { 
+	background-color: white;
+	height: 50%;
+	width: 50%;
+	margin: auto;
+	margin-top: 100px;
+
+	border: 1px solid #ccc;
+	overflow: auto;
+	border-radius: 4px;
+	padding: 20px;
+}
+
+.AboutModalCloseButton {
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.AboutOpenButton {
+	float: right;
+}
