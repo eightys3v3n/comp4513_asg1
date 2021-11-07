@@ -6,15 +6,15 @@ function Matches(props) {
   const plays = useContext(PlaysContext);
 
   return (
-    <section>
-      <h1>Matches</h1>
-      <table className="pure-table">
+    <section className="overflow">
+      <h2 style={{marginLeft: "15px"}}>Matches</h2>
+      <table className="pure-table" >
         <thead>
-          <tr>
-            <th>Title</th>
+          <tr className="table-header">
+            <th className="pure-button">Title</th>
             <th>Genre</th>
-            <th>Likely Year</th>
-            <th>Favorites</th>
+            <th className="pure-button">Year</th>
+            <th >Favorites</th>
             <th>View</th>
           </tr>
         </thead>
