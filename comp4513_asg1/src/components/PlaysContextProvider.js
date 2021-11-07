@@ -5,13 +5,8 @@ export const PlaysContext = createContext([]);
 
 function PlaysProvider({children}) {
   const [plays, setPlays] = useState([]);
-  const [filter, setFilter1] = useState(() => () => true);
+  const [filter, setFilter] = useState(() => () => true);
   let url = "https://www.randyconnolly.com/funwebdev/3rd/api/shakespeare/list.php";
-
-  function setFilter(filter) {
-    setFilter1(filter);
-    console.log("Set filter");
-  }
   
   useEffect(() => {
     fetch(url)
