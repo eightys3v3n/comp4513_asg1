@@ -5,6 +5,7 @@ export const PlaysContext = createContext([]);
 
 function PlaysProvider({children}) {
   const [plays, setPlays] = useState([]);
+  const [filter, setFilter] = useState(() => () => true);
   let url = "https://www.randyconnolly.com/funwebdev/3rd/api/shakespeare/list.php";
   
   useEffect(() => {
@@ -17,14 +18,15 @@ function PlaysProvider({children}) {
         console.log("Retrieved data");
         console.log(data);
       })
-  }, []);
+  }, [url]);
 
-  function getPlayByID(id) {
+  function getByID(id) {
     for (const play of plays) {
       if (play.id === id) {
         return play;
       }
     }
+    return null;
   }
 
   function getGenres() {
@@ -33,12 +35,14 @@ function PlaysProvider({children}) {
     for (let p of plays) {
       genres.add(p.genre);
     }
+
+    genres = Array.from(genres);
     
     return genres;
   }
 
   return (
-    <PlaysContext.Provider value={{plays, getPlayByID, getGenres}}>
+    <PlaysContext.Provider value={{plays, getByID, getGenres, filter, setFilter}}>
       {children}
     </PlaysContext.Provider>
   );

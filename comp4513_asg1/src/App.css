@@ -1,0 +1,24 @@
+.grey{
+	background-color:#EEEEEE;
+}
+
+.red{
+	background-color:red;
+}
+
+.green{
+	background-color:green;
+}
+
+.margin div{
+	margin: 7px;
+}
+
+.padding{
+	padding:15px;
+}
+
+.logo{
+	width:116px;
+	height: 100px;
+}
