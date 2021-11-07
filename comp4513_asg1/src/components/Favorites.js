@@ -22,6 +22,8 @@ function Favorites(props) {
                 />
               );
             }
+            
+            return null; // map expects a return otherwise it warns.
           })
       }</div>
     </section>
