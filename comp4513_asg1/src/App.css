@@ -32,3 +32,9 @@
 .table-header th{
 	width: 100%;
 }
+
+.btn{
+	color:#6666FF;
+	text-decoration: underline;
+	cursor: pointer;
+}

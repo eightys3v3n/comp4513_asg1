@@ -60,9 +60,9 @@ function Matches(props) {
       <table className="pure-table" >
         <thead>
           <tr className="table-header">
-            <th><a className="" id="title" onClick={changeSort}>Title</a></th>
+            <th><a className="btn" id="title" onClick={changeSort}>Title</a></th>
             <th>Genre</th>
-            <th><a className="" id="year" onClick={changeSort}>Year</a></th>
+            <th><a className="btn" id="year" onClick={changeSort}>Year</a></th>
             <th >Favorites</th>
             <th>View</th>
           </tr>
