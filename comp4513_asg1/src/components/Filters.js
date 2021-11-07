@@ -6,6 +6,7 @@ function Filters(props) {
 
   return (
     <section id='Filter-Section' className="padding">
+
       <form className="pure-form pure-form-stacked">
           <h2>Play Filters</h2>
         <div>

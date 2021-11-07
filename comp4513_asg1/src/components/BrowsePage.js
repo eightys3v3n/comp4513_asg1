@@ -15,6 +15,7 @@ function BrowsePage(props) {
           <Header/>
         </div>
         <div className="pure-u-4-24 grey">
+
           <Favorites addFavorite={props.addFavorite}
                 removeFavorite={props.removeFavorite}
                 favorites={props.favorites}/>
@@ -23,6 +24,7 @@ function BrowsePage(props) {
           <Filters />
         </div>
         <div className="pure-u-9-24 grey">
+
           <Matches />
         </div>
       </div>
