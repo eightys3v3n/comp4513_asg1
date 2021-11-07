@@ -4,7 +4,7 @@ import React, {createContext, useState} from 'react';
 export const FavoritesContext = createContext();
 
 function FavoritesProvider(props) {
-  const [favorites, setFavorites] = useState(['alls_well_that_ends_well','antony_and_cleopatra']);
+  const [favorites, setFavorites] = useState([]);
   
   function addFavorite(id) {
     if (!favorites.includes(id)) {
@@ -14,7 +14,6 @@ function FavoritesProvider(props) {
     } else {
       console.log(`Not adding duplicate favorite: ${id}`);
     }
-    console.log(favorites);
   }
 
   function removeFavorite(id) {
