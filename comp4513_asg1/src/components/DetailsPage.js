@@ -4,7 +4,6 @@ import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
 
-
 function DetailsPage(props) {
   return (
     <section id="Details-Page">
