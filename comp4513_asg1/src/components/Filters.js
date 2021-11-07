@@ -5,10 +5,10 @@ function Filters(props) {
   const {plays, getPlayByID, getGenres} = PlaysContext(PlaysContext).props.value;
 
   return (
-    <section id='Filter-Section'>
-      <form class="pure-form pure-form-stacked">
+    <section id='Filter-Section' className="padding">
+      <form className="pure-form pure-form-stacked">
           <h2>Play Filters</h2>
-        <div style={{margin: "0px"}}>
+        <div>
           <label>Title:  </label>
           <input id="title" type="text" name="title"/><br/>
 
@@ -20,28 +20,23 @@ function Filters(props) {
 
           <label>Genre:  </label>
           <select id="genre">
-            <option id="0">No Selection</option>  
-            
-            {/* Loop through set creating new options setting:
-             - id
-             - innerHTML */}
-            
-            {
-              /* I'm not sure how to invoke getGenres() to iterate through the set */
+            <option key="0" id="0">No Selection</option>  
 
-              /*
-              <Option id={p.id} name={p.name}>
-                {p.name}
-              </Option>
-              */
+            {
+            /* gets all the genres from the plays context provider */
+            }
+
+              {getGenres().map(g => {
+                return (<option key={g} id={g}>{g}</option>)
+              })
             }
             
 
           </select>
         </div>
         <div style={{width: "50%", margin: "0 auto"}}>
-          <button type="submit" classname="pure-button pure-button-primary" style={{margin: "15px"}}>Filter</button>
-          <button type="reset" classname="pure-button">Reset</button>   
+          <button type="submit" className="pure-button pure-button-primary" style={{margin: "15px"}}>Filter</button>
+          <button type="reset" className="pure-button">Reset</button>   
         </div>       
       </form>
     </section>);
