@@ -8,7 +8,7 @@ function Header(props) {
     <section id='Header'>
       <div className="pure-g grey">
         <div className="pure-u-5-24 ">
-          <img className="logo" src={src}/>
+          <Link to="/"><img className="logo" alt="Logo - Paint Bucket" src={src}/></Link>
         </div>
         <div className="pure-u-11-24 "></div>
         <div className="pure-u-6-24 ">
