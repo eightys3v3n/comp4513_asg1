@@ -8,20 +8,26 @@ import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 
 const App = (props) => {
+  let [a, sA] = useState([]);
+  
   return (
-    <div className="App">
+      <div className="App">
       <header className="App-header">
       </header>
       <div>
       <PlaysProvider>
-        <Route path="/" exact component={HomePage} />
-        <FavoritesProvider>
-          <Route path="/BrowsePage" exact component={BrowsePage} />
-          <Route path="/DetailsPage" exact component={DetailsPage} />
-        </FavoritesProvider>
+      <Route path="/" exact component={HomePage}>
+      <HomePage title={sA} />
+      </Route>
+      <FavoritesProvider>
+      <Route path="/BrowsePage">
+      <BrowsePage title={a} />
+      </Route>
+      <Route path="/DetailsPage" exact component={DetailsPage} />
+      </FavoritesProvider>
       </PlaysProvider>
       </div>
-    </div>
+      </div>
   );
 }
 
