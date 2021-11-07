@@ -7,20 +7,24 @@ import Header from './Header.js';
 function BrowsePage(props) {
   return (
     <div>
-      <Header/>
       <header>
         <h1>Browse</h1>
       </header>
-      <div className="pure-g">
-        <div className="pure-u-1-5">
+      <div className="pure-g margin" >
+        <div className="pure-u-23-24 grey">
+          <Header/>
+        </div>
+        <div className="pure-u-4-24 grey">
+
           <Favorites addFavorite={props.addFavorite}
                 removeFavorite={props.removeFavorite}
                 favorites={props.favorites}/>
         </div>
-        <div className="pure-u-2-5">
+        <div className="pure-u-9-24 grey">
           <Filters />
         </div>
-        <div className="pure-u-2-5">
+        <div className="pure-u-9-24 grey">
+
           <Matches />
         </div>
       </div>

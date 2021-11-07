@@ -57,7 +57,7 @@ function Favorites(props) {
   }
   
   return (
-    <section id="favorites">
+    <section id="favorites" className="padding">
       <h2>Favorites</h2>
       <div className="list">{
           favorites.map(f => {
