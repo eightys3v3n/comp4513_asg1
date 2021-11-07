@@ -1,11 +1,27 @@
 import React from 'react';
 import Header from './Header';
+import Favorites from './Favorites.js';
+import PlayTitle from './PlayTitle';
+import Details from './Details.js';
+
 
 function DetailsPage(props) {
   return (
     <section id="Details-Page">
-      <Header/>
-      <h1>Details</h1>
+      <div className="pure-g margin">
+        <div className="pure-u-22-34 grey">
+          <Header/>
+        </div>
+        <div className="pure-u-4-24 grey">
+        <Favorites />
+        </div>
+        <div className="pure-u-9-24 grey">
+        <PlayTitle />
+        </div>
+        <div className="pure-u-9-24 grey">
+        <Details />
+        </div>
+      </div>
     </section>
   );
 }
