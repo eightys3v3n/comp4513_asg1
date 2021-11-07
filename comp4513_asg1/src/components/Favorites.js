@@ -7,23 +7,13 @@ function Favorites(props) {
   const favorites = useContext(FavoritesContext);
   const plays = useContext(PlaysContext);
   
-  function playByID(id) {
-    for (let p=0; p<plays.plays.length; p++) {
-      if (plays.plays[p].id === id) {
-        return plays.plays[p];
-      }
-    }
-
-    return null;
-  }
-  
   return (
     <section id="favorites" className="padding">
       <h2>Favorites</h2>
       <div className="list">{
           favorites.favorites.map(f => {
-            let play = playByID(f);
-
+            let play = plays.getByID(f);
+            
             if (play !== null) {
               return (
                 <FavoriteItem key={play.id}
@@ -31,8 +21,6 @@ function Favorites(props) {
                               removeFavorite={favorites.removeFavorite}
                 />
               );
-            } else {
-              console.warn(`Couldn't find the info for favorite id ${f}`);
             }
           })
       }</div>
