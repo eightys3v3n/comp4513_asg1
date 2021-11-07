@@ -9,13 +9,13 @@ function Filters(props) {
   let [titleQuery, setTitleQuery] = useState(props.title);
   let [yearRange, setYearRange] = useState({min: null,
                                             max: null});
-  let [genre, setGenre] = useState([null]);
-  let [reset, setReset] = useState([false]);
+  let [genre, setGenre] = useState(null);
+  let [reset, setReset] = useState(false);
   
   useEffect(() => {
     titleQuery = props.title;
     applyFilters();
-  }, [titleQuery]);
+  }, []);
 
   useEffect(() => {
     applyFilters();
