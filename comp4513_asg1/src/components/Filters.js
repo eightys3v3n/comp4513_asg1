@@ -1,24 +1,37 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {PlaysContext} from './PlaysContextProvider.js';
 
 function Filters(props) {
   const plays = useContext(PlaysContext);
-  let titleQuery = null;
+  let [titleQuery, setTitleQuery] = useState([props.title]);
+  let [reset, setReset] = useState([false]);
   let yearRange = {min: null,
-                     max: null};
+                   max: null};
   let genre = null;
+  
+  useEffect(() => {
+    titleQuery = props.title;
+    applyFilters();
+    console.log("Filtering");
+  }, []);
+
+  useEffect(() => {
+    applyFilters();
+    setReset(false);
+  }, [reset]);
   
   function applyFilters(e) {
     // supress the page reloading on using a submit button,
     // but allow the reset button to reset fields normally.
-    if (e.target.type !== "reset") {
+    if (e !== undefined &&
+        e.target.type !== "reset") {
       e.preventDefault();
     }
     
     const func = () => { // because if passed a function, setFilter calls it.
       return play => {
         // if any of these if statements, then remove the play.
-        if (titleQuery !== null &&
+        if (titleQuery !== "" &&
             !play.title.match(titleQuery)) {
           return false;
         }
@@ -44,18 +57,18 @@ function Filters(props) {
 
   function resetFilters(e) {
     console.log("resetting filters");
-    titleQuery = null;
+    setTitleQuery("");
     yearRange.min = null;
     yearRange.max = null;
     genre = null;
-
-    applyFilters(e);
+    setReset(true);
   }
 
   function inputHandler(e) {
+    console.log(e);
     switch (e.target.id) {
     case "title":
-      titleQuery = e.target.value;
+      setTitleQuery(e.target.value);
       break;
     case "minYear":
       yearRange.min = parseInt(e.target.value);
@@ -71,7 +84,6 @@ function Filters(props) {
 
   return (
     <section id='Filter-Section' className="padding">
-
       <form className="pure-form pure-form-stacked">
           <h2>Play Filters</h2>
         <div>
@@ -80,6 +92,7 @@ function Filters(props) {
                  type="text"
                  name="title"
                  placeholder="Regex Here"
+                 value={titleQuery}
                  onChange={inputHandler}/><br/>
 
           <label>Min Year:  </label> 
@@ -99,10 +112,7 @@ function Filters(props) {
                     id="0">No Selection</option>  
 
             {
-            /* gets all the genres from the plays context provider */
-            }
-
-              {plays.getGenres().map(g => {
+              plays.getGenres().map(g => {
                 return (<option key={g} id={g}>{g}</option>)
               })
             }
