@@ -19,12 +19,13 @@ function PlaysProvider({children}) {
       })
   }, []);
 
-  function getPlayByID(id) {
+  function getByID(id) {
     for (const play of plays) {
       if (play.id === id) {
         return play;
       }
     }
+    return null;
   }
 
   function getGenres() {
@@ -33,12 +34,14 @@ function PlaysProvider({children}) {
     for (let p of plays) {
       genres.add(p.genre);
     }
+
+    genres = Array.from(genres);
     
     return genres;
   }
 
   return (
-    <PlaysContext.Provider value={{plays, getPlayByID, getGenres}}>
+    <PlaysContext.Provider value={{plays, getByID, getGenres}}>
       {children}
     </PlaysContext.Provider>
   );
