@@ -13,12 +13,11 @@ function BrowsePage(props) {
         </div>
         <div className="pure-u-4-24 grey">
 
-          <Favorites addFavorite={props.addFavorite}
-                removeFavorite={props.removeFavorite}
-                favorites={props.favorites}/>
+          <Favorites />
         </div>
         <div className="pure-u-9-24 grey">
-          <Filters />
+          <Filters title={props.title}
+                   setTitle={props.setTitle}/>
         </div>
         <div className="pure-u-10-24 grey">
 
