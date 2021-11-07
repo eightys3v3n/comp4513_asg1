@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import FavoriteIcon from './FavoriteIcon.js';
 
 function MatchItem(props) {
@@ -8,7 +9,7 @@ function MatchItem(props) {
       <td>{props.play.genre}</td>
       <td>{props.play.likelyDate}</td>
       <td><FavoriteIcon id={props.play.id} /></td>
-      <td></td>
+      <td><Link to={`DetailsPage/${props.play.id}`}><button>View</button></Link></td>
     </tr>
   );
 }
