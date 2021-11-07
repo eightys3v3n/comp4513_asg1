@@ -1,19 +1,13 @@
 import React from 'react';
-import FavoritesContext from './FavoritesContextProvider.js';
+import FavoriteIcon from './FavoriteIcon.js';
 
 function MatchItem(props) {
-  const {favorites, addFavorite, isFavorite} = FavoritesContext(FavoritesContext);
-  
-  
-  if (isFavorite(props.play.id) {
-    
-  
   return (
     <tr>
       <td>{props.play.title}</td>
       <td>{props.play.genre}</td>
       <td>{props.play.likelyDate}</td>
-      <td></td>
+      <td><FavoriteIcon id={props.play.id} /></td>
       <td></td>
     </tr>
   );
