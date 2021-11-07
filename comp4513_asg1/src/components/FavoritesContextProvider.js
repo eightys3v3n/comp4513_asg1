@@ -1,11 +1,11 @@
 import React, {createContext, useState} from 'react';
 
 
-export const FavoritesContext = createContext([]);
+export const FavoritesContext = createContext();
 
-function FavoritesProvider({children}) {
+function FavoritesProvider(props) {
   const [favorites, setFavorites] = useState(['alls_well_that_ends_well','antony_and_cleopatra']);
-
+  
   function addFavorite(id) {
     if (!favorites.includes(id)) {
       let newFavorites = [...favorites, id];
@@ -14,13 +14,17 @@ function FavoritesProvider({children}) {
     } else {
       console.log(`Not adding duplicate favorite: ${id}`);
     }
+    console.log(favorites);
   }
 
   function removeFavorite(id) {
     if (favorites.includes(id)) {
       let newFavorites = [...favorites];
-      delete newFavorites[newFavorites.indexOf(id)];
-      setFavorites(newFavorites);
+      if (favorites.includes(id)) {
+        delete newFavorites[newFavorites.indexOf(id)];
+        console.log(`Removing favorite ${id}`);
+        setFavorites(newFavorites);
+      }
     }
   }
 
@@ -35,7 +39,7 @@ function FavoritesProvider({children}) {
   
   return (
     <FavoritesContext.Provider value={{favorites, addFavorite, removeFavorite, isFavorite}}>
-      {children}
+      {props.children}
     </FavoritesContext.Provider>
   );
 }
