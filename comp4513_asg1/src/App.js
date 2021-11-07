@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Route } from 'react-router';
 import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
@@ -8,7 +8,7 @@ import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 
 const App = (props) => {
-  let [a, sA] = useState("");
+  let [titleFilter, setTitleFilter] = useState("");
   
   return (
       <div className="App">
@@ -16,12 +16,13 @@ const App = (props) => {
       </header>
       <div>
       <PlaysProvider>
-      <Route path="/" exact component={HomePage}>
-      <HomePage title={sA} />
+      <Route path="/" exact>
+      <HomePage title={titleFilter}
+                setTitle={setTitleFilter}/>
       </Route>
       <FavoritesProvider>
       <Route path="/BrowsePage">
-      <BrowsePage title={a} />
+      <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
       </Route>
       <Route path="/DetailsPage" exact component={DetailsPage} />
       </FavoritesProvider>

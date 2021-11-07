@@ -5,11 +5,11 @@ function HomePage(props) {
   let title;
   
   function searchTitle(e) {
-    props.title(title);
+    props.setTitle(title);
   }
 
   function searchAllTitles(e) {
-    props.title("");
+    props.setTitle("");
   }
   
   return (
