@@ -13,7 +13,6 @@ function HomePage(props) {
   }
 
   let src = `${process.env.PUBLIC_URL}/homepage.jpg`;
-  console.log(src);
 
   return (
     <section id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
