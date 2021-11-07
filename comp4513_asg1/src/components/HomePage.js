@@ -11,7 +11,7 @@ function HomePage(props) {
   function searchAllTitles(e) {
     props.setTitle("");
   }
-  
+
   return (
     <section id='Home-Page'>
       <form className="pure-form">
