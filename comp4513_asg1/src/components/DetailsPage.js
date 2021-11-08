@@ -4,10 +4,12 @@ import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
 import { useParams } from "react-router-dom";
+import { useState } from 'react';
 
 function DetailsPage(props) {
-  // This 'playName' is the name of the play passed in from the url parameters
-  const {playName} = useParams();
+  // This 'playID' is the name of the play passed in from the url parameters
+  const {playID} = useParams();
+  const [selected, setSelected] = useState(null);
 
   return (
     <section id="Details-Page">
@@ -19,10 +21,10 @@ function DetailsPage(props) {
         <Favorites />
         </div>
         <div className="pure-u-9-24 grey">
-        <PlayTitle playName={playName}/>
+        <PlayTitle playID={playID} selected={selected}/>
         </div>
         <div className="pure-u-9-24 grey">
-        <Details />
+        <Details selected={selected} setSelected={setSelected}/>
         </div>
       </div>
     </section>
