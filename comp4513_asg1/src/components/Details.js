@@ -8,7 +8,12 @@ import DetailsTab from './DetailsTab.js';
 function Details(props) {
   function RawDetailsTab(p) {
     return (
-      <DetailsTab playID={props.playID}/>
+      <DetailsTab playID={props.playID} />
+    );
+  }
+  function RawCharactersTab(p) {
+    return (
+      <Characters playID={props.playID} />
     );
   }
   function test(p) {
@@ -25,7 +30,7 @@ function Details(props) {
            component={RawDetailsTab} />
       <Tab key="Tab2"
            label="Characters"
-           component={test} />
+           component={RawCharactersTab} />
       <Tab key="Tab3"
            label="Text"
            component={test} />
