@@ -3,8 +3,12 @@ import Header from './Header';
 import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
+import { useParams } from "react-router-dom";
 
 function DetailsPage(props) {
+  // This 'playName' is the name of the play passed in from the url parameters
+  const {playName} = useParams();
+
   return (
     <section id="Details-Page">
       <div className="pure-g margin">
@@ -15,7 +19,7 @@ function DetailsPage(props) {
         <Favorites />
         </div>
         <div className="pure-u-9-24 grey">
-        <PlayTitle />
+        <PlayTitle playName={playName}/>
         </div>
         <div className="pure-u-9-24 grey">
         <Details />
