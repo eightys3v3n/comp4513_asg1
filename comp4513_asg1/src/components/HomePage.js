@@ -15,12 +15,12 @@ function HomePage(props) {
   let src = `${process.env.PUBLIC_URL}/homepage.jpg`;
 
   return (
-    <section id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
+    <section className="page" id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
         <div className="flex-row">
           <form className="pure-form">
               <h1 id="home-title">Search Plays</h1>
             <div>
-              <label style={{marginLeft:"50px"}}>Title:  </label>
+              <label style={{marginLeft:"50px", color:"white"}}>Title:  </label>
               <input id="title" onChange={e => {title=e.target.value}}/><br/><br/>
             </div>
             <div>
