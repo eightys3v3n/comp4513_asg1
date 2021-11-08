@@ -23,8 +23,8 @@
 }
 
 .logo{
-	width:120px;
-	height: 100px;
+	width:85px;
+	height:65px;
 }
 
 .overflow{
@@ -49,6 +49,13 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	background-color: red;
+}
+
+.flex-col{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .flex-buttons element{
@@ -58,6 +65,7 @@
 #Home-Page{
 	width: 100%;
 	height: 100vh;
+	background-size: cover;
 }
 
 #home-title{
@@ -80,7 +88,7 @@
 
 .ModalSize { 
 	background-color: white;
-	height: 50%;
+	height: 70%;
 	width: 50%;
 	margin: auto;
 	margin-top: 100px;
@@ -99,4 +107,8 @@
 
 .AboutOpenButton {
 	float: right;
+}
+
+.AboutModalContent a{
+	margin:3px;
 }

@@ -24,7 +24,7 @@ const App = (props) => {
       <Route path="/BrowsePage">
       <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
       </Route>
-      <Route path="/DetailsPage" exact component={DetailsPage} />
+      <Route path="/DetailsPage/:playID" exact component={DetailsPage} />
       </FavoritesProvider>
       </PlaysProvider>
       </div>
