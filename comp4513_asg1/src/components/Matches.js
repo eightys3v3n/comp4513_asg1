@@ -15,19 +15,15 @@ function Matches(props) {
   if(sortMode===0){//sort by Title ascending
     sortedPlays = filteredPlays.sort((a, b) => a.title.localeCompare(b.title));
                                   //comparator function
-    console.log("SortMode set to 0");
 
   } else if(sortMode===1){//sort by Title descending
     sortedPlays = filteredPlays.sort((a, b) => b.title.localeCompare(a.title));
-    console.log("SortMode set to 1");
 
   } else if (sortMode===2){//sort by Year ascending
     sortedPlays = filteredPlays.sort((a, b) => a.likelyDate - b.likelyDate);
-    console.log("SortMode set to 2");
 
   } else if (sortMode===3){//sort by Year descending
     sortedPlays = filteredPlays.sort((a, b) => b.likelyDate - a.likelyDate);
-    console.log("SortMode set to 3");
 
   } else {
     sortedPlays=filteredPlays;
