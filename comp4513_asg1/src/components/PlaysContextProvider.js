@@ -24,6 +24,7 @@ function PlaysProvider({children}) {
       } catch (e) {
         console.warn("Failed to parse locally stored plays. Value is:");
         console.log(localPlays);
+        console.log(e);
       }
     }
     
