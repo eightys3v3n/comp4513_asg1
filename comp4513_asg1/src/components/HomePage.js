@@ -17,7 +17,7 @@ function HomePage(props) {
   return (
     <section id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
         <div className="flex-row">
-          <form className="pure-form ">
+          <form className="pure-form">
               <h1 id="home-title">Search Plays</h1>
             <div>
               <label style={{marginLeft:"50px"}}>Title:  </label>
