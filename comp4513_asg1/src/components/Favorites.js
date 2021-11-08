@@ -14,7 +14,7 @@ function Favorites(props) {
           favorites.favorites.map(f => {
             let play = plays.getByID(f);
             
-            if (play !== null) {
+            if ( play && Object.keys(play).length !== 0 && Object.getPrototypeOf(plays) === Object.prototype) {
               return (
                 <FavoriteItem key={play.id}
                               play={play}
