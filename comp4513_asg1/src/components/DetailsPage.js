@@ -12,7 +12,7 @@ function DetailsPage(props) {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section id="Details-Page">
+    <section id="Details-Page" className="page">
       <div className="pure-g margin">
         <div className="pure-u-24-24 grey">
           <Header/>
