@@ -13,33 +13,44 @@ function PlayInfoProvider({children}) {
 
   useEffect(() => {
     let localPlayInfos = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (localPlayInfos != null) {
+    
+    if (localPlayInfos !== null &&
+        localPlayInfos !== undefined) {
       try {
         localPlayInfos = JSON.parse(localPlayInfos);
+        console.log(localPlayInfos);
         if (localPlayInfos.length > 0) {
           console.log(`Retrieved ${localPlayInfos.length} play's info from local storage`);
           setPlayInfos(localPlayInfos);
           return;
+        } else {
+          console.log("Retrieved no play's info from local storage");
         }
       } catch (e) {
-        console.warn("Failed to parse locally stored play info. Value is :");
+        console.warn("Failed to parse locally stored play info. Value is following");
         console.log(localPlayInfos);
-        console.log(e);
+        saveLocalStorage();
       }
+    } else {
+      console.log("Retrieved no play's info from local storage");
     }
+    // this effect should Not update when saveLocalStorage is called or when the return changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     saveLocalStorage();
-  }, [plays]);
+    // this effect should Not update when saveLocalStorage is called or when the return changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playInfos]);
 
   
   function getPlayInfo(id) {
+    console.log(`Getting local copy of play info for play '${id}'`);
     for (let playInfo of playInfos) {
       if (playInfo &&
           playInfo.id !== undefined &&
-          playInfo.id == id) {
+          playInfo.id === id) {
         return playInfo;
       }
     }
@@ -47,8 +58,6 @@ function PlayInfoProvider({children}) {
   }
 
   function addPlayInfo(playInfo) {
-    console.log("Adding play info");
-    console.log(playInfo);
     let newPlayInfos = [...playInfos, playInfo];
     setPlayInfos(newPlayInfos);
   }
@@ -57,19 +66,13 @@ function PlayInfoProvider({children}) {
     let play = plays.getByID(id);
 
     if (play === null) {
-      console.warn(`No play for this ID, refusing to fetch from secondary API: ${id}`);
-      return;
-    }
-    if (play.filename === undefined ||
-        play.filename == "") {
-      console.warn(`No known file name for this play, refusing to fetch from secondary API: ${play.id}`);
+      console.warn(`No play info for this ID, refusing to fetch from secondary API: ${id}`);
       return;
     }
 
     let url = `${API_URL}${id}`;
 
-    console.log(`Fetching '${url}'`);
-    
+    console.log(`Fetching API copy of play info for play '${id}'`);
     return fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -80,7 +83,12 @@ function PlayInfoProvider({children}) {
   }
 
   function saveLocalStorage() {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify());
+    if (playInfos !== undefined &&
+        playInfos.length !== undefined &&
+        playInfos.length > 0) {
+      console.log(`Saving ${playInfos.length} play's info to local storage`);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(playInfos));
+    }
   }
 
   return (
