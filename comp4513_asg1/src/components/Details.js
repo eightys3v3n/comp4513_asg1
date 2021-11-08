@@ -1,5 +1,7 @@
 import React from 'react';
 import { TabLayout, Tab } from './TabLayout.js';
+import Characters from './Characters';
+import PlayInfoProvider from './PlaysInfoContextProvider.js';
 
 
 function Details(props) {
@@ -10,10 +12,11 @@ function Details(props) {
   }
 
   return (
+    <PlayInfoProvider>
     <TabLayout selected={props.selected} setSelected={props.setSelected}>
       <Tab key="Tab1"
            label="Tab 1"
-           component={test} />
+           component={Characters} />
       <Tab key="Tab2"
            label="Tab 2"
            component={test} />
@@ -21,6 +24,7 @@ function Details(props) {
            label="Tab 3"
            component={test} />
     </TabLayout>
+      </PlayInfoProvider>
   );
 }
 
