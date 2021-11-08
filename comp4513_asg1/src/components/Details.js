@@ -10,7 +10,7 @@ function Details(props) {
   }
 
   return (
-    <TabLayout>
+    <TabLayout selected={props.selected} setSelected={props.setSelected}>
       <Tab key="Tab1"
            label="Tab 1"
            component={test} />
@@ -19,7 +19,6 @@ function Details(props) {
            component={test} />
       <Tab key="Tab3"
            label="Tab 3"
-           disabled="true"
            component={test} />
     </TabLayout>
   );
