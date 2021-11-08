@@ -4,20 +4,39 @@ import React, {createContext, useState, useEffect} from 'react';
 export const PlaysContext = createContext([]);
 
 function PlaysProvider({children}) {
+  const LOCAL_STORAGE_KEY = 'plays';
   const [plays, setPlays] = useState([]);
   const [filter, setFilter] = useState(() => () => true);
   let url = "https://www.randyconnolly.com/funwebdev/3rd/api/shakespeare/list.php";
   
   useEffect(() => {
+    let localPlays = localStorage.getItem(LOCAL_STORAGE_KEY);
+    
+    if (localPlays != null) {
+      try {
+        localPlays = localStorage.getItem(LOCAL_STORAGE_KEY);
+        localPlays = JSON.parse(localPlays);
+        if (localPlays.length > 0) {
+          console.log(`Retrieved ${localPlays.length} plays from local storage`);
+          setPlays(localPlays);
+          return;
+        }
+      } catch (e) {
+        console.warn("Failed to parse locally stored plays. Value is:");
+        console.log(localPlays);
+      }
+    }
+    
+    console.log("Fetching plays from API...");
     fetch(url)
       .then(res => {
         return res.json();
       })
       .then(data => {
         setPlays(data);
-        console.log("Retrieved data");
-        console.log(data);
-      })
+        console.log(`Fetched ${data.length} plays from API`);
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+      });
   }, [url]);
 
   function getByID(id) {
