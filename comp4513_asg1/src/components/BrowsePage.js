@@ -6,7 +6,7 @@ import Header from './Header.js';
 
 function BrowsePage(props) {
   return (
-    <div>
+    <div className="page">
       <div className="pure-g margin" >
         <div className="pure-u-24-24 grey">
           <Header/>
