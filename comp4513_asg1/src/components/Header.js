@@ -25,7 +25,7 @@ function Header(props) {
         <div className="pure-u-11-24 "></div>
         <div className="pure-u-6-24 ">
           <ul>
-            <li><Link to="/DetailsPage">Details Page</Link></li>
+            <li><Link to="/DetailsPage/">Details Page</Link></li>
             <button onClick={openAbout} className="AboutOpenButton pure-button">About</button>
             <ReactModal ariaHideApp={false} className="ModalSize" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
               <button className="AboutModalCloseButton pure-button" onClick={closeAbout}>Close</button>
