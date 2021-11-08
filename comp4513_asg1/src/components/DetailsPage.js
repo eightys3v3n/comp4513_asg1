@@ -24,7 +24,7 @@ function DetailsPage(props) {
         <PlayTitle playID={playID} selected={selected}/>
         </div>
         <div className="pure-u-9-24 grey">
-        <Details selected={selected} setSelected={setSelected}/>
+        <Details selected={selected} setSelected={setSelected} playID={playID}/>
         </div>
       </div>
     </section>
