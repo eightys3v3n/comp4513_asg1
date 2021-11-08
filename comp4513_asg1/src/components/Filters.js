@@ -57,6 +57,7 @@ function Filters(props) {
           return false;
         }
         
+        
         return true;
       };
     };
@@ -90,7 +91,11 @@ function Filters(props) {
                     max: parseInt(e.target.value)});
       break;
     case "genre":
-      setGenre(e.target.value);
+      if (e.target.value === "No Selection") {
+        setGenre(null);
+      } else {
+        setGenre(e.target.value);
+      }
       break;
 
     default:
