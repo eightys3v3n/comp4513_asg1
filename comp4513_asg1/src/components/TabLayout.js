@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import { useEffect } from 'react';
 
 /**
  * Usage:
@@ -11,17 +11,22 @@ import React, { useState } from 'react';
  * Generates buttons for each tab, only renders selected tab contents.
  */
 function TabLayout(props) {
-  const [selected, setSelected] = useState(props.children[0].key);
   
+  useEffect(() => {
+    if (props.selected === null) {
+      props.setSelected(props.children[0].key);
+    }
+  }, [props, props.selected]);
+
   function changeTab(e) {
     console.log(`Changing to tab ${e.target.id}`);
-    setSelected(e.target.id);
+    props.setSelected(e.target.id);
   }
 
   function renderButton(tab) {
     let disabled = false;
 
-    if (selected === tab.key ||
+    if (props.selected === tab.key ||
         tab.props.disabled) {
       disabled = true;
     }
@@ -40,7 +45,7 @@ function TabLayout(props) {
       <ul>
         {props.children.map(tab => renderButton(tab))}
       </ul>
-      {props.children.filter(tab => tab.key === selected)}
+      {props.children.filter(tab => tab.key === props.selected)}
     </div>
   );
 }
@@ -55,7 +60,6 @@ function TabLayout(props) {
  * 
  */
 function Tab(props) {
-  console.log(props);
   return (
     <props.component label={props.label}/>
   );
