@@ -1,12 +1,19 @@
 import React from 'react';
 import { TabLayout, Tab } from './TabLayout.js';
+import Characters from './Characters';
+import PlayInfoProvider from './PlaysInfoContextProvider.js';
 import DetailsTab from './DetailsTab.js';
 
 
 function Details(props) {
   function RawDetailsTab(p) {
     return (
-      <DetailsTab playID={props.playID}/>
+      <DetailsTab playID={props.playID} />
+    );
+  }
+  function RawCharactersTab(p) {
+    return (
+      <Characters playID={props.playID} />
     );
   }
   function test(p) {
@@ -16,17 +23,19 @@ function Details(props) {
   }
 
   return (
+    <PlayInfoProvider>
     <TabLayout selected={props.selected} setSelected={props.setSelected}>
       <Tab key="Tab1"
            label="Details"
            component={RawDetailsTab} />
       <Tab key="Tab2"
            label="Characters"
-           component={test} />
+           component={RawCharactersTab} />
       <Tab key="Tab3"
            label="Text"
            component={test} />
     </TabLayout>
+      </PlayInfoProvider>
   );
 }
 
