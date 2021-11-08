@@ -9,7 +9,7 @@ function Characters(props) {
   console.log(playInfo);
 
   useEffect(() => {
-    let currPlay = playInfo.getPlayInfo('dream');
+    let currPlay = playInfo.getPlayInfo(props.playID);
 
     if (currPlay &&
         Object.keys(currPlay).length !== 0 &&
@@ -17,7 +17,7 @@ function Characters(props) {
     {
       setPlay(currPlay);
     } else {
-      playInfo.fetchPlayInfo('dream')
+      playInfo.fetchPlayInfo(props.playID)
         .then(play => {
           console.log(play);
           setPlay(play);
