@@ -37,10 +37,12 @@
 	width: 100%;
 }
 
-.btn{
+.tab{
 	color:#6666FF;
 	text-decoration: underline;
 	cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .flex-row{
