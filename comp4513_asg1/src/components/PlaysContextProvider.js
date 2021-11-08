@@ -34,6 +34,9 @@ function PlaysProvider({children}) {
         return res.json();
       })
       .then(data => {
+        data.forEach( (play) => {
+           play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
+        } )
         setPlays(data);
         console.log(`Fetched ${data.length} plays from API`);
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
@@ -46,7 +49,7 @@ function PlaysProvider({children}) {
         return play;
       }
     }
-    return null;
+    return {};
   }
 
   function getGenres() {
