@@ -6,8 +6,6 @@ function Characters(props) {
   const playInfo = useContext(PlayInfoContext);
   const [play, setPlay] = useState({});
   
-  console.log(playInfo);
-
   useEffect(() => {
     let currPlay = playInfo.getPlayInfo(props.playID);
 
@@ -19,7 +17,6 @@ function Characters(props) {
     } else {
       playInfo.fetchPlayInfo(props.playID)
         .then(play => {
-          console.log(play);
           setPlay(play);
         });
     }
