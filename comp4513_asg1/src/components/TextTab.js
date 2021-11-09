@@ -28,12 +28,29 @@ function TextTab(props) {
 
     //console.log(currPlay)
 
-    function Title(props) {
+    function Content(props) {
         let title = "";
+        let sceneTitle = "";
+        let sceneStageDirection = "";
+        let speechesArray = [];
 
-        if (currPlay !== undefined && currPlay !== null) {
+        if (currPlay.acts !== undefined && currPlay.acts !== null) {
             title = currPlay.title;
-            
+            for (let a of currPlay.acts) {
+                if (a.name == act) {
+                    for (let sc of a.scenes) {
+                        if (sc.name == scene) {
+                            sceneTitle = sc.title;
+                            sceneStageDirection = sc.stageDirection;
+                            speechesArray = sc.speeches;
+                            if (character != "") {
+                                speechesArray = speechesArray.filter(c => character == c.speaker);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         return (
@@ -41,6 +58,16 @@ function TextTab(props) {
                 <h1>{title}</h1>
                 <h2>{act}</h2>
                 <h3>{scene}</h3>
+                <div>{sceneTitle}</div>
+                <div><i>{sceneStageDirection}</i></div>
+                {speechesArray.map(s => {
+                    return (
+                    <div>
+                        <h4>{s.speaker}</h4>
+                        <p>{s.lines}</p>
+                    </div>
+                    );
+                })}
             </section>
         )
     }
@@ -49,7 +76,7 @@ function TextTab(props) {
     
     return(
         <section>
-            <Title />
+            <Content />
         </section>
     )
 }
