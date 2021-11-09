@@ -48,6 +48,7 @@ function PlayCharacters(props) {
         <tr>
           <th>Type</th>
           <th>Name</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody className="overflow">
@@ -56,6 +57,7 @@ function PlayCharacters(props) {
             <tr key={c.key}>
               <td>{c.position}</td>
               <td>{c.player}</td>
+              <td>{c.desc}</td>
             </tr>
           );
         })}
