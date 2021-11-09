@@ -35,6 +35,7 @@ function PlayTitleText(props) {
         }
 
         return (
+            <div>
             <select onClick={clickAct}>
                 {acts.map( a => {
                     if (a.name === act) {
@@ -49,6 +50,7 @@ function PlayTitleText(props) {
                     
                 })}
             </select>
+            </div>
         )
     }
     function clickAct(e) {
@@ -71,6 +73,7 @@ function PlayTitleText(props) {
         }
 
         return (
+            <div>
             <select onClick={clickScene}>
                 {scenesArr.map( s => {
                     if (s === scene) {
@@ -85,6 +88,7 @@ function PlayTitleText(props) {
                     
                 })}
             </select>
+            </div>
         )
     }
     function clickScene(e) {
@@ -111,6 +115,7 @@ function PlayTitleText(props) {
         }
 
         return (
+            <div>
             <select onClick={clickChar}>
                 <option value=""></option>
                 {charArr.map( c => {
@@ -126,6 +131,7 @@ function PlayTitleText(props) {
                     
                 })}
             </select>
+            </div>
         )
     }
     function clickChar(e) {
@@ -157,11 +163,11 @@ function PlayTitleText(props) {
     }
 
     return(
-        <div>
+        <div className="pure-form">
             <SetActs currPlay={currPlay} act={{act, setAct}}/>
             <SetScenes currPlay={currPlay} act={act} scene={{scene,setScene}}/>
             <SetCharacters currPlay={currPlay}/>
-            <input type="text" id="highlight" onChange={highlightText}></input>
+            <input type="text" id="highlight" style={{marginLeft:"7px"}} onChange={highlightText}></input>
         </div>
     )
 }
