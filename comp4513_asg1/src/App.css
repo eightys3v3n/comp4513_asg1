@@ -207,3 +207,7 @@ button:hover{
 .matchesTransition{
 	transition: width ease-in-out 1000ms;
 }
+
+.highlighted{
+	background-color: yellow;
+}
