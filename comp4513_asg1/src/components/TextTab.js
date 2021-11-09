@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { PlaysContext } from "./PlaysContextProvider"; //For general plays (from browse page)
 import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play details
+import cloneDeep from 'lodash/cloneDeep';
 
 function TextTab(props) {
     const [currPlay, setCurrPlay] = useState({}); // Need to make context provider work
@@ -8,6 +9,7 @@ function TextTab(props) {
     let {act,setAct} = props.information;
     let {scene,setScene} = props.information;
     let {character,setCharacter} = props.information
+    let {query, setQuery} = props.information
 
     // Need to make context provider work
     useEffect(() => {
@@ -26,8 +28,6 @@ function TextTab(props) {
         }
     }, []);
 
-    //console.log(currPlay)
-
     function Content(props) {
         let title = "";
         let sceneTitle = "";
@@ -37,14 +37,35 @@ function TextTab(props) {
         if (currPlay.acts !== undefined && currPlay.acts !== null) {
             title = currPlay.title;
             for (let a of currPlay.acts) {
-                if (a.name == act) {
+                if (a.name === act) {
                     for (let sc of a.scenes) {
-                        if (sc.name == scene) {
+                        if (sc.name === scene) {
                             sceneTitle = sc.title;
                             sceneStageDirection = sc.stageDirection;
-                            speechesArray = sc.speeches;
-                            if (character != "") {
-                                speechesArray = speechesArray.filter(c => character == c.speaker);
+                            speechesArray = cloneDeep(sc.speeches);
+                            if (character !== "") {
+                                speechesArray = speechesArray.filter(c => character === c.speaker);
+                            }
+                            if (query !== "") {
+                                speechesArray = speechesArray.map( aSpeech => {
+                                    //console.log(aSpeech);
+                                    aSpeech.lines = aSpeech.lines.map( aLine => {
+                                        aLine = "<p>" + aLine;
+                                        aLine = aLine.replaceAll(query, `<span class="highlighted">${query}</span>`);
+                                        aLine = aLine + "</p>";
+                                        console.log(aLine);
+                                        return aLine;
+                                    });
+                                    return aSpeech;
+                                });
+                            } else {
+                                speechesArray = speechesArray.map( aSpeech => {
+                                    aSpeech.lines = aSpeech.lines.map( aLine => {
+                                        aLine = "<p>" + aLine  + "</p>";
+                                        return aLine;
+                                    });
+                                    return aSpeech;
+                                });
                             }
                             break;
                         }
@@ -64,7 +85,7 @@ function TextTab(props) {
                     return (
                     <div>
                         <h4>{s.speaker}</h4>
-                        <p>{s.lines}</p>
+                        {s.lines.map(a => {return ( <span dangerouslySetInnerHTML={{__html: a}}></span> )})}
                     </div>
                     );
                 })}
