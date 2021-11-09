@@ -141,7 +141,7 @@ function Filters(props) {
         </div>
         <div style={{width: "50%", margin: "0 auto"}}>
           <button className="pure-button pure-button-primary"
-                  style={{margin: "15px"}}
+                  style={{margin: "10px"}}
                   onClick={applyFilters}
           >Filter</button>
           <button type="reset"

@@ -63,7 +63,8 @@ function Matches(props) {
             <th><button className="tab"
                         id="year"
                         onClick={changeSort}>Year</button></th>
-            <th >Favorites</th>
+            <th></th>
+            <th>Favorites</th>
             <th>View</th>
           </tr>
         </thead>
