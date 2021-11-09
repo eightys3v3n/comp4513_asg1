@@ -13,7 +13,7 @@ function DetailsPage(props) {
   const [selected, setSelected] = useState(null);
   const [act, setAct] = useState("ACT I");
   const [scene, setScene] = useState("SCENE I");
-  const [character, setCharacter] = useState(null);
+  const [character, setCharacter] = useState("");
   const [query, setQuery] = useState(null);
 
   return (
