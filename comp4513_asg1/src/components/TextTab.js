@@ -5,7 +5,9 @@ import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play det
 function TextTab(props) {
     const [currPlay, setCurrPlay] = useState({}); // Need to make context provider work
     const plays = useContext(PlayInfoContext); // Will be set by the 'PlayTitle.js' when selecting a Scene
-    const act = 1; // Will be set by the 'PlayTitle.js' when selecting an Act
+    let {act,setAct} = props.information;
+    let {scene,setScene} = props.information;
+    let {character,setCharacter} = props.information
 
     // Need to make context provider work
     useEffect(() => {
@@ -26,16 +28,28 @@ function TextTab(props) {
 
     //console.log(currPlay)
 
-    let content;
-    content = (
-        <h1>Stuff</h1>
-    )
+    function Title(props) {
+        let title = "";
+
+        if (currPlay !== undefined && currPlay !== null) {
+            title = currPlay.title;
+            
+        }
+
+        return (
+            <section>
+                <h1>{title}</h1>
+                <h2>{act}</h2>
+                <h3>{scene}</h3>
+            </section>
+        )
+    }
+
 
     
     return(
         <section>
-            {content}
-            <div>Array Size: {currPlay.id}</div>
+            <Title />
         </section>
     )
 }
