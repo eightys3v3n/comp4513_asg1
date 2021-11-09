@@ -37,7 +37,7 @@ function Details(props) {
   }
   function RawTextTab(p) {
     return (
-      <TextTab playID={props.playID}/>
+      <TextTab playID={props.playID} information={props.information}/>
     );
   }
 

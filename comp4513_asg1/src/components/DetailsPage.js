@@ -53,7 +53,7 @@ function DetailsPage(props) {
           <PlayTitle playID={playID} selected={selected} information={{act, setAct, scene, setScene, character, setCharacter, query, setQuery}}/>
           </div>
           <div className={"grey " + matchesWidth + " matchesTransition"}>
-          <Details selected={selected} setSelected={setSelected} playID={playID}/>
+          <Details selected={selected} setSelected={setSelected} playID={playID} information={{act, setAct, scene, setScene, character, setCharacter, query, setQuery}}/>
           </div>
         </div>
       </section>
