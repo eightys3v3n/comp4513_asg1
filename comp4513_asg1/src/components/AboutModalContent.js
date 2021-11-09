@@ -2,14 +2,6 @@ import React from "react";
 
 function AboutModalContent(props) {
     return (
-<<<<<<< Updated upstream
-        <section className="AboutModalContent">
-            <h1>About Page</h1>
-            <p>Content here</p>
-            <p>Content and here</p>
-            <p>Content and also here</p>
-            <p>Regards.</p>
-=======
         <section className="AboutModalContent flex-col">
             <h2>COMP 4543 - Asg1</h2>
             <p>Team Members:</p>
@@ -24,7 +16,6 @@ function AboutModalContent(props) {
             <a href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank" rel="noopener noreferrer">Paintbucket</a>
             <a href="https://iconmonstr.com/favorite-1-svg/" target="_blank" rel="noopener noreferrer">Filled Heart</a>
             <a href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a>
->>>>>>> Stashed changes
         </section>
     )
 }
