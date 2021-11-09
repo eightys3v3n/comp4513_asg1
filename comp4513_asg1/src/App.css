@@ -164,3 +164,20 @@
     opacity: 0.75;	
     transition: opacity linear 750ms;
 }	
+
+.favHidden{
+	width: 0%;
+}
+
+.favTransition{
+	transition: width ease-in-out 1000ms;	
+}
+
+.favHidden *{
+	opacity: 0;
+	transition: opacity linear 300ms;
+}
+
+.matchesTransition{
+	transition: width ease-in-out 1000ms;
+}
