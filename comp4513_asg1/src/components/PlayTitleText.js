@@ -5,7 +5,9 @@ import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play det
 function PlayTitleText(props) {
     const [currPlay, setCurrPlay] = useState({}); // Need to make context provider work
     const plays = useContext(PlayInfoContext); // Will be set by the 'PlayTitle.js' when selecting a Scene
-    let act = -1; // Will be set by the 'PlayTitle.js' when selecting an Act
+    let {act,setAct} = props.information;
+    let {scene,setScene} = props.information;
+    let {character,setCharacter} = props.information
 
     // Need to make context provider work
     useEffect(() => {
@@ -34,46 +36,60 @@ function PlayTitleText(props) {
         return (
             <select onClick={clickAct}>
                 {acts.map( a => {
-                    console.log(a.name)
-                    return  (
-                        <option value={a.name}>{a.name}</option>
-                    )
+                    if (a.name === act) {
+                        return  (
+                            <option selected value={a.name} key={a.name}>{a.name}</option>
+                        )
+                    } else {
+                        return  (
+                            <option value={a.name} key={a.name}>{a.name}</option>
+                        )
+                    }
+                    
                 })}
             </select>
         )
     }
-
     function clickAct(e) {
-        console.log(e.target.value);
+        setAct(e.target.value);
     }
 
     function SetScenes(props) {
-        let acts = [];
+        let scenesArr = [];
 
         if (props.currPlay.acts !== undefined && props.currPlay.acts !== null) {
-            acts = props.currPlay.acts;
+            for (let a of props.currPlay.acts) {
+                if (a.name == act) {
+                    scenesArr = a.scenes.map( s => s.name);
+                }
+            }
         }
 
         return (
-            <select onClick={clickAct}>
-                {acts.map( a => {
-                    console.log(a.name)
-                    return  (
-                        <option value={a.name}>{a.name}</option>
-                    )
+            <select onClick={clickScene}>
+                {scenesArr.map( s => {
+                    if (s === scene) {
+                        return  (
+                            <option selected value={s} key={s}>{s}</option>
+                        )
+                    } else {
+                        return  (
+                            <option value={s} key={s}>{s}</option>
+                        )
+                    }
+                    
                 })}
             </select>
         )
     }
-
-    let actOption = (
-        <option></option>
-    )
+    function clickScene(e) {
+        setScene(e.target.value);
+    }
 
     return(
         <div>
-            <SetActs currPlay={currPlay}/>
-            <SetScenes currPlay={currPlay} />
+            <SetActs currPlay={currPlay} act={{act, setAct}}/>
+            <SetScenes currPlay={currPlay} act={act} scene={{scene,setScene}}/>
         </div>
     )
 }

@@ -24,7 +24,7 @@ function TextTab(props) {
         }
     }, []);
 
-    console.log(currPlay)
+    //console.log(currPlay)
 
     let content;
     content = (

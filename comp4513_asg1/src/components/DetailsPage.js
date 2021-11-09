@@ -11,11 +11,10 @@ function DetailsPage(props) {
   // This 'playID' is the name of the play passed in from the url parameters
   const {playID} = useParams();
   const [selected, setSelected] = useState(null);
-  const [act, setAct] = useState();
-  const [scene, setScene] = useState();
-  const [character, setCharacter] = useState();
-  const [query, setQuery] = useState();
-
+  const [act, setAct] = useState("ACT I");
+  const [scene, setScene] = useState("SCENE I");
+  const [character, setCharacter] = useState(null);
+  const [query, setQuery] = useState(null);
 
   return (
     <PlayInfoProvider>
@@ -28,7 +27,7 @@ function DetailsPage(props) {
           <Favorites />
           </div>
           <div className="pure-u-9-24 grey">
-          <PlayTitle playID={playID} selected={selected}/>
+          <PlayTitle playID={playID} selected={selected} information={{act, setAct, scene, setScene, character, setCharacter, query, setQuery}}/>
           </div>
           <div className="pure-u-9-24 grey">
           <Details selected={selected} setSelected={setSelected} playID={playID}/>
