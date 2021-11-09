@@ -10,7 +10,8 @@ function AboutModalContent(props) {
             <a href="https://github.com/MarkleSparkle" target="_blank" rel="noopener noreferrer">Mark Frezell (mfrez395@mtroyal.ca)</a>
             <p>Code Snippet Credits:</p>
             <a href="https://reactcommunity.org/react-modal/" target="_blank" rel="noopener noreferrer">React Modal</a>
-            <a href="https://purecss.io/">Pure CSS</a>
+          <a href="https://purecss.io/">Pure CSS</a>
+          <a href="https://v5-0-6.mui.com/components/">Material UI</a>
             <a href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a>
             <p>Image Credits:</p>
             <a href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a>
