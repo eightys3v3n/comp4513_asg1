@@ -42,6 +42,7 @@ function PlayCharacters(props) {
   }
   
   return (
+    <div className="overflow" style={{height:"65vh"}}>
     <table>
       <thead>
         <tr>
@@ -49,7 +50,7 @@ function PlayCharacters(props) {
           <th>Name</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="overflow">
         {characters.map(c => {
           return (
             <tr key={c.key}>
@@ -60,6 +61,7 @@ function PlayCharacters(props) {
         })}
       </tbody>
     </table>
+    </div>
   );
 }
 
