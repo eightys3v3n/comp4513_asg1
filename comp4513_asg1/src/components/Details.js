@@ -4,6 +4,7 @@ import Characters from './Characters';
 import PlayInfoProvider from './PlaysInfoContextProvider.js';
 import DetailsTab from './DetailsTab.js';
 import {PlaysContext} from './PlaysContextProvider.js';
+import TextTab from './TextTab.js';
 
 
 function Details(props) {
@@ -34,14 +35,13 @@ function Details(props) {
       <Characters playID={props.playID} />
     );
   }
-  function test(p) {
+  function RawTextTab(p) {
     return (
-      <h1>This is the {p.label} Tab</h1>
+      <TextTab playID={props.playID}/>
     );
   }
 
   return (
-    <PlayInfoProvider>
     <TabLayout selected={props.selected} setSelected={props.setSelected}>
       <Tab key="Tab1"
            label="Details"
@@ -53,9 +53,8 @@ function Details(props) {
       <Tab key="Tab3"
            label="Text"
            disabled={!additionalInfo}
-           component={test} />
+           component={RawTextTab} />
     </TabLayout>
-      </PlayInfoProvider>
   );
 }
 
