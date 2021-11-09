@@ -37,6 +37,30 @@
 	width: 100%;
 }
 
+
+.tab-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    list-style-position: inside;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tab-li {
+    display: inline;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tab-button {
+    width: 100%;
+    display: inline;
+    border-radius: 0px;
+}
+
 .tab{
 	color:#6666FF;
 	text-decoration: underline;
