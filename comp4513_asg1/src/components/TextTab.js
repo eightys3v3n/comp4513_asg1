@@ -28,8 +28,9 @@ function TextTab(props) {
 
     let content;
     content = (
-        <h1>Act </h1>
+        <h1>{currPlays.title}</h1>
     )
+
     
     return(
         <section>
