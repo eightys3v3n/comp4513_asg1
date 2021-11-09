@@ -54,7 +54,7 @@ function PlayTitleText(props) {
         if (e.target.value != act){
             setAct(e.target.value);
             setScene("SCENE I");
-            resetCharacter();
+            setCharacter("");
         }
     }
 
@@ -89,7 +89,7 @@ function PlayTitleText(props) {
     function clickScene(e) {
         if (e.target.value != scene) {
             setScene(e.target.value);
-            resetCharacter();
+            setCharacter("");
         }
     }
 
@@ -111,6 +111,7 @@ function PlayTitleText(props) {
 
         return (
             <select onClick={clickChar}>
+                <option value=""></option>
                 {charArr.map( c => {
                     if (c === character) {
                         return  (
@@ -132,23 +133,23 @@ function PlayTitleText(props) {
         }
     }
 
-    function resetCharacter() {
-        let charArray = [];
-        if (currPlay !== undefined && currPlay !== null) {
-            // let characters = props.currPlay.acts[act].scenes[scene].map(l => l.speaker);
-            for (let a of currPlay.acts) {
-                if (a.name == act) {
-                    for (let s of a.scenes) {
-                        if (s.name == scene) {
-                            charArray = Array.from(new Set(s.speeches.map( s => s.speaker)))
-                            setCharacter(charArray[0]);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // function resetCharacter() {
+    //     let charArray = [];
+    //     if (currPlay !== undefined && currPlay !== null) {
+    //         // let characters = props.currPlay.acts[act].scenes[scene].map(l => l.speaker);
+    //         for (let a of currPlay.acts) {
+    //             if (a.name == act) {
+    //                 for (let s of a.scenes) {
+    //                     if (s.name == scene) {
+    //                         charArray = Array.from(new Set(s.speeches.map( s => s.speaker)))
+    //                         setCharacter(charArray[0]);
+    //                         break;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     return(
         <div>
