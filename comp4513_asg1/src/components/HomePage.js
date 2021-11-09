@@ -27,7 +27,7 @@ function HomePage(props) {
               <Link to="/BrowsePage" className="margin"><button onClick={searchTitle}
                                             className='pure-button'>
                                     Show Matching Plays</button></Link>
-              <Link to="/BrowsePage" className="margin"><button className='pure-button'
+              <Link to="/BrowsePage" className="margin"><button style={{color:'white'}} className='pure-button gradient'
                                             onClick={searchAllTitles}>
                                     Show All Plays</button></Link>
             </div>
