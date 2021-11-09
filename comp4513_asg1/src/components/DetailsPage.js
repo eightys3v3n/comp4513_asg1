@@ -46,7 +46,7 @@ function DetailsPage(props) {
           <button className="pure-button-primary" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
               {favDisplayed ? "Open " : "Close"}
             </button>
-          <div className={"grey " + showHideFav + " favTransition"}>
+          <div className={"grey " + showHideFav + " favTransition"} style={{minHeight:"70vh"}}>
           <Favorites />
           </div>
           <div className="pure-u-6-24 grey">

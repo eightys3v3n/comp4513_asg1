@@ -13,7 +13,7 @@ function MatchItem(props) {
   
   return (
     <tr>
-      <td><Link to={play_link}>{props.play.title}</Link></td>
+      <td><Link style={{color:"black"}} to={play_link}>{props.play.title}</Link></td>
       <td>{props.play.genre}</td>
       <td>{props.play.likelyDate}</td>
       <td>{additionalInfo}</td>
