@@ -9,7 +9,6 @@ import PlayTitleText from './PlayTitleText.js';
 function PlayTitle(props) {
   const [playTitle, setPlayTitle] = useState("");
   const [playSynopsis, setPlaySynopsis] = useState("");
-  const [selected, setSelected] = useState(null);
   const plays = useContext(PlaysContext);
   const playObj = plays.getByID(props.playID);
   
@@ -27,10 +26,10 @@ function PlayTitle(props) {
     )
   } else {
     playTitleContent = (
-      <PlayTitleText playID={props.playID}/>
+      <PlayTitleText playID={props.playID} information={props.information}/>
     )
   }
-  
+
   return (
     <section id='Filter-Section' className="padding">
       <h2>{playTitle}</h2>
