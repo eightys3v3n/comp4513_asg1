@@ -17,7 +17,6 @@ function HomePage(props) {
 
   return (
     <section className="page" id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
-      <Button variant="contained">Hello World</Button>
         <div className="flex-row">
           <form className="pure-form">
               <h1 id="home-title">Search Plays</h1>
@@ -26,12 +25,21 @@ function HomePage(props) {
               <input id="title" onChange={e => {title=e.target.value}}/><br/><br/>
             </div>
             <div>
-              <Link to="/BrowsePage" className="margin"><button onClick={searchTitle}
-                                            className='pure-button'>
-                                    Show Matching Plays</button></Link>
-              <Link to="/BrowsePage" className="margin"><button style={{color:'white'}} className='pure-button gradient'
-                                            onClick={searchAllTitles}>
-                                    Show All Plays</button></Link>
+              <Link to="/BrowsePage"
+                    className="margin">
+                <Button variant="contained"
+                        onClick={searchTitle}
+                        className='pure-button'>
+                Show Matching Plays</Button>
+              </Link>
+              <Link to="/BrowsePage"
+                    className="margin">
+                <Button variant="contained"
+                        style={{color:'white'}}
+                        className='gradient'
+                        onClick={searchAllTitles}>
+                Show All Plays</Button>
+              </Link>
             </div>
           </form>
         </div>
