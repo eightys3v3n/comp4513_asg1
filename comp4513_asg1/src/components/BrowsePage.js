@@ -29,12 +29,12 @@ function BrowsePage(props) {
   }
 
   return (
-    <div className="page">
-      <div className="pure-g margin" >
-        <div className="pure-u-24-24 grey">
+    <div className="page background">
+      <div className="pure-g margin">
+        <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
           <Header/>
         </div>
-          <button className="pure-button" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
+          <button className="pure-button-primary" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
             {favDisplayed ? "Open " : "Close"}
           </button>
         <div className={"grey " + showHideFav + " favTransition"}>
