@@ -4,6 +4,7 @@ import {PlaysContext} from './PlaysContextProvider.js';
 import { useEffect } from 'react';
 import FavoriteIcon from './FavoriteIcon.js';
 import { Link } from 'react-router-dom';
+import PlayTitleText from './PlayTitleText.js';
 
 function PlayTitle(props) {
   const [playTitle, setPlayTitle] = useState("");
@@ -26,7 +27,7 @@ function PlayTitle(props) {
     )
   } else {
     playTitleContent = (
-      <div>Call information from the Acts and such in the PlayTitle.js.</div>
+      <PlayTitleText playID={props.playID}/>
     )
   }
   
