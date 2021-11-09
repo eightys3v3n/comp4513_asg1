@@ -26,7 +26,7 @@ function PlayTitle(props) {
     )
   } else {
     playTitleContent = (
-      <div>Placeholder for other stuff</div>
+      <div>Call information from the Acts and such in the PlayTitle.js.</div>
     )
   }
   
