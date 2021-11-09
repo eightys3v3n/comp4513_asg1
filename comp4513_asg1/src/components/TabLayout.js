@@ -19,7 +19,6 @@ function TabLayout(props) {
   }, [props, props.selected]);
 
   function changeTab(e) {
-    console.log(`Changing to tab ${e.target.id}`);
     props.setSelected(e.target.id);
   }
 

@@ -21,9 +21,45 @@ function Characters(props) {
         });
     }
   }, []);
+
+  return (
+    <PlayCharacters play={play} />
+  );
+}
+
+function PlayCharacters(props) {
+  let characters = [];
+  
+  if (props.play.persona !== undefined &&
+      props.play.personal !== null) {
+    characters = props.play.persona;
+  }
+
+  characters = characters.sort((a, b) =>
+    parseInt(a.position) - parseInt(b.position));
+  for (let c=0; c<characters.length; c++) {
+    characters[c].key = c;
+  }
   
   return (
-    <p>{play.title}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {characters.map(c => {
+          return (
+            <tr key={c.key}>
+              <td>{c.position}</td>
+              <td>{c.player}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 
