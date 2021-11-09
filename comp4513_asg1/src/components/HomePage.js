@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function HomePage(props) {
   let title;
@@ -16,6 +17,7 @@ function HomePage(props) {
 
   return (
     <section className="page" id='Home-Page' style={{backgroundImage: `url(${src})`, alt: "homepage image"}}>
+      <Button variant="contained">Hello World</Button>
         <div className="flex-row">
           <form className="pure-form">
               <h1 id="home-title">Search Plays</h1>

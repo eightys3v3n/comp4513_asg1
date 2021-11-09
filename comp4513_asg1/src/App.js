@@ -26,12 +26,12 @@ const App = (props) => {
                 classNames="fade">
             <PlaysProvider location={location}>
               <Route path="/" exact>
-              <HomePage title={titleFilter}
-                        setTitle={setTitleFilter}/>
+                <HomePage title={titleFilter}
+                          setTitle={setTitleFilter}/>
               </Route>
               <FavoritesProvider location={location}>
                 <Route path="/BrowsePage">
-                <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
+                  <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
                 </Route>
                 <Route path="/DetailsPage/:playID" exact component={DetailsPage} />
               </FavoritesProvider>
