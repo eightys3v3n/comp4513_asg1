@@ -4,8 +4,6 @@ import { PlaysContext } from "./PlaysContextProvider";
 function DetailsTab(props) {
     const [currPlay, setCurrPlay] = useState({});
     const plays = useContext(PlaysContext);
-    
-    console.log(plays.size);
 
     useEffect(() => { 
         const playObj = plays.getByID(props.playID);

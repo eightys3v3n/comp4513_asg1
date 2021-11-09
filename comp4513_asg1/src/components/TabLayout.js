@@ -16,7 +16,7 @@ function TabLayout(props) {
     if (props.selected === null) {
       props.setSelected(props.children[0].key);
     }
-  }, [props.selected]);
+  }, [props, props.selected]);
 
   function changeTab(e) {
     console.log(`Changing to tab ${e.target.id}`);
@@ -60,7 +60,6 @@ function TabLayout(props) {
  * 
  */
 function Tab(props) {
-  console.log(props);
   return (
     <props.component label={props.label}/>
   );
