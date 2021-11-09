@@ -29,7 +29,7 @@ function BrowsePage(props) {
   }
 
   return (
-    <div className="page background" style={{minHeight:"80vh"}}>
+    <div className="page background" >
       <div className="pure-g margin">
         <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
           <Header/>
