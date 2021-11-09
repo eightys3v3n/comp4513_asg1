@@ -28,7 +28,7 @@ function TextTab(props) {
 
     let content;
     content = (
-        <h1>{currPlays.title}</h1>
+        <h1>Stuff</h1>
     )
 
     
