@@ -75,7 +75,7 @@ function TextTab(props) {
         }
 
         return (
-            <section>
+            <section className="overflow" style={{height:"65vh"}}>
                 <h1>{title}</h1>
                 <h2>{act}</h2>
                 <h3>{scene}</h3>

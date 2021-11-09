@@ -161,6 +161,10 @@ button:hover{
 	margin:3px;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .page{
 	position:absolute;
 	top:0px;
