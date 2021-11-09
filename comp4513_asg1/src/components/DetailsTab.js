@@ -15,11 +15,13 @@ function DetailsTab(props) {
     return(
         <section>
             <div>Likely Composition Date: {currPlay.likelyDate}</div>
-            <div>{currPlay.genre}</div>
-            <div>{currPlay.desc}</div>
-            <a href={currPlay.wiki}>Wikipedia</a>
-            <a href={currPlay.gutenberg}>Gutenberg</a>
-            <a href={currPlay.shakespeareOrg}>Shakespeare Org</a>
+            <div>Genre: {currPlay.genre}</div>
+            <div>Description: {currPlay.desc}</div>
+            <div>Links:
+                <a href={currPlay.wiki} target="_blank" rel="noopener noreferrer">Wikipedia</a>;
+                <a href={currPlay.gutenberg} target="_blank" rel="noopener noreferrer">Gutenberg</a>;
+                <a href={currPlay.shakespeareOrg} target="_blank" rel="noopener noreferrer">Shakespeare Org</a>
+            </div>
         </section>
     )
 }

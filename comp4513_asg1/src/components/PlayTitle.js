@@ -4,11 +4,11 @@ import {PlaysContext} from './PlaysContextProvider.js';
 import { useEffect } from 'react';
 import FavoriteIcon from './FavoriteIcon.js';
 import { Link } from 'react-router-dom';
+import PlayTitleText from './PlayTitleText.js';
 
 function PlayTitle(props) {
   const [playTitle, setPlayTitle] = useState("");
   const [playSynopsis, setPlaySynopsis] = useState("");
-  const [selected, setSelected] = useState(null);
   const plays = useContext(PlaysContext);
   const playObj = plays.getByID(props.playID);
   
@@ -26,10 +26,10 @@ function PlayTitle(props) {
     )
   } else {
     playTitleContent = (
-      <div>Placeholder for other stuff</div>
+      <PlayTitleText playID={props.playID} information={props.information}/>
     )
   }
-  
+
   return (
     <section id='Filter-Section' className="padding">
       <h2>{playTitle}</h2>

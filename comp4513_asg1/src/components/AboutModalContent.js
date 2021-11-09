@@ -5,7 +5,7 @@ function AboutModalContent(props) {
         <section className="AboutModalContent flex-col">
             <h2>COMP 4543 - Asg1</h2>
             <p>Team Members:</p>
-            <a href="https://github.com/eightys3v3n" target="_blank" rel="noopener noreferrer">Terrence (tplun878@mtroyal.ca)</a>
+            <a href="https://github.com/eightys3v3n" target="_blank" rel="noopener noreferrer">Terrence Plunkett (tplun878@mtroyal.ca)</a>
             <a href="https://github.com/PedroJanikian" target="_blank" rel="noopener noreferrer">Pedro Janikian (pjani371@mtroyal.ca)</a>
             <a href="https://github.com/MarkleSparkle" target="_blank" rel="noopener noreferrer">Mark Frezell (mfrez395@mtroyal.ca)</a>
             <p>Code Snippet Credits:</p>
