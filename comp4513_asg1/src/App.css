@@ -1,13 +1,38 @@
 .grey{
 	background-color:#EEEEEE;
+	border-radius: 10px;
 }
 
-.red{
-	background-color:red;
+.background{
+	background: rgb(211,211,211);
+	background: linear-gradient(0deg, rgba(211,211,211,1) 0%, rgba(209,211,211,1) 31%, rgba(123,196,204,1) 100%);
 }
 
-.green{
-	background-color:green;
+.overflow{
+	overflow: scroll;
+}
+
+.gradient{
+	background: rgb(0,74,255);
+	background: linear-gradient(90deg, rgba(0,74,255,1) 0%, rgba(17,190,120,1) 100%);
+}
+
+.gradient-reverse{
+	background: rgb(240,240,240);
+	background: linear-gradient(180deg, rgba(240,240,240,1) 0%, rgba(230,230,230,1) 31%, rgba(169,238,245,1) 100%);
+}
+
+.gradient:hover{
+	background: rgb(0,74,255);
+	background: linear-gradient(90deg, rgba(0,74,255,1) 0%, rgba(0,76,252,1) 19%, rgba(16,183,128,1) 81%, rgba(17,190,120,1) 100%);
+}
+
+button{
+	border-radius: 10px;
+}
+
+button:hover{
+	text-decoration: underline;
 }
 
 .margin div{
@@ -141,6 +166,7 @@
 	top:0px;
 	left: 0px;
 	right:0px;
+    height: 100%;
 }
 
 /* Transition CSS */
