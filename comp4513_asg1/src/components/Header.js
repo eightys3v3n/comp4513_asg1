@@ -26,7 +26,7 @@ function Header(props) {
         <div className="pure-u-6-24">
           <ul>
             <button onClick={openAbout} className="AboutOpenButton pure-button">About</button>
-            <ReactModal ariaHideApp={false} className="ModalSize" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
+            <ReactModal ariaHideApp={false} className="ModalSize gradient-reverse" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
               <button className="AboutModalCloseButton pure-button" onClick={closeAbout}>Close</button>
               <AboutModalContent/>
             </ReactModal>
