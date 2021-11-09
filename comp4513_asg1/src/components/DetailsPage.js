@@ -34,7 +34,7 @@ function DetailsPage(props) {
   const [act, setAct] = useState("ACT I");
   const [scene, setScene] = useState("SCENE I");
   const [character, setCharacter] = useState("");
-  const [query, setQuery] = useState(null);
+  const [query, setQuery] = useState("");
 
   return (
     <PlayInfoProvider>

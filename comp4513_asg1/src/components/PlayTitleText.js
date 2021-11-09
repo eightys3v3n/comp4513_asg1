@@ -8,6 +8,7 @@ function PlayTitleText(props) {
     let {act,setAct} = props.information;
     let {scene,setScene} = props.information;
     let {character,setCharacter} = props.information
+    let {query, setQuery} = props.information
 
     // Need to make context provider work
     useEffect(() => {
@@ -151,11 +152,16 @@ function PlayTitleText(props) {
     //     }
     // }
 
+    function highlightText(e) {
+        setQuery(e.target.value);
+    }
+
     return(
         <div>
             <SetActs currPlay={currPlay} act={{act, setAct}}/>
             <SetScenes currPlay={currPlay} act={act} scene={{scene,setScene}}/>
             <SetCharacters currPlay={currPlay}/>
+            <input type="text" id="highlight" onChange={highlightText}></input>
         </div>
     )
 }
