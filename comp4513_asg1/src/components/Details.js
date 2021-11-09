@@ -42,7 +42,6 @@ function Details(props) {
   }
 
   return (
-    <PlayInfoProvider>
     <TabLayout selected={props.selected} setSelected={props.setSelected}>
       <Tab key="Tab1"
            label="Details"
@@ -56,7 +55,6 @@ function Details(props) {
            disabled={!additionalInfo}
            component={RawTextTab} />
     </TabLayout>
-      </PlayInfoProvider>
   );
 }
 
