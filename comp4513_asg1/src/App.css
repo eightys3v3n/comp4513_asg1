@@ -18,8 +18,8 @@
 }
 
 .gradient-reverse{
-	background: rgb(211,211,211);
-	background: linear-gradient(180deg, rgba(211,211,211,1) 0%, rgba(209,211,211,1) 31%, rgba(123,196,204,1) 100%);
+	background: rgb(240,240,240);
+	background: linear-gradient(180deg, rgba(240,240,240,1) 0%, rgba(230,230,230,1) 31%, rgba(169,238,245,1) 100%);
 }
 
 .gradient:hover{
