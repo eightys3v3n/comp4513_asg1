@@ -19,7 +19,6 @@ function TabLayout(props) {
   }, [props, props.selected]);
 
   function changeTab(e) {
-    console.log(`Changing to tab ${e.target.id}`);
     props.setSelected(e.target.id);
   }
 
@@ -32,8 +31,9 @@ function TabLayout(props) {
     }
 
     return (
-      <li key={tab.key}>
-        <button id={tab.key}
+      <li className="tab-li" key={tab.key}>
+        <button className="tab-button pure-button"
+                id={tab.key}
                 disabled={disabled}
                 onClick={changeTab}>{tab.props.label}</button>
       </li>
@@ -42,7 +42,7 @@ function TabLayout(props) {
   
   return (
     <div>
-      <ul>
+      <ul className="tab-layout">
         {props.children.map(tab => renderButton(tab))}
       </ul>
       {props.children.filter(tab => tab.key === props.selected)}

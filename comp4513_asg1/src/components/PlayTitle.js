@@ -34,8 +34,10 @@ function PlayTitle(props) {
     <section id='Filter-Section' className="padding">
       <h2>{playTitle}</h2>
       {playTitleContent}
-      <Link to="/BrowsePage" className="margin"><button className='pure-button'>Close</button></Link>
-      <FavoriteIcon id={props.playID} />
+      <div className="flex-row">
+        <FavoriteIcon id={props.playID} />
+        <Link to="/BrowsePage" className="margin"><button className='pure-button'>Close</button></Link>
+      </div>
     </section>);
 }
 
