@@ -11,6 +11,7 @@ function AboutModalContent(props) {
             <p>Code Snippet Credits:</p>
             <a href="https://reactcommunity.org/react-modal/" target="_blank">React Modal</a>
             <a href="https://purecss.io/">Pure CSS</a>
+            <a href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a>
             <p>Image Credits:</p>
             <a href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank">HomePage Cover Art by Daian Gan</a>
             <a href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank">Paintbucket</a>
