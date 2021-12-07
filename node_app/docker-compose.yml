@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  comp4513_asg2-prod:
+    container_name: comp4513_asg2-prod
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile-nodejs
+    ports:
+      - '8082:8082'
+
+
+  comp4513_mongodb:
+    container_name: comp4513_mongodb
+    build:
+      context: .
+      dockerfile: Dockerfile-mongodb
+    volumes:
+      - ./mongodb:/data/db
+    ports:
+      - '0.0.0.0:27017:27017'
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=comp4513
+      - MONGO_INITDB_ROOT_PASSWORD=rEs63zPK6xeN
+      - MONGO_INIITDB_DATABASE=asg2
