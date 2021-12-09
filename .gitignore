@@ -28,3 +28,6 @@ yarn-error.log*
 *~
 
 .env
+
+# don't commit database contents
+node_app/mongodb
