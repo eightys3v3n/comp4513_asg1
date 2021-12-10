@@ -6,6 +6,7 @@ import Details from './Details.js';
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
 import PlayInfoProvider from './PlaysInfoContextProvider';
+import Button from '@mui/material/Button';
 
 function DetailsPage(props) {
   const [favDisplayed, setFavDisplayed] = useState(false);
@@ -43,9 +44,9 @@ function DetailsPage(props) {
           <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
             <Header/>
           </div>
-          <button className="pure-button-primary" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
+          <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
               {favDisplayed ? "Open " : "Close"}
-            </button>
+            </Button>
           <div className={"grey " + showHideFav + " favTransition"} style={{minHeight:"70vh"}}>
           <Favorites />
           </div>

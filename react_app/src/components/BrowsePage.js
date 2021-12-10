@@ -3,9 +3,7 @@ import Favorites from './Favorites.js';
 import Filters from './Filters.js';
 import Matches from './Matches.js';
 import Header from './Header.js';
-
-
-
+import Button from '@mui/material/Button';
 
 function BrowsePage(props) {
   const [favDisplayed, setFavDisplayed] = useState(false);
@@ -34,9 +32,9 @@ function BrowsePage(props) {
         <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
           <Header/>
         </div>
-          <button className="pure-button-primary" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
+          <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
             {favDisplayed ? "Open " : "Close"}
-          </button>
+          </Button>
         <div className={"grey " + showHideFav + " favTransition"}>
           <Favorites />
         </div>

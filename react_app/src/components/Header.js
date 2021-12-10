@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
 import AboutModalContent from './AboutModalContent';
+import Button from '@mui/material/Button';
 
 function Header(props) {
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
@@ -25,9 +26,9 @@ function Header(props) {
         <div className="pure-u-11-24 "></div>
         <div className="pure-u-6-24">
           <ul>
-            <button onClick={openAbout} className="AboutOpenButton pure-button">About</button>
+            <Button variant='contained' color='inherit' onClick={openAbout} className="AboutOpenButton pure-button">About</Button>
             <ReactModal ariaHideApp={false} className="ModalSize gradient-reverse" closeTimeoutMS={200} isOpen={modal}  shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}>
-              <button className="AboutModalCloseButton pure-button" onClick={closeAbout}>Close</button>
+              <Button variant='contained' color='inherit' className="AboutModalCloseButton" onClick={closeAbout}>Close</Button>
               <AboutModalContent/>
             </ReactModal>
           </ul>
