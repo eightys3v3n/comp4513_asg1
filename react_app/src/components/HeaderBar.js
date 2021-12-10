@@ -18,6 +18,16 @@ import Divider from '@mui/material/Divider';
 const pages = [];
 const settings = ['Profile', 'About', 'Logout'];
 
+//please replace this code with the state (dynamically generated from the login state) => you'll want to [Ctrl+F "testUser"]
+const testUser = {
+  firstname: "Mark",
+  lastname: "Frezell",
+  city: "Calgary",
+  country: "Canada",
+  picture: "https://avatars.githubusercontent.com/u/18632662?s=96&v=4",
+  dateJoined: "12/10/2021"
+}
+
 const HeaderBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -27,23 +37,24 @@ const HeaderBar = () => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
 
+  const [openProfile, setOpenProfile] = React.useState(false);
+  const handleCloseProfile = () => setOpenProfile(false);
+
   /**
    * When user clicks "logout" in the header bar, the user is sent to the login page
    */
   const handleClick = (setting) => {
     if(setting == "About") //if the user clicks "About"
       setOpen(true);
-    else if(setting == "Logout"){
+    else if(setting == "Profile"){ //if user clicks "Profile"
+      console.log("Access Profile");
+      setOpenProfile(true);
+    } else if(setting == "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
         console.log("Tried to Log");
       }
-    else if(setting == "Profile"){ //if user clicks profile
-      //TODO - add implementation
-      console.log("Access Profile");
-    }
-    else{
-      //if another button is implmented, or a click goes weird
-      console.log("hmmmmmmm");
+    else{ //if another button is implmented, or a click goes weird
+      console.log("Not sure how this got called.");
     }
   }
 
@@ -76,14 +87,40 @@ const HeaderBar = () => {
   
   };
 
-  const darkMode = {
-  }
-
   return (
     <AppBar position="static" style={{background: '#333333'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            {/* Profile Modal that Shows the User what  */}
+            <Modal
+              open={openProfile}
+              onClose={handleCloseProfile}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h3">Profile</Typography>
+                
+                <Divider light="true" /><br/>
+                
+                <img src={testUser.picture} alt={testUser.firstname+" "+testUser.lastname} style={{width:"100px", height:"100px", float:"right", borderRadius:"50px"}} />
+                <Typography id="modal-modal-title" variant="h6">First: {testUser.firstname}</Typography>
+                <Typography id="modal-modal-title" variant="h6">Last: {testUser.lastname}</Typography>
+              
+                <Divider light="true"/><br/>
+
+                <Typography id="modal-modal-title" variant="h6">City: {testUser.city}</Typography>
+                <Typography id="modal-modal-title" variant="h6">Country: {testUser.country}</Typography>
+
+                <Divider light="true"/><br/>
+
+                <Typography id="modal-modal-title" variant="h6">Date Joined: {testUser.dateJoined}</Typography>
+
+            </Box>
+            </Modal>
+
+            {/* About Modal that Shows the Project Details */}
             <Modal
               open={open}
               onClose={handleClose}
