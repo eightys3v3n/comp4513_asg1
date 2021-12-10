@@ -25,8 +25,27 @@ const HeaderBar = () => {
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = (setting) => {if(setting == "About") setOpen(true)};
   const handleClose = () => setOpen(false);
+
+  /**
+   * When user clicks "logout" in the header bar, the user is sent to the login page
+   */
+  const handleClick = (setting) => {
+    if(setting == "About") //if the user clicks "About"
+      setOpen(true);
+    else if(setting == "Logout"){
+        /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
+        console.log("Tried to Log");
+      }
+    else if(setting == "Profile"){ //if user clicks profile
+      //TODO - add implementation
+      console.log("Access Profile");
+    }
+    else{
+      //if another button is implmented, or a click goes weird
+      console.log("hmmmmmmm");
+    }
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -160,18 +179,18 @@ const HeaderBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu, () => {handleOpen(setting)}}>
+                <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          {/* This is the Box that holds the logged in user */}
+          {/* This is the Box that holds the logged in user -  */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> {/* Have image path here for the user */}
+                <Avatar alt="Semy Sharp" src="/static/images/avatar/2.jpg" /> {/* Have image path here for the user */}
               </IconButton>
             </Tooltip>
             <Menu
@@ -191,7 +210,7 @@ const HeaderBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu, () => {handleOpen(setting)}}>
+                <MenuItem key={setting} onClick={handleCloseNavMenu, () => {handleClick(setting)}}>
                   {/* This is how we get the key for the MenuItem in handleOpen() - https://stackoverflow.com/questions/40044861/get-key-index-on-click-es6-react */}
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
