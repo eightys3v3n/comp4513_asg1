@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userSchema = require('./User.js').userSchema;
+const playSchema = require('./Play.js').playSchema;
 require('dotenv').config();
 
 
@@ -16,7 +17,14 @@ server.get('/', (req, res) => {
 
 async function print_user() {
   const User = mongoose.model('User', userSchema);
-  let test = await User.find();
+  let test = await User.findOne();
+  console.log(test);
+}
+
+
+async function print_play() {
+  const Play = mongoose.model('Play', playSchema);
+  let test = await Play.findOne({playText: {$exists: true, $ne: {}}});
   console.log(test);
 }
 
@@ -25,7 +33,8 @@ async function main() {
   console.log(`Connecting to MongoDB at ${MONGODB_CONSTRING}...`);
   await mongoose.connect(MONGODB_CONSTRING);
 
-  print_user();
+  //print_user();
+  print_play();
   
   server.listen(NODEJS_PORT, () => {
     console.log(`Listening on ${NODEJS_PORT}`);
