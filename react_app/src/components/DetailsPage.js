@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import HeaderBar from './HeaderBar.js';
 import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
@@ -40,10 +40,8 @@ function DetailsPage(props) {
   return (
     <PlayInfoProvider>
       <section id="Details-Page" className="page background" style={{height:"100vh"}}>
+        <HeaderBar />
         <div className="pure-g margin" style={{height:"100vh"}}>
-          <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
-            <Header/>
-          </div>
           <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
               {favDisplayed ? "Open " : "Close"}
             </Button>
