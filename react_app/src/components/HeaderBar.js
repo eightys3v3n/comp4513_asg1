@@ -1,0 +1,210 @@
+import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Modal } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import { color } from '@mui/system';
+
+
+const pages = [];
+const settings = ['Profile', 'About', 'Logout'];
+
+const HeaderBar = () => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (setting) => {if(setting == "About") setOpen(true)};
+  const handleClose = () => setOpen(false);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: '#333',
+    border: '2px solid #CCC',
+    boxShadow: 24,
+    p: 4,
+    color: "#EEE"
+  
+  };
+
+  const darkMode = {
+  }
+
+  return (
+    <AppBar position="static" style={{background: '#333333'}}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h4">COMP 4543 - Asg1</Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Complete Assignment 2 for <span style={{fontWeight:'bold'}}>COMP 4513: Web 3 - Advanced Web Development</span>
+                </Typography>
+
+                <Divider light="true"/><br/>
+
+                <Typography variant='h6'>Team Members:</Typography>
+                <Typography><a className="darkMode" href="https://github.com/eightys3v3n" target="_blank" rel="noopener noreferrer">Terrence Plunkett (tplun878@mtroyal.ca)</a></Typography>
+                <Typography><a className="darkMode" href="https://github.com/PedroJanikian" target="_blank" rel="noopener noreferrer">Pedro Janikian (pjani371@mtroyal.ca)</a></Typography>
+                <Typography><a className="darkMode" href="https://github.com/MarkleSparkle" target="_blank" rel="noopener noreferrer">Mark Frezell (mfrez395@mtroyal.ca)</a></Typography>
+                <br/>
+                <Typography variant='h6'>Code Snippet Credits:</Typography>
+                <Typography><a className="darkMode" href="https://mui.com/">Material UI</a></Typography>
+                <Typography><a className='darkMode' href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a></Typography>
+                <br />
+                <Typography variant='h6'>Image Credits:</Typography>
+                <Typography><a className='darkMode' href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a></Typography>
+                <Typography><a className='darkMode' href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank" rel="noopener noreferrer">Paintbucket</a></Typography>
+                <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-1-svg/" target="_blank" rel="noopener noreferrer">Filled Heart</a></Typography>
+                <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a></Typography>
+            </Box>
+            </Modal>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          {/* Image Logo */}
+          <Link to="/"><img className="logo" alt="Logo - Paint Bucket" src={src}/></Link>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          {/* IF A USER IS LOGGED IN DISPLAY ONLY THE NEXT BOX (user profile).
+          
+              IF A USER IS NOT LOGGED IN, ONLY DISPLAY THE LOG IN BUTTON */}
+
+          {/* This is the Box that holds the LOG IN button */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Button variant='contained' color='inherit' style={{color: "#333333"}}>
+              LOG IN
+            </Button>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseNavMenu, () => {handleOpen(setting)}}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          {/* This is the Box that holds the logged in user */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> {/* Have image path here for the user */}
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseNavMenu, () => {handleOpen(setting)}}>
+                  {/* This is how we get the key for the MenuItem in handleOpen() - https://stackoverflow.com/questions/40044861/get-key-index-on-click-es6-react */}
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+
+    </AppBar>
+  );
+};
+export default HeaderBar;

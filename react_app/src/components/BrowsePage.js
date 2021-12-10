@@ -3,6 +3,7 @@ import Favorites from './Favorites.js';
 import Filters from './Filters.js';
 import Matches from './Matches.js';
 import Header from './Header.js';
+import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
 
 function BrowsePage(props) {
@@ -28,9 +29,10 @@ function BrowsePage(props) {
 
   return (
     <div className="page background" >
+      <HeaderBar/>
       <div className="pure-g margin">
         <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
-          <Header/>
+          {/* <Header /> */}
         </div>
           <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
             {favDisplayed ? "Open " : "Close"}

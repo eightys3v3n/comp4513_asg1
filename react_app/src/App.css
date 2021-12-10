@@ -35,6 +35,12 @@ button:hover{
 	text-decoration: underline;
 }
 
+.darkMode:link{
+	color:aqua;
+}
+.darkMode:visited{
+	color:blueviolet;
+}
 .margin div{
 	margin: 7px;
 }
@@ -48,8 +54,8 @@ button:hover{
 }
 
 .logo{
-	width:85px;
-	height:65px;
+	width:64px;
+	height:49px;
 }
 
 .overflow{
