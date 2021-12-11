@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const playSchema = new mongoose.Schema({
   id:       String,
@@ -42,4 +43,4 @@ const playSchema = new mongoose.Schema({
   }
 });
 
-module.exports = {playSchema};
+module.exports = mongoose.model('Play', playSchema, 'plays');
