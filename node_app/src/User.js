@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   id:				Number,
@@ -23,4 +24,6 @@ const userSchema = new mongoose.Schema({
   favorites:		[]
 });
 
-module.exports = {userSchema};
+module.exports = mongoose.model('User', userSchema, 'users');
+// #rd param, users is the collection name --> clusterName in mongoDataConnector.js
+// Don't forget to do the installations, such as the bcrypt install (page 7 from the Node 2 lab)
