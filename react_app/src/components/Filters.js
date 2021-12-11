@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {PlaysContext} from './PlaysContextProvider.js';
+import Button from '@mui/material/Button';
 
 function Filters(props) {
   const plays = useContext(PlaysContext);
@@ -140,14 +141,13 @@ function Filters(props) {
           </select>
         </div>
         <div style={{width: "50%", margin: "0 auto"}}>
-          <button className="pure-button pure-button-primary"
-                  style={{margin: "10px"}}
+          <Button variant='contained' color='primary'
+                  style={{margin: "10px", width: "65px"}}
                   onClick={applyFilters}
-          >Filter</button>
-          <button type="reset"
-                  className="pure-button"
+          >Filter</Button>
+          <Button variant='contained' color='inherit' type="reset"
                   onClick={resetFilters}
-          >Reset</button>   
+          >Reset</Button>   
         </div>       
       </form>
     </section>);
