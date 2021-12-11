@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header';
+import HeaderBar from './HeaderBar.js';
 import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
 import PlayInfoProvider from './PlaysInfoContextProvider';
+import Button from '@mui/material/Button';
 
 function DetailsPage(props) {
   const [favDisplayed, setFavDisplayed] = useState(false);
@@ -39,13 +40,11 @@ function DetailsPage(props) {
   return (
     <PlayInfoProvider>
       <section id="Details-Page" className="page background" style={{height:"100vh"}}>
+        <HeaderBar />
         <div className="pure-g margin" style={{height:"100vh"}}>
-          <div className="pure-u-24-24 grey" style={{marginRight:"40px"}}>
-            <Header/>
-          </div>
-          <button className="pure-button-primary" style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
+          <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
               {favDisplayed ? "Open " : "Close"}
-            </button>
+            </Button>
           <div className={"grey " + showHideFav + " favTransition"} style={{minHeight:"70vh"}}>
           <Favorites />
           </div>

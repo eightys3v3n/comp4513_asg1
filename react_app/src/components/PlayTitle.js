@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import FavoriteIcon from './FavoriteIcon.js';
 import { Link } from 'react-router-dom';
 import PlayTitleText from './PlayTitleText.js';
+import Button from '@mui/material/Button';
 
 function PlayTitle(props) {
   const [playTitle, setPlayTitle] = useState("");
@@ -36,7 +37,7 @@ function PlayTitle(props) {
       {playTitleContent}
       <div className="flex-row">
         <FavoriteIcon id={props.playID} />
-        <Link to="/BrowsePage" className="margin"><button className='pure-button'>Close</button></Link>
+        <Link to="/BrowsePage" style={{color: "black"}} className="margin"><Button variant='contained' color='inherit'>Close</Button></Link>
       </div>
     </section>);
 }

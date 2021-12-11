@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Button from '@mui/material/Button';
 
 function FavoriteItem(props) {
   function removeFavorite(e) {
@@ -8,8 +8,8 @@ function FavoriteItem(props) {
   
   return (<div className="list-item">
             <div className="title">{props.play.title}</div>
-            <button className='pure-button'
-                    onClick={removeFavorite}>Remove</button>
+            <Button variant='contained' color='inherit'
+              onClick={removeFavorite}>Remove</Button>
           </div> );
 
 }
