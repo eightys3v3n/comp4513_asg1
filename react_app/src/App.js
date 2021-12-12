@@ -15,8 +15,12 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
-  const [userObj, setUserObject] = useState({});
+  let [userObj, setUserObject] = useState(null);
   
+  function resetUserObj() {
+    setUserObject(null);
+  };
+
   return (
       <div className="App">
       <header className="App-header"></header>
@@ -30,7 +34,7 @@ const App = (props) => {
             <PlaysProvider location={location}>
               <Route path="/" exact>
                 <HomePage title={titleFilter}
-                          setTitle={setTitleFilter}/>
+                          setTitle={setTitleFilter} userObj={userObj} resetUserObj={resetUserObj}/>
               </Route>
               <FavoritesProvider location={location}>
                 <Route path="/BrowsePage">
@@ -39,7 +43,7 @@ const App = (props) => {
                 <Route path="/DetailsPage/:playID" exact component={DetailsPage} />
               </FavoritesProvider>
               <Route path="/Login" exact>
-                  <Login userObj={userObj} setUserObject={setUserObject} />
+                  <Login setUserObject={setUserObject} />
               </Route>
             </PlaysProvider>
             </CSSTransition>

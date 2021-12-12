@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import  { Redirect, Link, useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function Login(props) {
     // Login form
@@ -8,7 +10,7 @@ function Login(props) {
     // If the API returns "Successfully logged in", then reroute to "/" or home --> Set context handler save info
     // Else if the API returns "Not successful", redirect back to this page
 
-
+    let history = useHistory();
     // Displays a login page and allows the user to login, handling tokens
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
@@ -28,44 +30,43 @@ function Login(props) {
     
     
     const handleSubmit = async event => {
-        event.preventDefault();
     
         const res = await loginUser({
           email: username,
           password: password
         });
 
-      console.log(res);
         if (res) {
-            alert("Logged in successfully");
+            alert("Logged is successfully");
+            props.setUserObject(res);
+            history.push("/");
         } else {
             alert("Failed to login: "+res.status);
         }
+
     }
 
     return (
-    <div class="body">
+    <div className="body">
         <header className="Login">
         <h2>Login</h2>
         </header>
         <section className="login-body">
-        <form onSubmit={handleSubmit}>
-            <label>
+        <label>
             Username:
-            </label>
-            <input
+        </label>
+        <input
             type="text"
             name="username"
             onChange={e => setUserName(e.target.value)} />
-            <label>
+        <label>
             Password:
-            </label>
-            <input
+        </label>
+        <input
             type="password"
             name="password"
             onChange={e => setPassword(e.target.value)} />
-            <input type="submit" value="Submit" />
-        </form>
+            <Button onClick={handleSubmit}>Log in</Button>
         </section>
     </div> 
     );
