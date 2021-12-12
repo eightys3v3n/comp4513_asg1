@@ -1,5 +1,4 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { PlaysContext } from "./PlaysContextProvider"; //For general plays (from browse page)
 import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play details
 
 function PlayTitleText(props) {
@@ -8,7 +7,7 @@ function PlayTitleText(props) {
     let {act,setAct} = props.information;
     let {scene,setScene} = props.information;
     let {character,setCharacter} = props.information
-    let {query, setQuery} = props.information
+    let {setQuery} = props.information
 
     // Need to make context provider work
     useEffect(() => {
