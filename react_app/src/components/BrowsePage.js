@@ -4,13 +4,10 @@ import Filters from './Filters.js';
 import Matches from './Matches.js';
 import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
-import { useHistory } from "react-router-dom";
-import {useContext} from 'react';
-import {UserContext} from './UserContextProvider.js';
+import { useContext } from 'react';
+
 
 function BrowsePage(props) {
-  const userObj = useContext(UserContext);
-
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
   const [matchesWidth, setMatchesWidth] = useState("pure-u-10-24");
@@ -33,7 +30,7 @@ function BrowsePage(props) {
 
   return (
     <div className="page background" >
-      <HeaderBar userObj={props.userObj} resetUserObj={props.resetUserObj}/>
+      <HeaderBar />
       <div className="pure-g margin">
           <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
             {favDisplayed ? "Open " : "Close"}

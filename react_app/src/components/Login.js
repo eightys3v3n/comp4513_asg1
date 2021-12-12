@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import  { Redirect, Link, useHistory } from 'react-router-dom';
+import  { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {useContext} from 'react';
 import {UserContext} from './UserContextProvider.js';

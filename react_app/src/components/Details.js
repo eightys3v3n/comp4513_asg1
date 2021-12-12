@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import { TabLayout, Tab } from './TabLayout.js';
 import Characters from './Characters';
-import PlayInfoProvider from './PlaysInfoContextProvider.js';
 import DetailsTab from './DetailsTab.js';
 import {PlaysContext} from './PlaysContextProvider.js';
 import TextTab from './TextTab.js';
