@@ -69,11 +69,7 @@ require('./src/auth.js');
 
 /* ------------------------------------------------ ROUTES START HERE ------------------------------------------------ */
 
-//, helper.ensureAuthenticated   , { user: req.user } 
-app.get('/', helper.ensureAuthenticated, (req, res) => {
-  res.json("Hello world");
-  //res.json('../react_app/src/index.js');
-});
+
 
 
 async function print_user() {
@@ -90,44 +86,31 @@ async function print_play() {
 }
 
 
-// ***************************************************
-// Page 13
-// NOTE: THIS IS THE LOGIN PAGE SETUP
-
-// Note: This login deals with redirecting
-app.get('/login', (req,res) => {
-  res.render('login.ejs', {message: req.flash('error')} );
-});
-app.post('/login', async (req, resp, next) => {
-  // Use passport authentication to see if valid login
-  passport.authenticate('localLogin', { 
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureFlash: true }) (req, resp, next);
+//, helper.ensureAuthenticated   , { user: req.user } 
+app.get('/', helper.ensureAuthenticated, (req, res) => {
+  res.json("Hello world");
+  //res.json('../react_app/src/index.js');
 });
 
-// NOTE: THIS IS THE LOGOUT PAGE SETUP
-app.get('/logout', (req,resp) => {
+
+app.post('/login', async (req, res, next) => {
+  console.log("Login attempt");
+  
+  passport.authenticate('localLogin', (err, user, info) => {
+    if (!user) {
+      res.json(false);
+    } else {
+      res.json(user);
+    }
+  })(req, res, next);
+});
+
+
+app.get('/logout', (req, res) => {
   req.logout();
   req.flash('info', 'You were logged out');
-  resp.render('login', {message: req.flash('info')} );
+  res.render('login', {message: req.flash('info')} );
 });
-// Then modify handlers for the api routes in api-router.js
-// ***************************************************
-
-
-// async function main() {
-//   console.log(`Connecting to MongoDB at ${MONGODB_CONSTRING}...`);
-//   await mongoose.connect(MONGODB_CONSTRING);
-
-//   //print_user();
-//   print_play();
-  
-//   app.listen(NODEJS_PORT, () => {
-//     console.log(`Listening on ${NODEJS_PORT}`);
-//   });
-// }
-// main();
 
 
 // customize the 404 error with our own middleware function
