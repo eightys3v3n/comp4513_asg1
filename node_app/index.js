@@ -97,7 +97,13 @@ app.post('/login', async (req, res, next) => {
     if (!user) {
       res.json(false);
     } else {
-      res.json(user);
+      user_info = {
+        details: user.details,
+        picture: user.picture,
+        membership: user.membership,
+        favorites: user.favorites
+      }
+      res.json(user_info);
     }
   })(req, res, next);
 });
