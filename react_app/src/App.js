@@ -17,6 +17,7 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
+  let [userObj, setUserObject] = useState(null);
 
   return (
       <div className="App">
@@ -28,7 +29,7 @@ const App = (props) => {
                 key={location.key}
                 timeout={1000}
                 classNames="fade">
-            <UserProvider location={location}>
+            <UserProvider location={location} useO={userObj} setUserObject={setUserObject}>
               <PlaysProvider location={location}>
                 <Route path="/" exact>
                   <HomePage title={titleFilter}
