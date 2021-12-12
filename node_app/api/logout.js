@@ -8,7 +8,7 @@ const logoutRouter = Router();
 
 
 // This translates to 'api/logout' because of the express router
-logoutRouter.get('/logout', (req, res) => {
+logoutRouter.get('/', (req, res) => {
   if (isAuthenticated()) {
     console.log("User logging out");
     req.logout();
