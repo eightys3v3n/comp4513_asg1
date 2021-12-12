@@ -1,7 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { User } = require('./mongoDataConnector.js');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const { User } = require('./mongoDataConnector.js');
 
 // What the fields are called in our requests.
 const localOpt = {
@@ -12,6 +13,8 @@ const localOpt = {
 
 // Run to setup authentication
 function setup(app) {
+    // Use a cookie parser so we can store session cookies
+    app.use(cookieParser('oreos'));
 
     // Configure storing of session cookies
     app.use(
