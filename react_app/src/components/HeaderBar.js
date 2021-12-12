@@ -168,10 +168,10 @@ const HeaderBar = (props) => {
                 <Typography><a className='darkMode' href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a></Typography>
                 <br />
                 <Typography variant='h6'>API Links:</Typography>
-                <Typography><a className="darkMode" href="http://server.eighty7.ca:8082/list" target="_blank">http://server.eighty7.ca:80822/list</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/play/alls_well_that_ends_well" target="_blank">http://server.eighty7.ca:8082/play/alls_well_that_ends_well</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/user/1" target="_blank">http://server.eighty7.ca:8082/user/1</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/login" target="_blank">http://server.eighty7.ca:8082/login</a></Typography>
+                <Typography><a className="darkMode" href="http://server.eighty7.ca:8082/list" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:80822/list</a></Typography>
+                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/play/alls_well_that_ends_well" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/play/alls_well_that_ends_well</a></Typography>
+                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/user/1" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/user/1</a></Typography>
+                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/login" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/login</a></Typography>
                 <br />
                 <Typography variant='h6'>Image Credits:</Typography>
                 <Typography><a className='darkMode' href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a></Typography>
