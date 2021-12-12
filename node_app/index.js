@@ -3,6 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const userSchema = require('./src/User.js').userSchema;
 const playSchema = require('./src/Play.js').playSchema;
@@ -63,7 +64,19 @@ require('./src/auth.js');
 // ***************************************************
 
 
-
+// CORS for API accessing
+app.use(cors());
+let whitelist = ['http://localhost:3000',
+                 'http://localhost:8082'];
+let corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin !== -1)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
 
 
 
