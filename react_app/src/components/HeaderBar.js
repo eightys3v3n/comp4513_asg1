@@ -65,7 +65,7 @@ const HeaderBar = (props) => {
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
         //fetch() // to the callback api, then redirect to login page
         console.log(props.userObj);
-        fetch('http://localhost:8082/logout');
+        fetch('http://server.eighty7.ca:8082/logout');
         props.resetUserObj();
       }
     else{ //if another button is implmented, or a click goes weird
