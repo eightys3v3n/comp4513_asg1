@@ -67,12 +67,13 @@ require('./src/auth.js');
 
 // CORS for API accessing from URLs other than the API url.
 // Otherwise the fetch doesn't work for clients.
-app.use(cors());
 let whitelist = ['http://localhost:3000',
                  'http://localhost:8082',
                  'http://server.eighty7.ca:80',
-                 'http://server.eighty7.ca:8082'];
+                 'http://server.eighty7.ca:8082',
+                 'http://server.eighty7.ca:3000'];
 let corsOptions = {
+  credentials: true,
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin !== -1)) {
       callback(null, true);
@@ -81,6 +82,7 @@ let corsOptions = {
     }
   }
 };
+app.use(cors(corsOptions));
 
 
 function parse_down_user(data) {

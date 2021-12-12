@@ -29,11 +29,17 @@ function PlaysProvider({children}) {
     }
     
     console.log("Fetching plays from API...");
-    fetch(url)
+    fetch(url, {credentials: 'include'})
       .then(res => {
         return res.json();
       })
       .then(data => {
+		if (data == "User is not logged in") {
+			console.warn("User is not logged in for this API");
+			console.log(data);
+			return;
+		}
+        console.log(data);
         data.forEach( (play) => {
            play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
         } )

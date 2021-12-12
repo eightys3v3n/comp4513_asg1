@@ -21,7 +21,8 @@ function Login(props) {
     return fetch('http://server.eighty7.ca:8082/login', {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json'
+    	    'Content-Type': 'application/json',
+			credentials: 'include',	
         },
         body: JSON.stringify(creds)
     })
