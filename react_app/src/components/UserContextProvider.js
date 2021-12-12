@@ -40,7 +40,7 @@ function UserProvider(props) {
 
   function logOutUserLocally(user) {
     //http://server.eighty7.ca:8082/api/logout
-    fetch('http://localhost:8082/api/logout',
+    fetch('http://server.eighty7.ca:8082/api/logout',
           { credentials: 'include' });
     props.setUserObject(null);
     console.log("Logout User");

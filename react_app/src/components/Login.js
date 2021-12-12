@@ -29,7 +29,7 @@ function Login(props) {
     async function loginUser(creds) {
 
     //http://server.eighty7.ca:8082/api/login
-    return fetch('http://localhost:8082/api/login', {
+    return fetch('http://server.eighty7.ca:8082/api/login', {
         method: 'POST',
 		credentials: 'include',	
         headers: {
