@@ -71,9 +71,14 @@ require('./src/auth.js');
 
 //, helper.ensureAuthenticated   , { user: req.user } 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-  res.json("Hello world");
-  //res.json('../react_app/src/index.js');
+  //res.json("Hello world");
+  res.json("Eurika, it worked!");
 });
+
+
+// Need 2 api calls
+
+
 
 
 async function print_user() {
@@ -81,7 +86,6 @@ async function print_user() {
   let test = await User.findOne();
   console.log(test);
 }
-
 
 async function print_play() {
   const Play = mongoose.model('Play', playSchema);

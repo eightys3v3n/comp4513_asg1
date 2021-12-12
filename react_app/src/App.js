@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';

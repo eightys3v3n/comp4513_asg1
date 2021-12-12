@@ -51,7 +51,8 @@ const HeaderBar = () => {
       setOpenProfile(true);
     } else if(setting == "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
-        console.log("Tried to Log");
+        //fetch() // to the callback api, then redirect to login page
+        
       }
     else{ //if another button is implmented, or a click goes weird
       console.log("Not sure how this got called.");
