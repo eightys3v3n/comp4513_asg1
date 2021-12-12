@@ -1,2 +1,2 @@
-sudo docker-compose -f docker-compose.prod.yml up --build
+sudo docker-compose -f docker-compose.prod.yml up -d --build
 
