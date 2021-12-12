@@ -5,11 +5,9 @@ import Matches from './Matches.js';
 import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
-import { UserContext } from './UserContextProvider.js';
+
 
 function BrowsePage(props) {
-  const userObj = useContext(UserContext);
-
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
   const [matchesWidth, setMatchesWidth] = useState("pure-u-10-24");
