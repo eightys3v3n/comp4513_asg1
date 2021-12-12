@@ -1,12 +1,12 @@
 import './App.css';
 import { useState } from 'react';
 import { Route } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
 import HomePage from './components/HomePage.js';
 import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';
 import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
+import Login from './components/Login.js';
 
 import {
   CSSTransition,
@@ -15,6 +15,7 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
+  const [userObj, setUserObject] = useState({});
   
   return (
       <div className="App">
@@ -37,6 +38,9 @@ const App = (props) => {
                 </Route>
                 <Route path="/DetailsPage/:playID" exact component={DetailsPage} />
               </FavoritesProvider>
+              <Route path="/Login" exact>
+                  <Login userObj={userObj} setUserObject={setUserObject} />
+              </Route>
             </PlaysProvider>
             </CSSTransition>
           </TransitionGroup>

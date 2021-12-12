@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { Modal } from '@mui/material';
 import Divider from '@mui/material/Divider';
+import Login from './Login.js';
 
 
 const pages = [];
@@ -198,7 +199,9 @@ const HeaderBar = () => {
           {/* This is the Box that holds the LOG IN button */}
           <Box sx={{ flexGrow: 0 }}>
             <Button variant='contained' color='inherit' style={{color: "#333333"}}>
-              LOG IN
+              <Link to="/Login">
+                Log In
+              </Link>
             </Button>
             <Menu
               sx={{ mt: '45px' }}
