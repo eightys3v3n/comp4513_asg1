@@ -1,19 +1,43 @@
-// Page 10
-// Implementing the passport authentication
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./User.js');
-// maps the passport fiels to the names of fields in the database
+const { User } = require('./mongoDataConnector.js');
+const session = require('express-session');
+
+// What the fields are called in our requests.
 const localOpt = {
     usernameField : 'email',
     passwordField : 'password'
 };
 
+
+// Run to setup authentication
+function setup(app) {
+
+    // Configure storing of session cookies
+    app.use(
+        session({
+            secret: "secret",
+            resave: false,
+            saveUninitialized: false
+        })
+    );
+
+    // Initialize passport to use sessions
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    passport.use('localLogin', strategy);
+
+    passport.serializeUser((user, done) => done(null, user.email));
+    passport.deserializeUser( (email, done) => {
+        UserModel.findOne({email:email}, (err, user) => done(err,user) );
+    });
+}
+
+
 // define strategy for validating login
 const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
     try {
-        // Find the user in the DB associated with this email
         const userChosen = await UserModel.findOne({email: email});
 
         if ( !userChosen ) {
@@ -33,10 +57,4 @@ const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
     }
 });
 
-// for localLogin, use our strategy to handle User login
-passport.use('localLogin', strategy);
-
-passport.serializeUser((user, done) => done(null, user.email));
-passport.deserializeUser( (email, done) => {
-    UserModel.findOne({email:email}, (err, user) => done(err,user) );
-});
+module.exports = {setup}
