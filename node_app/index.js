@@ -70,6 +70,9 @@ require('./src/auth.js');
 /* ------------------------------------------------ ROUTES START HERE ------------------------------------------------ */
 
 
+// Need 2 api calls
+
+
 
 
 async function print_user() {
@@ -77,7 +80,6 @@ async function print_user() {
   let test = await User.findOne();
   console.log(test);
 }
-
 
 async function print_play() {
   const Play = mongoose.model('Play', playSchema);
