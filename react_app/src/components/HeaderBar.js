@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -37,20 +37,18 @@ const HeaderBar = (props) => {
 
   let history = useHistory();
 
-  useEffect(() => {
-    if (userObj.isLoggedIn()) {
-      testUser = {
-        firstname: userObj.userObj.details.firstname,
-        lastname: userObj.userObj.details.lastname,
-        city: userObj.userObj.details.city,
-        country: userObj.userObj.details.country,
-        picture: userObj.userObj.picture.large,
-        dateJoined: userObj.userObj.membership.date_joined
-      };
-    } else {
-      history.push("/login");
-    }
-  }, []);
+  if (userObj.isLoggedIn()) {
+    testUser = {
+      firstname: userObj.userObj.details.firstname,
+      lastname: userObj.userObj.details.lastname,
+      city: userObj.userObj.details.city,
+      country: userObj.userObj.details.country,
+      picture: userObj.userObj.picture.large,
+      dateJoined: userObj.userObj.membership.date_joined
+    };
+  } else {
+    history.push("/login");
+  }
 
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
@@ -64,12 +62,12 @@ const HeaderBar = (props) => {
    * When user clicks "logout" in the header bar, the user is sent to the login page
    */
   const handleClick = (setting) => {
-    if(setting === "About") //if the user clicks "About"
+    if(setting == "About") //if the user clicks "About"
       setOpen(true);
-    else if(setting === "Profile"){ //if user clicks "Profile"
+    else if(setting == "Profile"){ //if user clicks "Profile"
       console.log("Access Profile");
       setOpenProfile(true);
-    } else if(setting === "Logout"){ //if user clicks "Logout"
+    } else if(setting == "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
         //fetch() // to the callback api, then redirect to login page
         console.log(userObj);
@@ -81,9 +79,9 @@ const HeaderBar = (props) => {
     }
   }
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -101,7 +99,7 @@ const HeaderBar = (props) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 700,
     bgcolor: '#333',
     border: '2px solid #CCC',
     boxShadow: 24,
@@ -139,7 +137,6 @@ const HeaderBar = (props) => {
                 <Divider light="true"/><br/>
 
                 <Typography id="modal-modal-title" variant="h6">Date Joined: {testUser.dateJoined}</Typography>
-
             </Box>
             </Modal>
 
@@ -151,33 +148,38 @@ const HeaderBar = (props) => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h4">COMP 4543 - Asg1</Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Complete Assignment 2 for <span style={{fontWeight:'bold'}}>COMP 4513: Web 3 - Advanced Web Development</span>
-                </Typography>
+                <Box sx={{ display:'flex', flexDirection:'row', justifyContent:'center'}}>
+                  <Box>
+                    <Typography id="modal-modal-title" variant="h4">COMP 4543 - Asg1</Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      Complete Assignment 2 for <span style={{fontWeight:'bold'}}>COMP 4513: Web 3 - Advanced Web Development</span>
+                    </Typography>
 
-                <Divider light="true"/><br/>
+                    <Divider light="true"/><br/>
 
-                <Typography variant='h6'>Team Members:</Typography>
-                <Typography><a className="darkMode" href="https://github.com/eightys3v3n" target="_blank" rel="noopener noreferrer">Terrence Plunkett (tplun878@mtroyal.ca)</a></Typography>
-                <Typography><a className="darkMode" href="https://github.com/PedroJanikian" target="_blank" rel="noopener noreferrer">Pedro Janikian (pjani371@mtroyal.ca)</a></Typography>
-                <Typography><a className="darkMode" href="https://github.com/MarkleSparkle" target="_blank" rel="noopener noreferrer">Mark Frezell (mfrez395@mtroyal.ca)</a></Typography>
-                <br/>
-                <Typography variant='h6'>Code Snippet Credits:</Typography>
-                <Typography><a className="darkMode" href="https://mui.com/">Material UI</a></Typography>
-                <Typography><a className='darkMode' href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a></Typography>
-                <br />
-                <Typography variant='h6'>API Links:</Typography>
-                <Typography><a className="darkMode" href="http://server.eighty7.ca:8082/list" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:80822/list</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/play/alls_well_that_ends_well" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/play/alls_well_that_ends_well</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/user/1" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/user/1</a></Typography>
-                <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/login" target="_blank" rel="noopener noreferrer">http://server.eighty7.ca:8082/login</a></Typography>
-                <br />
-                <Typography variant='h6'>Image Credits:</Typography>
-                <Typography><a className='darkMode' href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a></Typography>
-                <Typography><a className='darkMode' href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank" rel="noopener noreferrer">Paintbucket</a></Typography>
-                <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-1-svg/" target="_blank" rel="noopener noreferrer">Filled Heart</a></Typography>
-                <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a></Typography>
+                    <Typography variant='h6'>Team Members:</Typography>
+                    <Typography><a className="darkMode" href="https://github.com/eightys3v3n" target="_blank" rel="noopener noreferrer">Terrence Plunkett (tplun878@mtroyal.ca)</a></Typography>
+                    <Typography><a className="darkMode" href="https://github.com/PedroJanikian" target="_blank" rel="noopener noreferrer">Pedro Janikian (pjani371@mtroyal.ca)</a></Typography>
+                    <Typography><a className="darkMode" href="https://github.com/MarkleSparkle" target="_blank" rel="noopener noreferrer">Mark Frezell (mfrez395@mtroyal.ca)</a></Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant='h6'>Code Snippet Credits:</Typography>
+                    <Typography><a className="darkMode" href="https://mui.com/">Material UI</a></Typography>
+                    <Typography><a className='darkMode' href="https://github.com/Ihatetomatoes/react-router-page-transition-css">React Router Transitions</a></Typography>
+                    <Typography variant='h6'>API Links:</Typography>
+                    <br />
+                    <Typography><a className="darkMode" href="http://server.eighty7.ca:8082/list" target="_blank">http://server.eighty7.ca:80822/list</a></Typography>
+                    <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/play/alls_well_that_ends_well" target="_blank">http://server.eighty7.ca:8082/play/alls_well_that_ends_well</a></Typography>
+                    <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/user/1" target="_blank">http://server.eighty7.ca:8082/user/1</a></Typography>
+                    <Typography><a className='darkMode' href="http://server.eighty7.ca:8082/login" target="_blank">http://server.eighty7.ca:8082/login</a></Typography>
+                    <br />
+                    <Typography variant='h6'>Image Credits:</Typography>
+                    <Typography><a className='darkMode' href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a></Typography>
+                    <Typography><a className='darkMode' href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank" rel="noopener noreferrer">Paintbucket</a></Typography>
+                    <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-1-svg/" target="_blank" rel="noopener noreferrer">Filled Heart</a></Typography>
+                    <Typography><a className='darkMode' href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a></Typography>
+                  </Box>
+                </Box>
             </Box>
             </Modal>
             <Menu
