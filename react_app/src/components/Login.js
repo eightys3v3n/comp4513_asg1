@@ -40,7 +40,7 @@ function Login(props) {
 			console.log(res);
             alert("Logged is successfully");
             props.setUserObject(res);
-            //history.push("/");
+            history.push("/");
         } else {
             alert("Failed to login: "+res.status);
         }

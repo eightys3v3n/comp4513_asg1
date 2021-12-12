@@ -67,6 +67,8 @@ app.use('/static', express.static(path.join(__dirname,'public')));
 // Otherwise the fetch doesn't work for clients.
 let whitelist = ['http://localhost:3000',
                  'http://localhost:8082',
+                 'http://localhost:8082/user',
+                 'http://localhost:8082/login',
                  'http://server.eighty7.ca',
                  'http://server.eighty7.ca:8082',
                  'http://server.eighty7.ca:3000'];
@@ -82,14 +84,14 @@ let corsOptions = {
 };
 app.use(cors(corsOptions));
 // Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "http://server.eighty7.ca:8082");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 
 
@@ -107,9 +109,8 @@ function parse_down_user(data) {
 
 
 
-function isAuthed() {
-	return true;
-	//return req.isAuthenticated();
+function isAuthed(req) {
+	return req.isAuthenticated();
 }
 
 
@@ -125,7 +126,7 @@ app.post('/login', async (req, res, next) => {
   passport.authenticate('localLogin', (err, user, info) => {
     // Use passport authentication to see if valid login
     passport.authenticate('localLogin', { 
-      successRedirect: 'http://localhost:3000/',
+      successRedirect: '/user/'+user.id,
       failureRedirect: '/login',
       failureFlash: true }) (req, res, next);
   })(req, res, next);
@@ -133,7 +134,7 @@ app.post('/login', async (req, res, next) => {
 
 
 app.get('/logout', (req, res) => {
-  if (isAuthed()) {
+  if (isAuthed(req)) {
     console.log("User logging out");
     req.logout();
   } else {
@@ -143,8 +144,8 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.get('/list', (req, res) => {
-  if (isAuthed()) {
+app.get('/list', helper.ensureAuthenticated, (req, res) => {
+  if (isAuthed(req)) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch play from DB: {err}`);
@@ -165,8 +166,8 @@ app.get('/list', (req, res) => {
   }
 });
 
-app.get('/play/:id', (req, res) => {
-  if (isAuthed()) {
+app.get('/play/:id', helper.ensureAuthenticated, (req, res) => {
+  if (isAuthed(req)) {
     Play.find({id: req.params.id}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
@@ -186,8 +187,8 @@ app.get('/play/:id', (req, res) => {
 });
 
 
-app.get('/user/:id', (req, res) => {
-  if (isAuthed()) {
+app.get('/user/:id', helper.ensureAuthenticated, (req, res) => {
+  if (isAuthed(req)) {
     User.findOne({id: req.params.id}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);

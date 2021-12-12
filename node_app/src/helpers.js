@@ -5,8 +5,11 @@
 // needed at some point in the middleware pipeline.
 function ensureAuthenticated (req, resp, next) {
     if (req.isAuthenticated()) {
+        console.log("isAuthenticated is true.");
         return next();
     }
+    console.log("isAuthenticated not false");
+    res.json("Must be authenticated to use this API. Post email and password to /login");
 }
 // Notice the use of req.flash. The flash mechanism in express is a way to create pseudo global
 // variables. In this case , the string 'Please log in to view that resource' is first being send to a flash
