@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
@@ -25,6 +24,7 @@ const userSchema = new mongoose.Schema({
   favorites:		[]
 });
 
+
 userSchema.methods.isValidPassword = async function(formPassword) {
   const user = this;
   const hash = user.password_bcrypt;
@@ -32,6 +32,5 @@ userSchema.methods.isValidPassword = async function(formPassword) {
   return compare;
 }
 
-userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema, 'users');
