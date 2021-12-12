@@ -35,8 +35,8 @@ function UserProvider({children}) {
 
 
   function logOutUserLocally(user) {
-    //http://server.eighty7.ca:8082/logout
-    fetch('http://localhost:8082/logout',
+    //http://server.eighty7.ca:8082/api/logout
+    fetch('http://localhost:8082/api/logout',
           { credentials: 'include' });
     setUserObject(null);
     console.log("Logout User");
