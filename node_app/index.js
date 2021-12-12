@@ -124,7 +124,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/list', (req, res) => {
   //console.log(req.isAuthenticated());
-  Play.find({}, (err, data) => {
+  Play.find({}, {playText: 0}, (err, data) => {
     if (err) {
       console.warn(`Failed to fetch play from DB: {err}`);
       res.json(err);
