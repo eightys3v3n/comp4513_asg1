@@ -9,9 +9,11 @@ function HomePage(props) {
   const userObj = useContext(UserContext);
 
   let history = useHistory();
-  if (userObj.isLoggedIn()) {
-    history.push("/login");
-  }
+  console.log("HOMEPAGE - Is Logged In: "+userObj.isLoggedIn());
+  console.log(userObj);
+  // if (!userObj.isLoggedIn()) {
+  //   history.push("/login");
+  // }
 
   function searchTitle(e) {
     props.setTitle(title);

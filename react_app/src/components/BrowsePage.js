@@ -10,10 +10,6 @@ import {UserContext} from './UserContextProvider.js';
 
 function BrowsePage(props) {
   const userObj = useContext(UserContext);
-  let history = useHistory();
-  if (userObj.isLoggedIn()) {
-    history.push("/login");
-  }
 
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
