@@ -46,7 +46,9 @@ const HeaderBar = (props) => {
       picture: userObj.picture.large,
       dateJoined: userObj.membership.date_joined
     };
-  } 
+  } else {
+    history.push("/login");
+  }
 
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 

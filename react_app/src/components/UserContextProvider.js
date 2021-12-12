@@ -8,20 +8,22 @@ function UserProvider({children}) {
   let [userObj, setUserObject] = useState(null);
 
   
+  useEffect(() => {
   let localUser = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (localUser != null) {
     try {
+      console.log("Retireving local user.");
       localUser = JSON.parse(localUser)
-      if ( isEmpty(localUser) || localUser.length > 0) {
-        console.log(`Retrieved ${localUser.details.firstname} from database`);
+      // if ( isEmpty(localUser) || localUser.length > 0) {
         setUserObject(localUser);
-      }
+      // }
     } catch (e) {
       console.warn("Failed to parse locally stored user. Value is:");
       console.log(localUser);
       console.log(e);
     }
   }
+}, []);
 
   function isEmpty(obj) {
     for(var prop in obj) {
@@ -32,13 +34,14 @@ function UserProvider({children}) {
   }
 
   function logOutUserLocally(user) {
+    //http://server.eighty7.ca:8082/logout
+    fetch('http://localhost:8082/logout', { credentials: 'include' });
     setUserObject(null);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(null));
+    console.log("Logout User");
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
   }
 
   function logUserLocally(user) {
-    //http://server.eighty7.ca:8082/logout
-    fetch('http://localhost:8082/logout', { credentials: 'include' });
     setUserObject(user);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(user));
   }
