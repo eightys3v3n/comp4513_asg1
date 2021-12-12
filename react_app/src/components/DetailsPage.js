@@ -12,10 +12,6 @@ import {UserContext} from './UserContextProvider.js';
 
 function DetailsPage(props) {
   const userObj = useContext(UserContext);
-  let history = useHistory();
-  if (userObj.isLoggedIn()) {
-    history.push("/login");
-  }
 
   console.log(userObj);
 
