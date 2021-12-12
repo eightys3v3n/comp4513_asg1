@@ -33,7 +33,7 @@ function setup(app) {
 
     passport.serializeUser((user, done) => done(null, user.email));
     passport.deserializeUser( (email, done) => {
-        UserModel.findOne({email:email}, (err, user) => done(err,user) );
+        User.findOne({email:email}, (err, user) => done(err,user) );
     });
 }
 
@@ -41,7 +41,7 @@ function setup(app) {
 // Create a strategy for validating a login
 const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
     try {
-        const userChosen = await UserModel.findOne({email: email});
+        const userChosen = await User.findOne({email: email});
 
         if ( !userChosen ) {
             // If the user isn't found in the database, set flash message
