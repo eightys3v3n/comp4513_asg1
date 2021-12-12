@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 function HomePage(props) {
   let title;
-  
+
+  let history = useHistory();
+  if (props.userObj === null) {
+    history.push("/login");
+  }
+
   function searchTitle(e) {
     props.setTitle(title);
   }
