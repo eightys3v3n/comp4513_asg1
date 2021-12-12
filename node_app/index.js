@@ -41,23 +41,16 @@ require('./helpers/cors.js').setup(app);
 require('./helpers/authenticate.js').setup(app);
 
 
-
-// ***************************************************
-/* --- middleware section --- */ 
-//view engine setup
-app.set('views', './views');
-app.set('view engine', 'ejs');
-// serves up static files from the public folder. 
-// app.use('/static', express.static(path.join(__dirname,'public')));
-// tell node to use json and HTTP header features
-
-
-// Enable all routes in ./api
+// Enable all routes in /api
 const { apiRouter } = require('./api/index.js');
 app.use('/api', apiRouter);
 
 
-// Actually put up the server and listen for requests
+// Connect to MongoDB
+require('./helpers/mongoDataConnector.js').connect();
+
+
+// Start listening for requests
 const NODEJS_PORT = process.env.NODEJS_PORT;
 app.listen(process.env.NODEJS_PORT, function () {
   console.log(`Server running on port ${process.env.NODEJS_PORT}`);
