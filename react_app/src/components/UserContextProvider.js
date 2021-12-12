@@ -3,9 +3,9 @@ import React, {createContext, useState, useEffect} from 'react';
 
 export const UserContext = createContext([]);
 
-function UserProvider(props,{children}) {
+function UserProvider(props) {
   const LOCAL_STORAGE_KEY = 'user';
-  let userObj = props.uO;
+  let userObj = props.useO;
 
 
   useEffect(() => {
@@ -64,7 +64,7 @@ function UserProvider(props,{children}) {
 
   return (
     <UserContext.Provider value={{userObj, logOutUserLocally, logUserLocally, isLoggedIn }}>
-      {children}
+      {props.children}
     </UserContext.Provider>
   );
 }
