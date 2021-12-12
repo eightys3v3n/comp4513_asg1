@@ -39,12 +39,12 @@ const HeaderBar = (props) => {
 
   if (userObj.isLoggedIn()) {
     testUser = {
-      firstname: userObj.details.firstname,
-      lastname: userObj.details.lastname,
-      city: userObj.details.city,
-      country: userObj.details.country,
-      picture: userObj.picture.large,
-      dateJoined: userObj.membership.date_joined
+      firstname: userObj.userObj.details.firstname,
+      lastname: userObj.userObj.details.lastname,
+      city: userObj.userObj.details.city,
+      country: userObj.userObj.details.country,
+      picture: userObj.userObj.picture.large,
+      dateJoined: userObj.userObj.membership.date_joined
     };
   } else {
     history.push("/login");

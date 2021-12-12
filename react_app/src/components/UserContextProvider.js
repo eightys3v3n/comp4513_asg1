@@ -5,17 +5,18 @@ export const UserContext = createContext([]);
 
 function UserProvider({children}) {
   const LOCAL_STORAGE_KEY = 'user';
-  let [userObj, setUserObject] = useState(null);
-
+  let [userObj, setUserObject] = useState({});
   
   useEffect(() => {
+    console.log("STEP 1");
   let localUser = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (localUser != null) {
+    console.log("STEP 2");
     try {
       console.log("Retireving local user.");
       localUser = JSON.parse(localUser)
       // if ( isEmpty(localUser) || localUser.length > 0) {
-        setUserObject(localUser);
+      setUserObject(localUser);
       // }
     } catch (e) {
       console.warn("Failed to parse locally stored user. Value is:");
@@ -47,7 +48,7 @@ function UserProvider({children}) {
   }
 
   function isLoggedIn() {
-    if (userObj != null) {
+    if (userObj != null && userObj != {}) {
       return true;
     } else {
       return false;

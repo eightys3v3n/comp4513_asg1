@@ -14,6 +14,7 @@ function Login(props) {
     // Else if the API returns "Not successful", redirect back to this page
     let history = useHistory();
     console.log("Is logged in: " + userObj.isLoggedIn());
+    console.log(userObj);
     if (userObj.isLoggedIn()) {
         history.push("/");
     }
@@ -32,23 +33,25 @@ function Login(props) {
         },
         body: JSON.stringify(creds)
     })
-        .then(data => data.json());
+        .then(data => {
+            data.json();
+			console.log(data);
+            userObj.logUserLocally(data);
+        });
     }
         
-    const handleSubmit = async event => {
+    const handleSubmit = event => {
     
-        const res = await loginUser({
+        const res = loginUser({
           email: username,
           password: password
         });
 
-        if (res) {
-			console.log(res);
-            userObj.logUserLocally(res);
-            alert("Logged is successfully");
-        } else {
-            alert("Failed to login: "+res.status);
-        }
+        // if (res) {
+        //     alert("Logged is successfully");
+        // } else {
+        //     alert("Failed to login: "+res.status);
+        // }
 
     }
 
