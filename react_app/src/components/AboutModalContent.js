@@ -17,7 +17,14 @@ function AboutModalContent(props) {
             <a href="https://www.pexels.com/photo/shallow-focus-photography-of-paintbrush-102127/" target="_blank" rel="noopener noreferrer">HomePage Cover Art by Daian Gan</a>
             <a href="https://iconmonstr.com/paint-bucket-9-svg/" target="_blank" rel="noopener noreferrer">Paintbucket</a>
             <a href="https://iconmonstr.com/favorite-1-svg/" target="_blank" rel="noopener noreferrer">Filled Heart</a>
-            <a href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a>
+          <a href="https://iconmonstr.com/favorite-2-svg/" target="_blank" rel="noopener noreferrer">Empty Heart</a>
+
+          <ul>
+            <p>Technologies Used</p>
+            <li>Docker and Docker Compose for hosting</li>
+            <li>Passport, bcrypt, Mongoose, Passport-session for Authentication</li>
+            <li>MongoDB, Node.js, React, Arch Linux for hosting</li>
+          </ul>
         </section>
     )
 }
