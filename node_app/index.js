@@ -1,4 +1,3 @@
-// Run on node_app: >>> node index.js
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -48,17 +47,7 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Use express flash, which will be used for passing messages
-//app.use(flash());
-// set up the passport authentication
-
 require('./src/auth.js');
-// In this example, we are using a session-based approach to maintaining
-// our authentication status.
-// Like the sessions in PHP, the Passport package uses cookies
-// behind-the-scenes to implement server sessions.
-// ***************************************************
 
 
 
@@ -109,7 +98,12 @@ function parse_down_user(data) {
 }
 
 
-/* -------------------------------- ROUTES START HERE ------------------------------------------------ */
+
+function isAuthed() {
+	return true;
+	//return req.isAuthenticated();
+}
+
 
 
 app.get('/', (req, res) => {
@@ -132,7 +126,7 @@ app.post('/login', async (req, res, next) => {
 
 
 app.get('/logout', (req, res) => {
-  if (req.isAuthenticated()) {
+  if (isAuthed()) {
     console.log("User logging out");
     req.logout();
   } else {
@@ -143,14 +137,7 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/list', (req, res) => {
-  console.log("Sessions");
-  console.log(req.sessionStore.sessions);
-  console.log();
-
-  console.log("Cookies in this request");
-  console.log(req.cookies, req.signedCookies);
-
-  if (req.isAuthenticated()) {
+  if (isAuthed()) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch play from DB: {err}`);
@@ -172,7 +159,7 @@ app.get('/list', (req, res) => {
 });
 
 app.get('/play/:id', (req, res) => {
-  if (req.isAuthenticated()) {
+  if (isAuthed()) {
     Play.find({id: req.params.id}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
@@ -193,7 +180,7 @@ app.get('/play/:id', (req, res) => {
 
 
 app.get('/user/:id', (req, res) => {
-  if (req.isAuthenticated()) {
+  if (isAuthed()) {
     User.findOne({id: req.params.id}, (err, data) => {
       if (err) {
         console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);
