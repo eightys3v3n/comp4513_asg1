@@ -79,6 +79,17 @@ let corsOptions = {
 };
 
 
+function parse_down_user(data) {
+  let ret_data = {
+    id: data.id,
+    details: data.details,
+    picture: data.picture,
+    membership: data.membership,
+    email: data.email
+  };
+  return ret_data;
+}
+
 
 /* -------------------------------- ROUTES START HERE ------------------------------------------------ */
 
@@ -97,12 +108,7 @@ app.post('/login', async (req, res, next) => {
     if (!user) {
       res.json(false);
     } else {
-      user_info = {
-        details: user.details,
-        picture: user.picture,
-        membership: user.membership,
-        favorites: user.favorites
-      }
+      let user_info = parse_down_user(user);
       res.json(user_info);
     }
   })(req, res, next);
@@ -159,13 +165,7 @@ app.get('/user/:id', (req, res) => {
       console.log(`Found no user with ID: ${req.params.id}`);
       res.json({});
     } else {
-      ret_data = {
-        id: data.id,
-        details: data.details,
-        picture: data.picture,
-        membership: data.membership,
-        favorites: data.favorites
-      }
+      let ret_data = parse_down_user(data);
       res.json(ret_data);
     }
   });
