@@ -117,8 +117,9 @@ app.post('/login', async (req, res, next) => {
 });
 
 
-app.get('/logout', (req, res) => {
+app.get('/logout', helper.ensureAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
+    console.log("User logging out");
     req.logout();
     req.flash('info', 'You were logged out');
     res.render('login', {message: req.flash('info')} );
@@ -129,7 +130,7 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.get('/list', (req, res) => {
+app.get('/list', helper.ensureAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {
@@ -150,7 +151,7 @@ app.get('/list', (req, res) => {
   }
 });
 
-app.get('/play/:id', (req, res) => {
+app.get('/play/:id', helper.ensureAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     Play.find({id: req.params.id}, (err, data) => {
       if (err) {
@@ -171,7 +172,7 @@ app.get('/play/:id', (req, res) => {
 });
 
 
-app.get('/user/:id', (req, res) => {
+app.get('/user/:id', helper.ensureAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     User.findOne({id: req.params.id}, (err, data) => {
       if (err) {
