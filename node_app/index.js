@@ -7,6 +7,8 @@ const cors = require('cors');
 
 const userSchema = require('./src/User.js').userSchema;
 const playSchema = require('./src/Play.js').playSchema;
+const User = mongoose.model('User', userSchema);
+const Play = mongoose.model('Play', playSchema);
 
 const NODEJS_PORT = process.env.NODEJS_PORT;
 const MONGODB_CONSTRING = process.env.MONGODB_CONSTRING;
@@ -26,10 +28,7 @@ const helper = require('./src/helpers.js');
 require('./src/mongoDataConnector.js').connect();
 // ***************************************************
 
-
 const app = express();
-
-
 
 // ***************************************************
 /* --- middleware section --- */ 
@@ -64,7 +63,8 @@ require('./src/auth.js');
 // ***************************************************
 
 
-// CORS for API accessing
+// CORS for API accessing from URLs other than the API url.
+// Otherwise the fetch doesn't work for clients.
 app.use(cors());
 let whitelist = ['http://localhost:3000',
                  'http://localhost:8082'];
@@ -80,25 +80,7 @@ let corsOptions = {
 
 
 
-/* ------------------------------------------------ ROUTES START HERE ------------------------------------------------ */
-
-
-// Need 2 api calls
-
-
-
-
-async function print_user() {
-  const User = mongoose.model('User', userSchema);
-  let test = await User.findOne();
-  console.log(test);
-}
-
-async function print_play() {
-  const Play = mongoose.model('Play', playSchema);
-  let test = await Play.findOne({playText: {$exists: true, $ne: {}}});
-  console.log(test);
-}
+/* -------------------------------- ROUTES START HERE ------------------------------------------------ */
 
 
 //, helper.ensureAuthenticated   , { user: req.user } 
@@ -125,6 +107,15 @@ app.get('/logout', (req, res) => {
   req.logout();
   req.flash('info', 'You were logged out');
   res.render('login', {message: req.flash('info')} );
+});
+
+
+app.get('/list', (req, res) => {
+  console.log(req.isAuthenticated());
+  
+  Play.find({}, (err, data) => {
+    res.json(data);
+  });
 });
 
 
