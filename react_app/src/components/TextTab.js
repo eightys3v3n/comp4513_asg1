@@ -1,15 +1,14 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { PlaysContext } from "./PlaysContextProvider"; //For general plays (from browse page)
 import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play details
 import cloneDeep from 'lodash/cloneDeep';
 
 function TextTab(props) {
     const [currPlay, setCurrPlay] = useState({}); // Need to make context provider work
     const plays = useContext(PlayInfoContext); // Will be set by the 'PlayTitle.js' when selecting a Scene
-    let {act,setAct} = props.information;
-    let {scene,setScene} = props.information;
-    let {character,setCharacter} = props.information
-    let {query, setQuery} = props.information
+    let {act} = props.information;
+    let {scene} = props.information;
+    let {character} = props.information
+    let {query} = props.information
 
     // Need to make context provider work
     useEffect(() => {

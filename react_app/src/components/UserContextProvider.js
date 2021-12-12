@@ -3,18 +3,22 @@ import React, {createContext, useState, useEffect} from 'react';
 
 export const UserContext = createContext([]);
 
-function UserProvider({children}) {
+function UserProvider(props) {
   const LOCAL_STORAGE_KEY = 'user';
-  let [userObj, setUserObject] = useState(null);
+  let userObj = props.useO;
+
 
   useEffect(() => {
-    let localUser = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (localUser != null) {
-      try {
-        console.log("Retireving local user.");
-        localUser = JSON.parse(localUser)
+    console.log("STEP 1");
+  let localUser = localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (localUser != null) {
+    console.log("STEP 2");
+    try {
+      console.log("Retireving local user.");
+      localUser = JSON.parse(localUser)
+
       // if ( isEmpty(localUser) || localUser.length > 0) {
-        setUserObject(localUser);
+      props.setUserObject(localUser);
       // }
       } catch (e) {
         console.warn("Failed to parse locally stored user. Value is:");
@@ -38,20 +42,20 @@ function UserProvider({children}) {
     //http://server.eighty7.ca:8082/api/logout
     fetch('http://localhost:8082/api/logout',
           { credentials: 'include' });
-    setUserObject(null);
+    props.setUserObject(null);
     console.log("Logout User");
     localStorage.removeItem(LOCAL_STORAGE_KEY);
   }
 
 
   function logUserLocally(user) {
-    setUserObject(user);
+    props.setUserObject(user);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(user));
   }
 
 
   function isLoggedIn() {
-    if (userObj != null) {
+    if (userObj != null && !isEmpty(userObj)) {
       return true;
     } else {
       return false;
@@ -60,7 +64,7 @@ function UserProvider({children}) {
 
   return (
     <UserContext.Provider value={{userObj, logOutUserLocally, logUserLocally, isLoggedIn }}>
-      {children}
+      {props.children}
     </UserContext.Provider>
   );
 }

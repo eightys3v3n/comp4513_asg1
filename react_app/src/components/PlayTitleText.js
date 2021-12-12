@@ -1,5 +1,4 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { PlaysContext } from "./PlaysContextProvider"; //For general plays (from browse page)
 import { PlayInfoContext } from './PlaysInfoContextProvider'; //For the play details
 
 function PlayTitleText(props) {
@@ -8,7 +7,7 @@ function PlayTitleText(props) {
     let {act,setAct} = props.information;
     let {scene,setScene} = props.information;
     let {character,setCharacter} = props.information
-    let {query, setQuery} = props.information
+    let {setQuery} = props.information
 
     // Need to make context provider work
     useEffect(() => {
@@ -54,7 +53,7 @@ function PlayTitleText(props) {
         )
     }
     function clickAct(e) {
-        if (e.target.value != act){
+        if (e.target.value !== act){
             setAct(e.target.value);
             setScene("SCENE I");
             setCharacter("");
@@ -66,7 +65,7 @@ function PlayTitleText(props) {
 
         if (props.currPlay.acts !== undefined && props.currPlay.acts !== null) {
             for (let a of props.currPlay.acts) {
-                if (a.name == act) {
+                if (a.name === act) {
                     scenesArr = a.scenes.map( s => s.name);
                 }
             }
@@ -92,7 +91,7 @@ function PlayTitleText(props) {
         )
     }
     function clickScene(e) {
-        if (e.target.value != scene) {
+        if (e.target.value !== scene) {
             setScene(e.target.value);
             setCharacter("");
         }
@@ -104,9 +103,9 @@ function PlayTitleText(props) {
         if (props.currPlay.acts !== undefined && props.currPlay.acts !== null) {
             // let characters = props.currPlay.acts[act].scenes[scene].map(l => l.speaker);
             for (let a of props.currPlay.acts) {
-                if (a.name == act) {
+                if (a.name === act) {
                     for (let s of a.scenes) {
-                        if (s.name == scene) {
+                        if (s.name === scene) {
                             charArr = Array.from(new Set(s.speeches.map( s => s.speaker)));
                         }
                     }
@@ -135,7 +134,7 @@ function PlayTitleText(props) {
         )
     }
     function clickChar(e) {
-        if (e.target.value != character) {
+        if (e.target.value !== character) {
             setCharacter(e.target.value);
         }
     }
@@ -145,9 +144,9 @@ function PlayTitleText(props) {
     //     if (currPlay !== undefined && currPlay !== null) {
     //         // let characters = props.currPlay.acts[act].scenes[scene].map(l => l.speaker);
     //         for (let a of currPlay.acts) {
-    //             if (a.name == act) {
+    //             if (a.name === act) {
     //                 for (let s of a.scenes) {
-    //                     if (s.name == scene) {
+    //                     if (s.name === scene) {
     //                         charArray = Array.from(new Set(s.speeches.map( s => s.speaker)))
     //                         setCharacter(charArray[0]);
     //                         break;

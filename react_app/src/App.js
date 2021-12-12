@@ -7,7 +7,6 @@ import DetailsPage from './components/DetailsPage.js';
 import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 import Login from './components/Login.js';
-import HeaderBar from './components/HeaderBar.js';
 import UserProvider from './components/UserContextProvider.js';
 
 import {
@@ -17,6 +16,7 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
+  let [userObj, setUserObject] = useState(null);
 
   return (
       <div className="App">
@@ -28,7 +28,7 @@ const App = (props) => {
                 key={location.key}
                 timeout={1000}
                 classNames="fade">
-            <UserProvider location={location}>
+            <UserProvider location={location} useO={userObj} setUserObject={setUserObject}>
               <PlaysProvider location={location}>
                 <Route path="/" exact>
                   <HomePage title={titleFilter}
