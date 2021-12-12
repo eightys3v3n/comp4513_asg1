@@ -5,12 +5,11 @@ import Matches from './Matches.js';
 import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
+import {useContext} from 'react';
+import {UserContext} from './UserContextProvider.js';
 
 function BrowsePage(props) {
-  let history = useHistory();
-  if (props.userObj === null) {
-    history.push("/login");
-  }
+  const userObj = useContext(UserContext);
 
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
