@@ -64,12 +64,12 @@ const HeaderBar = (props) => {
    * When user clicks "logout" in the header bar, the user is sent to the login page
    */
   const handleClick = (setting) => {
-    if(setting == "About") //if the user clicks "About"
+    if(setting === "About") //if the user clicks "About"
       setOpen(true);
-    else if(setting == "Profile"){ //if user clicks "Profile"
+    else if(setting === "Profile"){ //if user clicks "Profile"
       console.log("Access Profile");
       setOpenProfile(true);
-    } else if(setting == "Logout"){ //if user clicks "Logout"
+    } else if(setting === "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
         //fetch() // to the callback api, then redirect to login page
         console.log(userObj);
