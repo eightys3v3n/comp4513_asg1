@@ -4,9 +4,8 @@ import Filters from './Filters.js';
 import Matches from './Matches.js';
 import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
-import { useHistory } from "react-router-dom";
-import {useContext} from 'react';
-import {UserContext} from './UserContextProvider.js';
+import { useContext } from 'react';
+import { UserContext } from './UserContextProvider.js';
 
 function BrowsePage(props) {
   const userObj = useContext(UserContext);
