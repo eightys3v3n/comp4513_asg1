@@ -33,10 +33,10 @@ const app = express();
 // ***************************************************
 /* --- middleware section --- */ 
 //view engine setup
-app.set('views', './views');
-app.set('view engine', 'ejs');
+//app.set('views', './views');
+//app.set('view engine', 'ejs');
 // serves up static files from the public folder. 
-app.use('/static', express.static(path.join(__dirname,'public')));
+//app.use('/static', express.static(path.join(__dirname,'public')));
 // tell node to use json and HTTP header features
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
