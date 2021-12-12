@@ -16,37 +16,43 @@ function UserProvider(props,{children}) {
     try {
       console.log("Retireving local user.");
       localUser = JSON.parse(localUser)
+
       // if ( isEmpty(localUser) || localUser.length > 0) {
       props.setUserObject(localUser);
       // }
-    } catch (e) {
-      console.warn("Failed to parse locally stored user. Value is:");
-      console.log(localUser);
-      console.log(e);
+      } catch (e) {
+        console.warn("Failed to parse locally stored user. Value is:");
+        console.log(localUser);
+        console.log(e);
+      }
     }
-  }
-}, []);
+  }, []);
+
 
   function isEmpty(obj) {
     for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false;
+      if(obj.hasOwnProperty(prop))
+        return false;
     }
     return true;
   }
 
+
   function logOutUserLocally(user) {
-    //http://server.eighty7.ca:8082/logout
-    fetch('http://localhost:8082/logout', { credentials: 'include' });
+    //http://server.eighty7.ca:8082/api/logout
+    fetch('http://localhost:8082/api/logout',
+          { credentials: 'include' });
     props.setUserObject(null);
     console.log("Logout User");
     localStorage.removeItem(LOCAL_STORAGE_KEY);
   }
 
+
   function logUserLocally(user) {
     props.setUserObject(user);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(user));
   }
+
 
   function isLoggedIn() {
     if (userObj != null && !isEmpty(userObj)) {
@@ -62,5 +68,6 @@ function UserProvider(props,{children}) {
     </UserContext.Provider>
   );
 }
+
 
 export default UserProvider;

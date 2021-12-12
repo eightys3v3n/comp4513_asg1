@@ -3,7 +3,7 @@
 
 // Uses passport authentication to check if authentication is
 // needed at some point in the middleware pipeline.
-function ensureAuthenticated (req, resp, next) {
+function ensureAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {
         console.log("isAuthenticated is true.");
         return next();
@@ -17,4 +17,25 @@ function ensureAuthenticated (req, resp, next) {
 // the login page. It should show up as red text.
 
 
-module.exports = {ensureAuthenticated};
+// Controls what user data from the database is handed back to the React Client
+function parse_down_user(data) {
+  let ret_data = {
+    id: data.id,
+    details: data.details,
+    picture: data.picture,
+    membership: data.membership,
+    email: data.email
+  };
+  return ret_data;
+}
+
+
+// A stand in for using req.isAuthenticated so we can disable authentication checking at will
+function isAuthenticated(req) {
+    return true;
+    //return req.isAuthenticated();
+}
+
+
+module.exports = {ensureAuthenticated, parse_down_user, isAuthenticated};
+

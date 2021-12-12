@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import  { Redirect, Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {useContext} from 'react';
@@ -14,17 +14,22 @@ function Login(props) {
     // Else if the API returns "Not successful", redirect back to this page
     let history = useHistory();
     console.log("Is logged in: " + userObj.isLoggedIn());
-    if (userObj.isLoggedIn()) {
-        history.push("/");
-    }
+
+    useEffect(() => {
+        if (userObj.isLoggedIn()) {
+            history.push("/");
+        }
+    });
+
     // Displays a login page and allows the user to login, handling tokens
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
-    //http://server.eighty7.ca:8082/login
-    return fetch('http://localhost:8082/login', {
+
+    //http://server.eighty7.ca:8082/api/login
+    return fetch('http://localhost:8082/api/login', {
         method: 'POST',
 		credentials: 'include',	
         headers: {
