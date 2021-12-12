@@ -29,23 +29,23 @@ function PlaysProvider({children}) {
     }
     
     console.log("Fetching plays from API...");
-    fetch(url, {credentials: 'include'})
+    fetch(url, {credentials: "include"})
       .then(res => {
         return res.json();
       })
       .then(data => {
-		if (data == "User is not logged in") {
+ 		console.log(data);
+		if (typeof data != "Object") {
 			console.warn("User is not logged in for this API");
 			console.log(data);
-			return;
+		} else {
+    	    data.forEach( (play) => {
+        	   play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
+        	} )
+        	setPlays(data);
+        	console.log(`Fetched ${data.length} plays from API`);
+        	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 		}
-        console.log(data);
-        data.forEach( (play) => {
-           play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
-        } )
-        setPlays(data);
-        console.log(`Fetched ${data.length} plays from API`);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
       });
   }, [url]);
 

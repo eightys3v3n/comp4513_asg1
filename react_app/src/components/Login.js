@@ -20,16 +20,15 @@ function Login(props) {
 
     return fetch('http://server.eighty7.ca:8082/login', {
         method: 'POST',
+		credentials: 'include',	
         headers: {
     	    'Content-Type': 'application/json',
-			credentials: 'include',	
         },
         body: JSON.stringify(creds)
     })
         .then(data => data.json());
     }
-    
-    
+        
     const handleSubmit = async event => {
     
         const res = await loginUser({
@@ -38,6 +37,7 @@ function Login(props) {
         });
 
         if (res) {
+			console.log(res);
             alert("Logged is successfully");
             props.setUserObject(res);
             history.push("/");

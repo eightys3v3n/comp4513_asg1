@@ -46,7 +46,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser('oreos'));
 app.use(
     session({
-        secret: process.env.SECRET,
+        secret: "secret",
         resave: true,
         saveUninitialized: true
     })
@@ -69,7 +69,7 @@ require('./src/auth.js');
 // Otherwise the fetch doesn't work for clients.
 let whitelist = ['http://localhost:3000',
                  'http://localhost:8082',
-                 'http://server.eighty7.ca:80',
+                 'http://server.eighty7.ca',
                  'http://server.eighty7.ca:8082',
                  'http://server.eighty7.ca:3000'];
 let corsOptions = {
@@ -120,9 +120,6 @@ app.post('/login', async (req, res, next) => {
 
 
 app.get('/logout', (req, res) => {
-  console.log("Hello");
-  console.log(req.isAuthenticated());
-
   if (req.isAuthenticated()) {
     console.log("User logging out");
     req.logout();
@@ -134,6 +131,13 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/list', (req, res) => {
+  console.log("Sessions");
+  console.log(req.sessionStore.sessions);
+  console.log();
+
+  console.log("Cookies in this request");
+  console.log(req.cookies, req.signedCookies);
+
   if (req.isAuthenticated()) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {
@@ -150,6 +154,7 @@ app.get('/list', (req, res) => {
     });
   } else {
     console.log("User is not logged in");
+    console.log(req.cookies, req.signedCookies);
     res.json("Must be authenticated to use this API. Post email and password to /login");
   }
 });
