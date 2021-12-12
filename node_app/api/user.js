@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { isAuthenticated, parse_down_user } = require('../helpers/generic.js');
+const { isAuthenticated, parse_down_user, ensureAuthenticated } = require('../helpers/generic.js');
 const { User } = require('../helpers/mongoDataConnector.js');
 
 
@@ -8,7 +8,7 @@ const userRouter = Router();
 
 
 // This translates to 'api/user/:id' because of the express router
-userRouter.get('/:id', (req, res) => {
+userRouter.get('/:id', ensureAuthenticated, (req, res) => {
   if (isAuthenticated()) {
     User.findOne({id: req.params.id}, (err, data) => {
       if (err) {

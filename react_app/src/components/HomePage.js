@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import {useContext} from 'react';
+import {UserContext} from './UserContextProvider.js';
 
 function HomePage(props) {
   let title;
+  const userObj = useContext(UserContext);
 
   let history = useHistory();
-  if (props.userObj === null) {
+  if (userObj.isLoggedIn()) {
     history.push("/login");
   }
 

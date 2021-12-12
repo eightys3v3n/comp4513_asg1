@@ -7,6 +7,7 @@ function PlaysProvider({children}) {
   const LOCAL_STORAGE_KEY = 'plays';
   const [plays, setPlays] = useState([]);
   const [filter, setFilter] = useState(() => () => true);
+  //let url = "http://server.eighty7.ca:8082/api/list";
   let url = "http://localhost:8082/api/list";
   
   useEffect(() => {
@@ -35,7 +36,7 @@ function PlaysProvider({children}) {
       })
       .then(data => {
  		console.log(data);
-		if (typeof data != "Object") {
+		if (typeof data != "object" && typeof data != "function") {
 			console.warn("User is not logged in for this API");
 			console.log(data);
 		} else {
@@ -46,6 +47,9 @@ function PlaysProvider({children}) {
         	console.log(`Fetched ${data.length} plays from API`);
         	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 		}
+      })
+      .catch( err => {
+        console.log("ERROR IS: "+err);
       });
   }, [url]);
 

@@ -2,8 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import  { Redirect, Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import {useContext} from 'react';
+import {UserContext} from './UserContextProvider.js';
 
 function Login(props) {
+    const userObj = useContext(UserContext);
     // Login form
     // Onsubmit, POST request to the /login api (port 8080) w/ credentials inside POST request
     // We will have a context provider in the main app component for Loged in user (or if there is no one logged in)
@@ -18,6 +21,7 @@ function Login(props) {
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
 
+    //http://server.eighty7.ca:8082/api/login
     return fetch('http://localhost:8082/api/login', {
         method: 'POST',
 		credentials: 'include',	
@@ -39,7 +43,7 @@ function Login(props) {
         if (res) {
 			console.log(res);
             alert("Logged is successfully");
-            props.setUserObject(res);
+            userObj.logUserLocally(res);
             history.push("/");
         } else {
             alert("Failed to login: "+res.status);

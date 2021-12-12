@@ -5,16 +5,15 @@ const { parse_down_user } = require('../helpers/generic.js');
 const loginRouter = Router();
 
 
+// This translates to 'api/login' because of the express router
 loginRouter.post('/', async (req, res, next) => {
   console.log(`Trying to login with ${req.body.email}:${req.body.password}`);
 
   passport.authenticate('localLogin', (err, user, info) => {
-    if (!user) {
-      res.json(false);
-    } else {
-      let user_info = parse_down_user(user);
-      res.json(user_info);
-    }
+    passport.authenticate('localLogin', {
+      successRedirect: '/user/'+user.id,
+      failureRedirect: '/login',
+      failureFlash: true }) (req, res, next);
   })(req, res, next);
 });
 

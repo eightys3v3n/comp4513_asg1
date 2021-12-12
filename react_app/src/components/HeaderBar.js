@@ -1,4 +1,5 @@
 import React from 'react';
+import {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,10 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import { Modal } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Login from './Login.js';
+import {UserContext} from './UserContextProvider.js';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const pages = [];
@@ -32,15 +33,18 @@ var testUser = {
 const HeaderBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const userObj = useContext(UserContext);
 
-  if (props.userObj !== null) {
+  let history = useHistory();
+
+  if (userObj.isLoggedIn()) {
     testUser = {
-      firstname: props.userObj.details.firstname,
-      lastname: props.userObj.details.lastname,
-      city: props.userObj.details.city,
-      country: props.userObj.details.country,
-      picture: props.userObj.picture.large,
-      dateJoined: props.userObj.membership.date_joined
+      firstname: userObj.details.firstname,
+      lastname: userObj.details.lastname,
+      city: userObj.details.city,
+      country: userObj.details.country,
+      picture: userObj.picture.large,
+      dateJoined: userObj.membership.date_joined
     };
   } 
 
@@ -64,9 +68,9 @@ const HeaderBar = (props) => {
     } else if(setting == "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
         //fetch() // to the callback api, then redirect to login page
-        console.log(props.userObj);
-        fetch('http://server.eighty7.ca:8082/logout', { credentials: 'include' });
-        props.resetUserObj();
+        console.log(userObj);
+        userObj.logOutUserLocally();
+        history.push("/login");
       }
     else{ //if another button is implmented, or a click goes weird
       console.log("Not sure how this got called.");

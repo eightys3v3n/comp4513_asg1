@@ -8,6 +8,7 @@ import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 import Login from './components/Login.js';
 import HeaderBar from './components/HeaderBar.js';
+import UserProvider from './components/UserContextProvider.js';
 
 import {
   CSSTransition,
@@ -16,11 +17,6 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
-  let [userObj, setUserObject] = useState(null);
-  
-  function resetUserObj() {
-    setUserObject(null);
-  };
 
   return (
       <div className="App">
@@ -32,25 +28,25 @@ const App = (props) => {
                 key={location.key}
                 timeout={1000}
                 classNames="fade">
-            <PlaysProvider location={location}>
-              <Route path="/" exact>
-                <HomePage title={titleFilter}
-                          setTitle={setTitleFilter} 
-                          userObj={userObj} resetUserObj={resetUserObj}/>
-              </Route>
-              <FavoritesProvider location={location}>
-                <Route path="/BrowsePage">
-                  <BrowsePage title={titleFilter} setTitle={setTitleFilter} 
-                              userObj={userObj} resetUserObj={resetUserObj} />
+            <UserProvider location={location}>
+              <PlaysProvider location={location}>
+                <Route path="/" exact>
+                  <HomePage title={titleFilter}
+                            setTitle={setTitleFilter} />
                 </Route>
-                <Route path="/DetailsPage/:playID">  
-                  <DetailsPage userObj={userObj} resetUserObj={resetUserObj}/>
+                <FavoritesProvider location={location}>
+                  <Route path="/BrowsePage">
+                    <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
+                  </Route>
+                  <Route path="/DetailsPage/:playID">  
+                    <DetailsPage/>
+                  </Route>
+                </FavoritesProvider>
+                <Route path="/Login" exact>
+                    <Login />
                 </Route>
-              </FavoritesProvider>
-              <Route path="/Login" exact>
-                  <Login setUserObject={setUserObject} />
-              </Route>
-            </PlaysProvider>
+              </PlaysProvider>
+            </UserProvider>
             </CSSTransition>
           </TransitionGroup>
           )} />

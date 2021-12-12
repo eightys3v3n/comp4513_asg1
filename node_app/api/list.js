@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { isAuthenticated } = require('../helpers/generic.js');
+const { isAuthenticated, ensureAuthenticated } = require('../helpers/generic.js');
 const { Play } = require('../helpers/mongoDataConnector.js');
 
 
@@ -8,7 +8,7 @@ const listRouter = Router();
 
 
 // This translates to 'api/list' because of the express router
-listRouter.get('/', (req, res) => {
+listRouter.get('/', ensureAuthenticated, (req, res) => {
   if (isAuthenticated()) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {

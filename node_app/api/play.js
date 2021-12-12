@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { isAuthenticated } = require('../helpers/generic.js');
+const { isAuthenticated, ensureAuthenticated } = require('../helpers/generic.js');
 const { Play } = require('../helpers/mongoDataConnector.js');
 
 
@@ -8,7 +8,7 @@ const playRouter = Router();
 
 
 // This translates to 'api/play/:id' because of the express router
-playRouter.get('/:id', (req, res) => {
+playRouter.get('/:id', ensureAuthenticated, (req, res) => {
   if (isAuthenticated()) {
     Play.find({id: req.params.id}, (err, data) => {
       if (err) {
