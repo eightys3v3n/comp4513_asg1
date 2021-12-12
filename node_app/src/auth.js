@@ -36,11 +36,7 @@ const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
 // for localLogin, use our strategy to handle User login
 passport.use('localLogin', strategy);
 
-// By default, passport uses sessions to maintain login status.
-// You have to determine waht to save in session via serializeUser
-// and deserializeUser. In our case, we will save the email in the session data.
 passport.serializeUser((user, done) => done(null, user.email));
-//Passes in user object now (I guess?)
 passport.deserializeUser( (email, done) => {
     UserModel.findOne({email:email}, (err, user) => done(err,user) );
 });

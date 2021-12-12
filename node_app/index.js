@@ -32,6 +32,38 @@ require('./src/mongoDataConnector.js').connect();
 
 const app = express();
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+// New content from page 12
+app.use(cookieParser('oreos'));
+app.use(
+    session({
+        secret: "secret",
+        resave: false,
+        saveUninitialized: false
+    })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Use express flash, which will be used for passing messages
+//app.use(flash());
+// set up the passport authentication
+
+require('./src/auth.js');
+// In this example, we are using a session-based approach to maintaining
+// our authentication status.
+// Like the sessions in PHP, the Passport package uses cookies
+// behind-the-scenes to implement server sessions.
+// ***************************************************
+
+
+
+
+
 // ***************************************************
 /* --- middleware section --- */ 
 //view engine setup
@@ -40,29 +72,6 @@ app.set('view engine', 'ejs');
 // serves up static files from the public folder. 
 app.use('/static', express.static(path.join(__dirname,'public')));
 // tell node to use json and HTTP header features
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-// New content from page 12
-app.use(cookieParser('oreos'));
-app.use(
-    session({
-        secret: "secret",
-        resave: true,
-        saveUninitialized: true
-    })
-);
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-// Use express flash, which will be used for passing messages
-//app.use(flash());
-// set up the passport authentication
-require('./src/auth.js');
-// In this example, we are using a session-based approach to maintaining
-// our authentication status.
-// Like the sessions in PHP, the Passport package uses cookies
-// behind-the-scenes to implement server sessions.
-// ***************************************************
 
 
 // CORS for API accessing from URLs other than the API url.
@@ -85,6 +94,9 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 
+
+
+
 function parse_down_user(data) {
   let ret_data = {
     id: data.id,
@@ -100,8 +112,8 @@ function parse_down_user(data) {
 /* -------------------------------- ROUTES START HERE ------------------------------------------------ */
 
 
-app.get('/', helper.ensureAuthenticated, (req, res) => {
-  res.json(res.isAuthenticated());
+app.get('/', (req, res) => {
+  res.json(req.isAuthenticated());
 });
 
 
@@ -206,6 +218,8 @@ app.get('/user/:id', (req, res) => {
 app.use(function (req, res, next) {
   res.status(404).send("Error, webpage cannot be found.")
 });
+
+
 
 app.listen(NODEJS_PORT, function () {
   console.log("Server running at port= " + NODEJS_PORT);
