@@ -111,10 +111,57 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/list', (req, res) => {
-  console.log(req.isAuthenticated());
-  
+  //console.log(req.isAuthenticated());
   Play.find({}, (err, data) => {
-    res.json(data);
+    if (err) {
+      console.warn(`Failed to fetch play from DB: {err}`);
+      res.json(err);
+    }
+
+    else if (data.length == 0) {
+      console.log(`Found no plays`);
+      res.json(data);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/play/:id', (req, res) => {
+  Play.find({id: req.params.id}, (err, data) => {
+    if (err) {
+      console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
+      res.json(err);
+    }
+    else if (data.length == 0) {
+      console.log(`Found no plays with ID: ${req.params.id}`);
+      res.json(data);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+
+app.get('/user/:id', (req, res) => {
+  User.findOne({id: req.params.id}, (err, data) => {
+    if (err) {
+      console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);
+      res.json(err);
+    }
+    else if (data.length == 0) {
+      console.log(`Found no user with ID: ${req.params.id}`);
+      res.json({});
+    } else {
+      ret_data = {
+        id: data.id,
+        details: data.details,
+        picture: data.picture,
+        membership: data.membership,
+        favorites: data.favorites
+      }
+      res.json(ret_data);
+    }
   });
 });
 
