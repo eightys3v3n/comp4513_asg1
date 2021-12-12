@@ -7,7 +7,7 @@ function PlaysProvider({children}) {
   const LOCAL_STORAGE_KEY = 'plays';
   const [plays, setPlays] = useState([]);
   const [filter, setFilter] = useState(() => () => true);
-  let url = "https://www.randyconnolly.com/funwebdev/3rd/api/shakespeare/list.php";
+  let url = "http://server.eighty7.ca:8082/list";
   
   useEffect(() => {
     let localPlays = localStorage.getItem(LOCAL_STORAGE_KEY);
