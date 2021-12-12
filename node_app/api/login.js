@@ -1,11 +1,11 @@
 const passport = require('passport');
 const { Router } = require('express');
-const { parse_down_user } = require('../src/helpers.js');
+const { parse_down_user } = require('../helpers/generic.js');
 
-const loginRoute = Router();
+const loginRouter = Router();
 
 
-loginRoute.post('/', async (req, res, next) => {
+loginRouter.post('/', async (req, res, next) => {
   console.log(`Trying to login with ${req.body.email}:${req.body.password}`);
 
   passport.authenticate('localLogin', (err, user, info) => {
@@ -19,4 +19,4 @@ loginRoute.post('/', async (req, res, next) => {
 });
 
 
-module.exports = { logoutRouter };
+module.exports = { loginRouter };
