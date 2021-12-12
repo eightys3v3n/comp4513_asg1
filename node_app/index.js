@@ -67,7 +67,9 @@ require('./src/auth.js');
 // Otherwise the fetch doesn't work for clients.
 app.use(cors());
 let whitelist = ['http://localhost:3000',
-                 'http://localhost:8082'];
+                 'http://localhost:8082',
+                 'http://server.eighty7.ca:80',
+                 'http://server.eighty7.ca:8082'];
 let corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin !== -1)) {
