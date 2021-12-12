@@ -12,8 +12,11 @@ function Login(props) {
     // We will have a context provider in the main app component for Loged in user (or if there is no one logged in)
     // If the API returns "Successfully logged in", then reroute to "/" or home --> Set context handler save info
     // Else if the API returns "Not successful", redirect back to this page
-
     let history = useHistory();
+    console.log("Is logged in: " + userObj.isLoggedIn());
+    if (userObj.isLoggedIn()) {
+        history.push("/");
+    }
     // Displays a login page and allows the user to login, handling tokens
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
@@ -41,9 +44,8 @@ function Login(props) {
 
         if (res) {
 			console.log(res);
-            alert("Logged is successfully");
             userObj.logUserLocally(res);
-            history.push("/");
+            alert("Logged is successfully");
         } else {
             alert("Failed to login: "+res.status);
         }
