@@ -11,7 +11,7 @@ const localOpt = {
 };
 
 
-// Run to setup authentication
+// Run to setup authentication with express
 function setup(app) {
     // Use a cookie parser so we can store session cookies
     app.use(cookieParser('oreos'));
@@ -38,7 +38,7 @@ function setup(app) {
 }
 
 
-// define strategy for validating login
+// Create a strategy for validating a login
 const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
     try {
         const userChosen = await UserModel.findOne({email: email});
