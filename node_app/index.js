@@ -13,12 +13,14 @@ const Play = mongoose.model('Play', playSchema);
 const NODEJS_PORT = process.env.NODEJS_PORT;
 const MONGODB_CONSTRING = process.env.MONGODB_CONSTRING;
 
+console.log(`Connecting to MongoDB with ${MONGODB_CONSTRING}`);
+
 // ***************************************************
 // New content from page 12
 // Configuring the routes
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const flash = require('express-flash');
+//const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./src/helpers.js');
 // controls book data access
@@ -33,10 +35,10 @@ const app = express();
 // ***************************************************
 /* --- middleware section --- */ 
 //view engine setup
-//app.set('views', './views');
-//app.set('view engine', 'ejs');
+app.set('views', './views');
+app.set('view engine', 'ejs');
 // serves up static files from the public folder. 
-//app.use('/static', express.static(path.join(__dirname,'public')));
+app.use('/static', express.static(path.join(__dirname,'public')));
 // tell node to use json and HTTP header features
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -53,7 +55,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 // Use express flash, which will be used for passing messages
-app.use(flash());
+//app.use(flash());
 // set up the passport authentication
 require('./src/auth.js');
 // In this example, we are using a session-based approach to maintaining
@@ -96,10 +98,8 @@ function parse_down_user(data) {
 /* -------------------------------- ROUTES START HERE ------------------------------------------------ */
 
 
-//, helper.ensureAuthenticated   , { user: req.user } 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-  res.json("Hello world");
-  //res.json('../react_app/src/index.js');
+  res.json(res.isAuthenticated());
 });
 
 
@@ -117,12 +117,13 @@ app.post('/login', async (req, res, next) => {
 });
 
 
-app.get('/logout', helper.ensureAuthenticated, (req, res) => {
+app.get('/logout', (req, res) => {
+  console.log("Hello");
+  console.log(req.isAuthenticated());
+
   if (req.isAuthenticated()) {
     console.log("User logging out");
     req.logout();
-    req.flash('info', 'You were logged out');
-    res.render('login', {message: req.flash('info')} );
   } else {
     console.log("User is not logged in");
     res.json("Must be authenticated to use this API. Post email and password to /login");
@@ -130,7 +131,7 @@ app.get('/logout', helper.ensureAuthenticated, (req, res) => {
 });
 
 
-app.get('/list', helper.ensureAuthenticated, (req, res) => {
+app.get('/list', (req, res) => {
   if (req.isAuthenticated()) {
     Play.find({}, {playText: 0}, (err, data) => {
       if (err) {
@@ -151,7 +152,7 @@ app.get('/list', helper.ensureAuthenticated, (req, res) => {
   }
 });
 
-app.get('/play/:id', helper.ensureAuthenticated, (req, res) => {
+app.get('/play/:id', (req, res) => {
   if (req.isAuthenticated()) {
     Play.find({id: req.params.id}, (err, data) => {
       if (err) {
@@ -172,7 +173,7 @@ app.get('/play/:id', helper.ensureAuthenticated, (req, res) => {
 });
 
 
-app.get('/user/:id', helper.ensureAuthenticated, (req, res) => {
+app.get('/user/:id', (req, res) => {
   if (req.isAuthenticated()) {
     User.findOne({id: req.params.id}, (err, data) => {
       if (err) {
