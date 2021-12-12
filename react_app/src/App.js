@@ -7,7 +7,6 @@ import DetailsPage from './components/DetailsPage.js';
 import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
 import Login from './components/Login.js';
-import HeaderBar from './components/HeaderBar.js';
 import UserProvider from './components/UserContextProvider.js';
 
 import {
