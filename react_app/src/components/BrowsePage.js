@@ -5,10 +5,13 @@ import Matches from './Matches.js';
 import HeaderBar from './HeaderBar.js';
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
+import {useContext} from 'react';
+import {UserContext} from './UserContextProvider.js';
 
 function BrowsePage(props) {
+  const userObj = useContext(UserContext);
   let history = useHistory();
-  if (props.userObj === null) {
+  if (userObj.isLoggedIn()) {
     history.push("/login");
   }
 

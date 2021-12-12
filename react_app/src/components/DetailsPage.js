@@ -7,14 +7,17 @@ import { useParams, useHistory } from "react-router-dom";
 import { useState } from 'react';
 import PlayInfoProvider from './PlaysInfoContextProvider';
 import Button from '@mui/material/Button';
+import {useContext} from 'react';
+import {UserContext} from './UserContextProvider.js';
 
 function DetailsPage(props) {
+  const userObj = useContext(UserContext);
   let history = useHistory();
-  if (props.userObj === null) {
+  if (userObj.isLoggedIn()) {
     history.push("/login");
   }
 
-  console.log(props.userObj);
+  console.log(userObj);
 
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
