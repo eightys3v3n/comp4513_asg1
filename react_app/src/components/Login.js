@@ -17,8 +17,8 @@ function Login(props) {
 
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
-
-    return fetch('http://server.eighty7.ca:8082/login', {
+    //http://server.eighty7.ca:8082/login
+    return fetch('http://localhost:8082/login', {
         method: 'POST',
 		credentials: 'include',	
         headers: {
@@ -40,7 +40,7 @@ function Login(props) {
 			console.log(res);
             alert("Logged is successfully");
             props.setUserObject(res);
-            history.push("/");
+            //history.push("/");
         } else {
             alert("Failed to login: "+res.status);
         }

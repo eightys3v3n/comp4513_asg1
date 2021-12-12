@@ -3,7 +3,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./User.js');
+const UserModel = require('./User.js');
 // maps the passport fiels to the names of fields in the database
 const localOpt = {
     usernameField : 'email',
@@ -36,7 +36,13 @@ const strategy = new LocalStrategy(localOpt, async (email, password, done) => {
 // for localLogin, use our strategy to handle User login
 passport.use('localLogin', strategy);
 
-passport.serializeUser((user, done) => done(null, user.email));
+passport.serializeUser((user, done) => {
+    console.log("Serialize");
+    done(null, user.email);
+});
 passport.deserializeUser( (email, done) => {
-    UserModel.findOne({email:email}, (err, user) => done(err,user) );
+    UserModel.findOne({email:email}, (err, user) => {
+        console.log("Deserialize");
+        done(err,user);
+    });
 });

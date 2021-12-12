@@ -81,7 +81,15 @@ let corsOptions = {
   }
 };
 app.use(cors(corsOptions));
-
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 
 
@@ -115,12 +123,11 @@ app.post('/login', async (req, res, next) => {
   console.log("Login attempt");
   
   passport.authenticate('localLogin', (err, user, info) => {
-    if (!user) {
-      res.json(false);
-    } else {
-      let user_info = parse_down_user(user);
-      res.json(user_info);
-    }
+    // Use passport authentication to see if valid login
+    passport.authenticate('localLogin', { 
+      successRedirect: 'http://localhost:3000/',
+      failureRedirect: '/login',
+      failureFlash: true }) (req, res, next);
   })(req, res, next);
 });
 
