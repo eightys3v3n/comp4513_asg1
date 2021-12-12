@@ -32,7 +32,7 @@ function BrowsePage(props) {
 
   return (
     <div className="page background" >
-      <HeaderBar userObj={props.userObj} resetUserObj={props.resetUserObj}/>
+      <HeaderBar />
       <div className="pure-g margin">
           <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
             {favDisplayed ? "Open " : "Close"}
