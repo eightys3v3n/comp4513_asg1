@@ -1,8 +1,11 @@
 const passport = require('passport');
+const { Router } = require('express');
 const { parse_down_user } = require('../src/helpers.js');
 
+const loginRoute = Router();
 
-app.post('/login', async (req, res, next) => {
+
+loginRoute.post('/', async (req, res, next) => {
   console.log(`Trying to login with ${req.body.email}:${req.body.password}`);
 
   passport.authenticate('localLogin', (err, user, info) => {
@@ -16,12 +19,4 @@ app.post('/login', async (req, res, next) => {
 });
 
 
-app.get('/logout', (req, res) => {
-  if (isAuthed()) {
-    console.log("User logging out");
-    req.logout();
-  } else {
-    console.log("User is not logged in");
-    res.json("Must be authenticated to use this API. Post email and password to /login");
-  }
-});
+module.exports = { logoutRouter };
