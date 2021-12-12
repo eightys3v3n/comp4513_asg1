@@ -3,12 +3,19 @@ import HeaderBar from './HeaderBar.js';
 import Favorites from './Favorites.js';
 import PlayTitle from './PlayTitle';
 import Details from './Details.js';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useState } from 'react';
 import PlayInfoProvider from './PlaysInfoContextProvider';
 import Button from '@mui/material/Button';
 
 function DetailsPage(props) {
+  let history = useHistory();
+  if (props.userObj === null) {
+    history.push("/login");
+  }
+
+  console.log(props.userObj);
+
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
   const [matchesWidth, setMatchesWidth] = useState("pure-u-11-24");
@@ -40,7 +47,7 @@ function DetailsPage(props) {
   return (
     <PlayInfoProvider>
       <section id="Details-Page" className="page background" style={{height:"100vh"}}>
-        <HeaderBar />
+      <HeaderBar userObj={props.userObj} resetUserObj={props.resetUserObj}/>
         <div className="pure-g margin" style={{height:"100vh"}}>
           <Button variant='contained' color='primary' style={{marginTop: "10px", marginBottom: "10px", width: "75px"}} onClick={toggleFavVisibility}>
               {favDisplayed ? "Open " : "Close"}

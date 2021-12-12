@@ -13,13 +13,14 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { Modal } from '@mui/material';
 import Divider from '@mui/material/Divider';
+import Login from './Login.js';
 
 
 const pages = [];
 const settings = ['Profile', 'About', 'Logout'];
 
 //please replace this code with the state (dynamically generated from the login state) => you'll want to [Ctrl+F "testUser"]
-const testUser = {
+var testUser = {
   firstname: "Mark",
   lastname: "Frezell",
   city: "Calgary",
@@ -28,9 +29,20 @@ const testUser = {
   dateJoined: "12/10/2021"
 }
 
-const HeaderBar = () => {
+const HeaderBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  if (props.userObj !== null) {
+    testUser = {
+      firstname: props.userObj.details.firstname,
+      lastname: props.userObj.details.lastname,
+      city: props.userObj.details.city,
+      country: props.userObj.details.country,
+      picture: props.userObj.picture.large,
+      dateJoined: props.userObj.membership.date_joined
+    };
+  } 
 
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
@@ -51,7 +63,10 @@ const HeaderBar = () => {
       setOpenProfile(true);
     } else if(setting == "Logout"){ //if user clicks "Logout"
         /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
-        console.log("Tried to Log");
+        //fetch() // to the callback api, then redirect to login page
+        console.log(props.userObj);
+        fetch('http://localhost:8082/logout');
+        props.resetUserObj();
       }
     else{ //if another button is implmented, or a click goes weird
       console.log("Not sure how this got called.");
@@ -190,14 +205,13 @@ const HeaderBar = () => {
             ))}
           </Box>
 
-          {/* IF A USER IS LOGGED IN DISPLAY ONLY THE NEXT BOX (user profile).
-          
-              IF A USER IS NOT LOGGED IN, ONLY DISPLAY THE LOG IN BUTTON */}
-
           {/* This is the Box that holds the LOG IN button */}
-          <Box sx={{ flexGrow: 0 }}>
+          {/* We only log in if the user has logged out, and that is done by accessing the website. No need.
+           <Box sx={{ flexGrow: 0 }}>
             <Button variant='contained' color='inherit' style={{color: "#333333"}}>
-              LOG IN
+              <Link to="/Login">
+                Log In
+              </Link>
             </Button>
             <Menu
               sx={{ mt: '45px' }}
@@ -221,13 +235,13 @@ const HeaderBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
 
           {/* This is the Box that holds the logged in user -  */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Semy Sharp" src="/static/images/avatar/2.jpg" /> {/* Have image path here for the user */}
+                <Avatar alt={testUser.firstname} src={testUser.picture} /> {/* Have image path here for the user */}
               </IconButton>
             </Tooltip>
             <Menu

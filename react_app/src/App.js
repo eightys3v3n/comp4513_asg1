@@ -6,6 +6,8 @@ import BrowsePage from './components/BrowsePage.js';
 import DetailsPage from './components/DetailsPage.js';
 import FavoritesProvider from './components/FavoritesContextProvider.js';
 import PlaysProvider from './components/PlaysContextProvider.js';
+import Login from './components/Login.js';
+import HeaderBar from './components/HeaderBar.js';
 
 import {
   CSSTransition,
@@ -14,7 +16,12 @@ import {
 
 const App = (props) => {
   let [titleFilter, setTitleFilter] = useState("");
+  let [userObj, setUserObject] = useState(null);
   
+  function resetUserObj() {
+    setUserObject(null);
+  };
+
   return (
       <div className="App">
       <header className="App-header"></header>
@@ -28,14 +35,21 @@ const App = (props) => {
             <PlaysProvider location={location}>
               <Route path="/" exact>
                 <HomePage title={titleFilter}
-                          setTitle={setTitleFilter}/>
+                          setTitle={setTitleFilter} 
+                          userObj={userObj} resetUserObj={resetUserObj}/>
               </Route>
               <FavoritesProvider location={location}>
                 <Route path="/BrowsePage">
-                  <BrowsePage title={titleFilter} setTitle={setTitleFilter} />
+                  <BrowsePage title={titleFilter} setTitle={setTitleFilter} 
+                              userObj={userObj} resetUserObj={resetUserObj} />
                 </Route>
-                <Route path="/DetailsPage/:playID" exact component={DetailsPage} />
+                <Route path="/DetailsPage/:playID">  
+                  <DetailsPage userObj={userObj} resetUserObj={resetUserObj}/>
+                </Route>
               </FavoritesProvider>
+              <Route path="/Login" exact>
+                  <Login setUserObject={setUserObject} />
+              </Route>
             </PlaysProvider>
             </CSSTransition>
           </TransitionGroup>
