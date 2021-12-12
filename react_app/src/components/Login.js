@@ -20,8 +20,9 @@ function Login(props) {
 
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
-    //http://server.eighty7.ca:8082/login
-    return fetch('http://localhost:8082/login', {
+
+    //http://server.eighty7.ca:8082/api/login
+    return fetch('http://localhost:8082/api/login', {
         method: 'POST',
 		credentials: 'include',	
         headers: {

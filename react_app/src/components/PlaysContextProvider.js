@@ -7,8 +7,8 @@ function PlaysProvider({children}) {
   const LOCAL_STORAGE_KEY = 'plays';
   const [plays, setPlays] = useState([]);
   const [filter, setFilter] = useState(() => () => true);
-  //let url = "http://server.eighty7.ca:8082/list";
-  let url = "http://localhost:8082/list";
+  //let url = "http://server.eighty7.ca:8082/api/list";
+  let url = "http://localhost:8082/api/list";
   
   useEffect(() => {
     let localPlays = localStorage.getItem(LOCAL_STORAGE_KEY);
