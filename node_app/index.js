@@ -7,6 +7,8 @@ const cors = require('cors');
 
 const userSchema = require('./src/User.js').userSchema;
 const playSchema = require('./src/Play.js').playSchema;
+const User = mongoose.model('User', userSchema);
+const Play = mongoose.model('Play', playSchema);
 
 const NODEJS_PORT = process.env.NODEJS_PORT;
 const MONGODB_CONSTRING = process.env.MONGODB_CONSTRING;
@@ -26,10 +28,7 @@ const helper = require('./src/helpers.js');
 require('./src/mongoDataConnector.js').connect();
 // ***************************************************
 
-
 const app = express();
-
-
 
 // ***************************************************
 /* --- middleware section --- */ 
@@ -64,10 +63,13 @@ require('./src/auth.js');
 // ***************************************************
 
 
-// CORS for API accessing
+// CORS for API accessing from URLs other than the API url.
+// Otherwise the fetch doesn't work for clients.
 app.use(cors());
 let whitelist = ['http://localhost:3000',
-                 'http://localhost:8082'];
+                 'http://localhost:8082',
+                 'http://server.eighty7.ca:80',
+                 'http://server.eighty7.ca:8082'];
 let corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin !== -1)) {
@@ -79,26 +81,19 @@ let corsOptions = {
 };
 
 
-
-/* ------------------------------------------------ ROUTES START HERE ------------------------------------------------ */
-
-
-// Need 2 api calls
-
-
-
-
-async function print_user() {
-  const User = mongoose.model('User', userSchema);
-  let test = await User.findOne();
-  console.log(test);
+function parse_down_user(data) {
+  let ret_data = {
+    id: data.id,
+    details: data.details,
+    picture: data.picture,
+    membership: data.membership,
+    email: data.email
+  };
+  return ret_data;
 }
 
-async function print_play() {
-  const Play = mongoose.model('Play', playSchema);
-  let test = await Play.findOne({playText: {$exists: true, $ne: {}}});
-  console.log(test);
-}
+
+/* -------------------------------- ROUTES START HERE ------------------------------------------------ */
 
 
 //, helper.ensureAuthenticated   , { user: req.user } 
@@ -115,7 +110,8 @@ app.post('/login', async (req, res, next) => {
     if (!user) {
       res.json(false);
     } else {
-      res.json(user);
+      let user_info = parse_down_user(user);
+      res.json(user_info);
     }
   })(req, res, next);
 });
@@ -125,6 +121,56 @@ app.get('/logout', (req, res) => {
   req.logout();
   req.flash('info', 'You were logged out');
   res.render('login', {message: req.flash('info')} );
+});
+
+
+app.get('/list', (req, res) => {
+  //console.log(req.isAuthenticated());
+  Play.find({}, {playText: 0}, (err, data) => {
+    if (err) {
+      console.warn(`Failed to fetch play from DB: {err}`);
+      res.json(err);
+    }
+
+    else if (data.length == 0) {
+      console.log(`Found no plays`);
+      res.json(data);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/play/:id', (req, res) => {
+  Play.find({id: req.params.id}, (err, data) => {
+    if (err) {
+      console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
+      res.json(err);
+    }
+    else if (data.length == 0) {
+      console.log(`Found no plays with ID: ${req.params.id}`);
+      res.json(data);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+
+app.get('/user/:id', (req, res) => {
+  User.findOne({id: req.params.id}, (err, data) => {
+    if (err) {
+      console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);
+      res.json(err);
+    }
+    else if (data.length == 0) {
+      console.log(`Found no user with ID: ${req.params.id}`);
+      res.json({});
+    } else {
+      let ret_data = parse_down_user(data);
+      res.json(ret_data);
+    }
+  });
 });
 
 
