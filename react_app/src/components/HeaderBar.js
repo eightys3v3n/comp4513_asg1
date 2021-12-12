@@ -29,7 +29,7 @@ const testUser = {
   dateJoined: "12/10/2021"
 }
 
-const HeaderBar = () => {
+const HeaderBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
