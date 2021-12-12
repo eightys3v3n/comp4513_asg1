@@ -15,8 +15,7 @@ function Login(props) {
 
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
-    console.warn("Currenty not validating login tokens on the server. Any non-null token is accepted");
-    return fetch('https://localhost:8082/login', {
+    return fetch('http://localhost:8082/login', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
