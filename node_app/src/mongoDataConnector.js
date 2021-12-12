@@ -1,6 +1,7 @@
 // Change the database Location, or just edit the existing MongoDB collection/db
 // Page 8
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connect = () => {
    const opt = {
