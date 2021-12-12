@@ -3,7 +3,7 @@
 
 // Uses passport authentication to check if authentication is
 // needed at some point in the middleware pipeline.
-function ensureAuthenticated (req, resp, next) {
+function ensureAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {
         console.log("isAuthenticated is true.");
         return next();
