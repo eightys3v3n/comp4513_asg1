@@ -118,59 +118,78 @@ app.post('/login', async (req, res, next) => {
 
 
 app.get('/logout', (req, res) => {
-  req.logout();
-  req.flash('info', 'You were logged out');
-  res.render('login', {message: req.flash('info')} );
+  if (req.isAuthenticated()) {
+    req.logout();
+    req.flash('info', 'You were logged out');
+    res.render('login', {message: req.flash('info')} );
+  } else {
+    console.log("User is not logged in");
+    res.json("Must be authenticated to use this API. Post email and password to /login");
+  }
 });
 
 
 app.get('/list', (req, res) => {
-  //console.log(req.isAuthenticated());
-  Play.find({}, {playText: 0}, (err, data) => {
-    if (err) {
-      console.warn(`Failed to fetch play from DB: {err}`);
-      res.json(err);
-    }
-
-    else if (data.length == 0) {
-      console.log(`Found no plays`);
-      res.json(data);
-    } else {
-      res.json(data);
-    }
-  });
+  if (req.isAuthenticated()) {
+    Play.find({}, {playText: 0}, (err, data) => {
+      if (err) {
+        console.warn(`Failed to fetch play from DB: {err}`);
+        res.json(err);
+      }
+      
+      else if (data.length == 0) {
+        console.log(`Found no plays`);
+        res.json(data);
+      } else {
+        res.json(data);
+      }
+    });
+  } else {
+    console.log("User is not logged in");
+    res.json("Must be authenticated to use this API. Post email and password to /login");
+  }
 });
 
 app.get('/play/:id', (req, res) => {
-  Play.find({id: req.params.id}, (err, data) => {
-    if (err) {
-      console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
-      res.json(err);
-    }
-    else if (data.length == 0) {
-      console.log(`Found no plays with ID: ${req.params.id}`);
-      res.json(data);
-    } else {
-      res.json(data);
-    }
-  });
+  if (req.isAuthenticated()) {
+    Play.find({id: req.params.id}, (err, data) => {
+      if (err) {
+        console.warn(`Failed to fetch play from DB: ${req.params.id}:${err}`);
+        res.json(err);
+      }
+      else if (data.length == 0) {
+        console.log(`Found no plays with ID: ${req.params.id}`);
+        res.json(data);
+      } else {
+        res.json(data);
+      }
+    });
+  } else {
+    console.log("User is not logged in");
+    res.json("Must be authenticated to use this API. Post email and password to /login");
+  }
 });
 
 
 app.get('/user/:id', (req, res) => {
-  User.findOne({id: req.params.id}, (err, data) => {
-    if (err) {
-      console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);
-      res.json(err);
-    }
-    else if (data.length == 0) {
-      console.log(`Found no user with ID: ${req.params.id}`);
-      res.json({});
-    } else {
-      let ret_data = parse_down_user(data);
-      res.json(ret_data);
-    }
-  });
+  if (req.isAuthenticated()) {
+    User.findOne({id: req.params.id}, (err, data) => {
+      if (err) {
+        console.warn(`Failed to fetch user from DB: ${req.params.id}:${err}`);
+        res.json(err);
+      }
+      else if (data.length == 0) {
+        console.log(`Found no user with ID: ${req.params.id}`);
+        res.json({});
+      } else {
+        let ret_data = parse_down_user(data);
+        res.json(ret_data);
+      }
+    });
+  } else {
+    console.log("User is not logged in");
+    res.json("Must be authenticated to use this API. Post email and password to /login");
+  }
 });
 
 
