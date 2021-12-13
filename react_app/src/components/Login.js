@@ -35,7 +35,10 @@ function Login(props) {
             },
             body: JSON.stringify(creds)
         })
-            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                return data.json();
+            })
             .catch(err => {
                 console.log("Failed to contact login API: "+err);
             });
