@@ -1,5 +1,4 @@
 const passport = require('passport');
-const flash = require('express-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -16,8 +15,6 @@ const localOpt = {
 function setup(app) {
     // Use a cookie parser so we can store session cookies
     app.use(cookieParser('oreos'));
-
-    app.use(flash());
 
     // Configure storing of session cookies
     app.use(
