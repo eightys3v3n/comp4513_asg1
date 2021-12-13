@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {useContext} from 'react';
 import {UserContext} from './UserContextProvider.js';
+import LogoutComponent from './SubComponents/LogoutComponent.js';
+import LoginComponent from './SubComponents/LoginComponent.js';
 
 function HomePage(props) {
   let title;
@@ -16,6 +18,18 @@ function HomePage(props) {
 
   function searchAllTitles(e) {
     props.setTitle("");
+  }
+
+  function renderLoginOrLogout() {
+    if (userObj.isLoggedIn() ) {
+      return (
+        
+      <LogoutComponent user={userObj}/>
+      
+      );
+    } else {
+      return (<LoginComponent />);
+    }
   }
 
   let src = `${process.env.PUBLIC_URL}/homepage.jpg`;
@@ -45,6 +59,7 @@ function HomePage(props) {
                         onClick={searchAllTitles}>
                 Show All Plays</Button>
               </Link>
+              {renderLoginOrLogout()}
             </div>
           </form>
         </div>
