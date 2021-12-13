@@ -21,7 +21,7 @@ apiRouter.use('/user', userRouter);
 
 // show an error if we don't have a route for a request
 apiRouter.use(function (req, res, next) {
-  res.status(404).send("Error, webpage cannot be found.")
+  res.status(404).json("Error, webpage cannot be found.")
 });
 
 

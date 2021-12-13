@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -38,6 +38,7 @@ const HeaderBar = (props) => {
   let history = useHistory();
 
   if (userObj.isLoggedIn()) {
+    console.log(userObj);
     testUser = {
       firstname: userObj.userObj.details.firstname,
       lastname: userObj.userObj.details.lastname,
@@ -46,9 +47,13 @@ const HeaderBar = (props) => {
       picture: userObj.userObj.picture.large,
       dateJoined: userObj.userObj.membership.date_joined
     };
-  } else {
-    history.push("/login");
   }
+
+  useEffect(() => {
+    if (!userObj.isLoggedIn()) {
+      history.push("/login");
+    }
+  }, []);
 
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
@@ -65,12 +70,8 @@ const HeaderBar = (props) => {
     if(setting == "About") //if the user clicks "About"
       setOpen(true);
     else if(setting == "Profile"){ //if user clicks "Profile"
-      console.log("Access Profile");
       setOpenProfile(true);
     } else if(setting == "Logout"){ //if user clicks "Logout"
-        /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
-        //fetch() // to the callback api, then redirect to login page
-        console.log(userObj);
         userObj.logOutUserLocally();
         history.push("/login");
       }
