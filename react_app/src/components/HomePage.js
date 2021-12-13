@@ -10,12 +10,6 @@ function HomePage(props) {
 
   let history = useHistory();
 
-  console.log("HOMEPAGE - Is Logged In: "+userObj.isLoggedIn());
-  console.log(userObj);
-  // if (!userObj.isLoggedIn()) {
-  //   history.push("/login");
-  // }
-
   function searchTitle(e) {
     props.setTitle(title);
   }

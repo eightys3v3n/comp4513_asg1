@@ -9,12 +9,10 @@ function UserProvider(props) {
 
 
   useEffect(() => {
-    console.log("STEP 1");
   let localUser = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (localUser != null) {
-    console.log("STEP 2");
     try {
-      console.log("Retireving local user.");
+      console.log("Retireving local user");
       localUser = JSON.parse(localUser)
 
       // if ( isEmpty(localUser) || localUser.length > 0) {

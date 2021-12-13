@@ -13,8 +13,6 @@ import {UserContext} from './UserContextProvider.js';
 function DetailsPage(props) {
   const userObj = useContext(UserContext);
 
-  console.log(userObj);
-
   const [favDisplayed, setFavDisplayed] = useState(false);
   const [showHideFav, setShowHideFav] = useState("pure-u-4-24");
   const [matchesWidth, setMatchesWidth] = useState("pure-u-11-24");
