@@ -4,6 +4,9 @@ import  { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {useContext} from 'react';
 import {UserContext} from './UserContextProvider.js';
+import {Input} from '@mui/material';
+import {InputLabel} from '@mui/material';
+import {Box, Typography, TextField} from '@mui/material';
 
 function Login(props) {
     const userObj = useContext(UserContext);
@@ -14,6 +17,18 @@ function Login(props) {
     // Else if the API returns "Not successful", redirect back to this page
     let history = useHistory();
     console.log("Is logged in: " + userObj.isLoggedIn());
+
+    let src = `${process.env.PUBLIC_URL}/login.jpg`;
+
+
+    const [inputColor,setInputColor] = useState("primary");
+
+    function changeInputColor(){
+        if(inputColor == "primary")
+            setInputColor("error");
+        else
+            setInputColor("primary");
+    }
 
     useEffect(() => {
         if (userObj.isLoggedIn()) {
@@ -50,36 +65,66 @@ function Login(props) {
         if (res) {
 			console.log(res);
             userObj.logUserLocally(res);
-            alert("Logged is successfully");
         } else {
+            changeInputColor();
             alert("Failed to login: "+res.status);
         }
 
     }
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: '#AAA',
+        border: '2px solid #CCC',
+        boxShadow: 24,
+        p: 4,
+        color: "#EEE"
+      };
+
+    const flexBox={
+        display: 'flex',
+        justifyContent: 'center'
+    }
+
+    const background = {
+        position:"absolute",
+        top:"0px",
+        left: "0px",
+        right:"0px",
+        height: "100%",
+        backgroundImage: `url(${src})`, 
+        alt: "homepage image"
+    }
+
     return (
-    <div className="body">
-        <header className="Login">
-        <h2>Login</h2>
-        </header>
-        <section className="login-body">
-        <label>
-            Username:
-        </label>
-        <input
-            type="text"
-            name="username"
-            onChange={e => setUserName(e.target.value)} />
-        <label>
-            Password:
-        </label>
-        <input
-            type="password"
-            name="password"
-            onChange={e => setPassword(e.target.value)} />
-            <Button onClick={handleSubmit}>Log in</Button>
-        </section>
-    </div> 
+        <Box style={background}>
+            <Box sx={style}>
+                <Box sx={flexBox}>
+                    <Box>
+                        <Typography variant="h2" color="black" className="Login">Login</Typography><br/> <br/>
+                        <section className="login-body">
+                            <InputLabel>Username:</InputLabel>
+                            <Input
+                                type="text"
+                                name="username"
+                                color="primary"
+                                onChange={e => setUserName(e.target.value)} /><br/>
+                            <InputLabel>Password:</InputLabel>
+                            <Input
+                                type="password"
+                                name="password"
+                                color="primary"
+                                onChange={e => setPassword(e.target.value)} /><br/><br/>
+                            <Button variant="contained" onClick={handleSubmit}>Log in</Button>
+                        </section>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 
