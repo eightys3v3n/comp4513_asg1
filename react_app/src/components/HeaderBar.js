@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -46,9 +46,13 @@ const HeaderBar = (props) => {
       picture: userObj.userObj.picture.large,
       dateJoined: userObj.userObj.membership.date_joined
     };
-  } else {
-    history.push("/login");
   }
+
+  useEffect(() => {
+    if (!userObj.isLoggedIn()) {
+      history.push("/login");
+    }
+  }, []);
 
   let src = `${process.env.PUBLIC_URL}/paint-bucket.png`;
 
