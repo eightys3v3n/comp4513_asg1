@@ -38,6 +38,7 @@ const HeaderBar = (props) => {
   let history = useHistory();
 
   if (userObj.isLoggedIn()) {
+    console.log(userObj);
     testUser = {
       firstname: userObj.userObj.details.firstname,
       lastname: userObj.userObj.details.lastname,

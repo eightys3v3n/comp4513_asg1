@@ -35,7 +35,10 @@ function Login(props) {
             },
             body: JSON.stringify(creds)
         })
-            .then(data => data.json());
+            .then(data => data.json())
+            .catch(err => {
+                console.log("Failed to contact login API: "+err);
+            });
     }
         
     const handleSubmit = async event => {
@@ -44,11 +47,13 @@ function Login(props) {
           password: password
         });
 
+        console.log(res);
+
         if (res) {
             userObj.logUserLocally(res);
             alert("Logged is successfully");
         } else {
-            alert("Failed to login: "+res.status);
+            alert("Failed to login");
         }
 
     }
