@@ -50,12 +50,10 @@ function Login(props) {
             },
             body: JSON.stringify(creds)
         })
-            .then(data => {
-                console.log(data);
-                return data.json();
-            })
-            .catch(err => {
-                console.log("Failed to contact login API: "+err);
+            .then(res => {
+                if (res.status == 200) {
+                   return res.json();
+                }
             });
     }
         
@@ -71,7 +69,7 @@ function Login(props) {
             userObj.logUserLocally(res);
         } else {
             changeInputColor();
-            alert("Failed to login: ");
+            alert("Failed to login");
         }
 
     }
