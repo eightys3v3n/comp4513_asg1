@@ -31,26 +31,25 @@ function PlaysProvider({children}) {
     
     console.log("Fetching plays from API...");
     fetch(url, {credentials: "include"})
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
- 		console.log(data);
-		if (typeof data != "object" && typeof data != "function") {
-			console.warn("User is not logged in for this API");
-			console.log(data);
-		} else {
-    	    data.forEach( (play) => {
-        	   play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
-        	} )
-        	setPlays(data);
-        	console.log(`Fetched ${data.length} plays from API`);
-        	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-		}
-      })
-      .catch( err => {
-        console.log("ERROR IS: "+err);
-      });
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      if (typeof data != "object" && typeof data != "function") {
+       console.warn("User is not logged in for this API");
+       console.log(data);
+     } else {
+       data.forEach( (play) => {
+        play.genre = play.genre.charAt(0).toUpperCase() + play.genre.substr(1).toLowerCase();
+      } )
+       setPlays(data);
+       console.log(`Fetched ${data.length} plays from API`);
+       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+     }
+   })
+    .catch( err => {
+      console.log("Failed to fetch plays: "+err);
+    });
   }, [url]);
 
   function getByID(id) {
@@ -75,10 +74,10 @@ function PlaysProvider({children}) {
   }
 
   return (
-    <PlaysContext.Provider value={{plays, getByID, getGenres, filter, setFilter}}>
-      {children}
-    </PlaysContext.Provider>
-  );
+          <PlaysContext.Provider value={{plays, getByID, getGenres, filter, setFilter}}>
+          {children}
+          </PlaysContext.Provider>
+          );
 }
 
 export default PlaysProvider;

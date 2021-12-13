@@ -69,12 +69,8 @@ const HeaderBar = (props) => {
     if(setting == "About") //if the user clicks "About"
       setOpen(true);
     else if(setting == "Profile"){ //if user clicks "Profile"
-      console.log("Access Profile");
       setOpenProfile(true);
     } else if(setting == "Logout"){ //if user clicks "Logout"
-        /* WHEN THE USER IS LOGGING OUT, PUT IMPLEMENTATION HERE */
-        //fetch() // to the callback api, then redirect to login page
-        console.log(userObj);
         userObj.logOutUserLocally();
         history.push("/login");
       }

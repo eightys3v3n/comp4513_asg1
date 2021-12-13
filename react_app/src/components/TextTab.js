@@ -47,12 +47,10 @@ function TextTab(props) {
                             }
                             if (query !== "") {
                                 speechesArray = speechesArray.map( aSpeech => {
-                                    //console.log(aSpeech);
                                     aSpeech.lines = aSpeech.lines.map( aLine => {
                                         aLine = "<p>" + aLine;
                                         aLine = aLine.replaceAll(query, `<span class="highlighted">${query}</span>`);
                                         aLine = aLine + "</p>";
-                                        console.log(aLine);
                                         return aLine;
                                     });
                                     return aSpeech;
