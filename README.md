@@ -10,9 +10,10 @@
   This will build and run a docker container for MongoDB and Node.js.
   
   To start Node.js in a development state, run start_dev_environment.sh.
+
   To configure the ports and IP addresses, see node_app/.env, node_app/docker-compose.yml, node_app/Dockerfile-mongodb, and node_app/Dockerfile-nodejs.
 
 ### Frontend
   Navigate to react_app.
   Run start_dev_environment.sh to start a development server.
-  Run start_docker_prod.sh to run the production version.
+  Run start_docker_prod.sh to run the production version. Have to change all the localhost addresses to the external IP of the server otherwise API calls don't work.
