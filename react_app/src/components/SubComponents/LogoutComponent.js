@@ -1,24 +1,21 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import FavoriteIcon from '../FavoriteIcon.js';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 function LogoutComponent(props) {
-  let name = props.user.firstname + " " + props.user.lastname;
 
+  let history = useHistory();
   function doLogout() {
-    console.log("LOGOUT NEEDS TO BE COMPLETED HERE")
+    props.userObj.logOutUserLocally();
+    history.push("/login");
   }
   
   return (
-    <div>
-      <h1>Welcome back, {name}!</h1>
       <Button variant="contained"
               style={{color:'white'}}
               className='gradient' 
-              onClick={doLogout()}>
+              onClick={doLogout}>
       Logout</Button>
-    </div>
   );
 }
 
