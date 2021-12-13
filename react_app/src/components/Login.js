@@ -42,32 +42,34 @@ function Login(props) {
 
     // Utilizes the API to retrieve a login token
     async function loginUser(creds) {
-
-    //http://server.eighty7.ca:8082/api/login
-    return fetch('http://localhost:8082/api/login', {
-        method: 'POST',
-		credentials: 'include',	
-        headers: {
-    	    'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(creds)
-    })
-        .then(data => data.json());
+        return fetch('http://localhost:8082/api/login', {
+            method: 'POST',
+    		credentials: 'include',
+            headers: {
+        	    'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(creds)
+        })
+            .then(res => {
+                if (res.status == 200) {
+                   return res.json();
+                }
+            });
     }
         
     const handleSubmit = async event => {
-    
         const res = await loginUser({
           email: username,
           password: password
         });
 
+        console.log(res);
+
         if (res) {
-			console.log(res);
             userObj.logUserLocally(res);
         } else {
             changeInputColor();
-            alert("Failed to login: "+res.status);
+            alert("Failed to login");
         }
 
     }
@@ -96,7 +98,7 @@ function Login(props) {
         left: "0px",
         right:"0px",
         height: "100%",
-        backgroundImage: `url(${src})`, 
+        backgroundImage: `url(${src})`,
         alt: "homepage image"
     }
 
